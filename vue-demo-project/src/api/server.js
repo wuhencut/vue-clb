@@ -1583,7 +1583,7 @@ export default{
   RankService:{
     //获取排行数据
     getRank: function (type) {
-      var url = type == 'day' ? URLService.getURL('getUserRank') : URLService.getURL('getUnionRank');
+      var url = type == 'day' ? getURL('getUserRank') : getURL('getUnionRank');
       var params = {
         device: 1,
         agentCode: agentCode,
