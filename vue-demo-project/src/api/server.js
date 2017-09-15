@@ -120,38 +120,841 @@ function getURL(method){
 };*/
 
 export default{
-  NoticeService:{
-    getNotices:function (page, pageSize) {
-      let params = {
+  //登录服务
+  LoginService:{
+    login:function (username, password) {
+      var data = {
+        authencationType: 'AJAX',
+        device: 1,
+        remeber: true,
+        entrance: '',
+        username: username,
+        password: password,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('login'),
+        data: data
+      });
+    },
+    logout:function () {
+      var data = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('logout'),
+        data: data
+      });
+    }
+  },
+  //注册服务
+  RegisterService:{
+    //注册下一步
+    regNextStep:function (mobile, checkCode) {
+      var data = {
+        device: 1,
+        mobile: mobile,
+        checkCode: checkCode,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('regNextStep'),
+        data: data
+      });
+    },
+    doRegister: function (mobile, username, password) {
+      var data = {
+        device: 1,
+        password: password,
+        mobile: mobile,
+        username: username,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('doRegister'),
+        data: data
+      });
+    },
+    //获取验证码
+    getRegisterCode: function (mobile, checkCode) {
+      var data = {
+        device: 1,
+        checkCode: checkCode,
+        mobile: mobile,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getRegisterCode'),
+        data: data
+      });
+    }
+  },
+  //密码服务
+  PasswordService:{
+    //忘记密码服务
+    resetForgetPassword: function (mobile, checkCode, password) {
+      var data = {
+        device: 1,
+        mobile: mobile,
+        checkCode: checkCode,
+        password: password,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('resetForgetPassword'),
+        data: data
+      });
+    },
+
+    //获取验证码
+    sendForgetCode: function (mobile, checkCode) {
+      var data = {
+        device: 1,
+        type: 2,
+        mobile: mobile,
+        checkCode: checkCode,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('sendForgetCode'),
+        data: data
+      });
+    },
+    //修改登录密码
+    loginPwdModify: function (oldPassword, newPassword) {
+      var data = {
+        device: 1,
+        newPassword: newPassword,
+        oldPassword: oldPassword,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('loginPwdModify'),
+        data: data
+      })
+    },
+    //提现密码服务
+    PwdSet: function (password) {
+      var data = {
+        device: 1,
+        password: password,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('withdrawPwdSet'),
+        data: data
+      })
+    },
+    //提现密码修改
+    PwdModify: function (newPwd, oldPwd) {
+      var data = {
+        device: 1,
+        newPassword: newPwd,
+        oldPassword: oldPwd,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('withdrawPwdModify'),
+        data: data
+      })
+    },
+    //重置提现密码服务
+    resetWithdrawPwd: function (password, checkCode) {
+      var data = {
+        device: 1,
+        password: password,
+        checkCode: checkCode,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('resetWithdrawPwd'),
+        data: data
+      });
+    },
+
+    //获取提现密码重置验证码
+    sendPasswordCode: function () {
+      var data = {
+        device: 1,
+        useVoice: false,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('forgetWithdrawPasswordCode'),
+        data: data
+      });
+    }
+  },
+  //用户服务
+  UserService:{
+    //获取用户信息
+    getUserInfo: function () {
+      var data = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getUserInfo'),
+        data: data
+      });
+    },
+    //获取用户余额
+    getBalance: function () {
+      var data = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getBalance'),
+        data: data
+      });
+    },
+    //获取用户模拟币余额
+    getSimBalance: function () {
+      var data = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getSimBalance'),
+        data: data
+      });
+    },
+    //获取银行信息
+    getBankInfo: function () {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getBankInfo'),
+        params: params
+      });
+    },
+    //获取银行卡信息
+    getBankCardInfo: function () {
+      var data = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getBankCardInfo'),
+        data:data
+      });
+    },
+    //获取银行卡信息
+    getBankCards: function () {
+      var data = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getBankCards'),
+        data: data
+      });
+    },
+    //支付宝账户认证
+    bindingAlipayAccount: function (alipayAccount, tradeAmount, tradeNo) {
+      var data = {
+        device: 1,
+        alipayAccount: alipayAccount,
+        tradeNo: tradeNo,
+        tradeAmount: tradeAmount,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('bindingAlipayAccount'),
+        data: data
+      });
+    },
+    //根据用户ID获取银行卡信息
+    getBankCardById: function (bankCardId) {
+      var data = {
+        device: 1,
+        cardId: bankCardId,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getBankCardById'),
+        data: data
+      });
+    },
+    //绑定银行卡
+    bindBankCard: function (bank, province, city, branch, bankCard) {
+      var data = {
+        device: 1,
+        bank: bank,
+        province: province,
+        city: city,
+        branch: branch,
+        bankCard: bankCard,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('bindBankCard'),
+        data: data
+      });
+    },
+    //更新银行卡setDefaultBankCard
+    updateCardInfo: function (id, bank, province, city, branch) {
+      var data = {
+        device: 1,
+        bank: bank,
+        province: province,
+        city: city,
+        branch: branch,
+        id: id,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('updateCardInfo'),
+        data: data
+      });
+    },
+    //设置默认银行卡
+    setDefaultBankCard: function (bankCardId) {
+      var data = {
+        device: 1,
+        cardId: bankCardId,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('setDefaultBankCard'),
+        data: data
+      });
+    },
+    //删除银行卡
+    delBankCard: function (bankCardId) {
+      var data = {
+        device: 1,
+        cardId: bankCardId,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('delBankCard'),
+        data: data
+      });
+    },
+    //获取分支行
+    getSubBank: function (bank, province, city) {
+      var data = {
+        device: 1,
+        bankName: bank,
+        province: province,
+        city: city,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getSubBank'),
+        data: data
+      });
+    },
+
+    //实名认证
+    realName: function (name, IDNum) {
+      var data = {
+        device: 1,
+        name: name,
+        idNumber: IDNum,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('updateRealname'),
+        data: data
+      });
+    },
+    //获取留言
+    getMsgPage: function (page, pageSize) {
+      var data = {
         device: 1,
         page: page || 1,
         pageSize: pageSize || 10,
-        agentCode: agentCode
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getMsgPage'),
+        data: data
+      });
+    },
+    //提交留言
+    postMsg: function (type, contact, content) {
+      var data = {
+        device: 1,
+        type: type,
+        contact: contact,
+        content: content,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('postMsg'),
+        data: data
+      });
+    },
+
+    //外盘协议签署
+    outerSignAgreement: function (commodityNo) {
+      var data = {
+        device: 1,
+        commodityNo: commodityNo,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('outerSignAgreement'),
+        data: data
+      });
+    },
+
+    //发送手机解绑短信验证码
+    mobileUnbindCode: function (code) {
+      var data = {
+        device: 1,
+        checkCode: code,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('mobileUnbindCode'),
+        data: data
+      });
+    },
+
+    //手机号解绑
+    unbindMobile: function (code) {
+      var data = {
+        device: 1,
+        checkCode: code,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('unbindMobile'),
+        data: data
+      });
+    },
+
+    //发送手机绑定短信验证码
+    mobileBindCode: function (code, mobile) {
+      var data = {
+        device: 1,
+        checkCode: code,
+        mobile: mobile,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('mobileBindCode'),
+        data: data
+      });
+    },
+
+    //发送手机绑定短信验证码
+    bindMobile: function (code, mobile) {
+      var data = {
+        device: 1,
+        checkCode: code,
+        mobile: mobile,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('bindMobile'),
+        data: data
+      });
+    }
+  },
+
+  //支付服务
+  PayService:{
+    //获取资金明细
+    getFundDetail: function (action, explain, page, pageSize) {
+      var data = {
+        device: 1,
+        action: action,
+        timeStart: '1year',//一周，一月，半年，一年
+        explain: explain,//支出，收入
+        page: page || 1,
+        pageSize: pageSize || 20,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getFundDetail'),
+        data: data
+      });
+    },
+
+    //获取所有资金明细
+    getFundAll: function (action, page, pageSize) {
+      var data = {
+        device: 1,
+        action: action,
+        timeStart: '1year',//一周，一月，半年，一年
+        page: page || 1,
+        pageSize: pageSize || 20,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getFundAll'),
+        data: data
+      });
+    },
+
+    //联动首次充值链接
+    h5FirstPayUrl: function (bankCode, money, card, charge) {
+      var data = {
+        device: 1,
+        bankCode: bankCode,
+        money: money,
+        bankCard: card,
+        charge: charge,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('h5FirstPayUrl'),
+        data: data
+      });
+    },
+
+    //联动非首次充值链接
+    h5PayUrl: function (cardId, money, charge) {
+      var data = {
+        device: 1,
+        cardId: cardId,
+        money: money,
+        charge: charge,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('h5PayUrl'),
+        data: data
+      });
+    },
+
+    payGateway: function (money) {
+      var data = {
+        device: 1,
+        money: money,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('payGateway'),
+        data: data
+      });
+    },
+
+    //支付宝
+    alipay: function (money, account) {
+      var data = {
+        device: 1,
+        alipayName: account,
+        money: money,
+        charge: 0,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('alipay'),
+        data: data
+      });
+    },
+
+    //用户提现
+    doWithdraw: function (cardId, money, password) {
+      var data = {
+        device: 1,
+        cardId: cardId,
+        money: money,
+        password: password,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('doWithdraw'),
+        data: data
+      });
+    },
+
+    //取消提现
+    cancelWithdraw: function (id) {
+      var data = {
+        device: 1,
+        id: id,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('cancelWithdraw'),
+        data: data
+      });
+    }
+  },
+
+  //公告服务
+  NoticeService:{
+    //获取公告列表
+    getNoticeList: function (page, pageSize) {
+      var params = {
+        device: 1,
+        page: page || 1,
+        pageSize: pageSize || 10,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getNoticeList'),
+        params: params
+      });
+    },
+
+
+    getNoticeById: function (noticeId) {
+      var params = {
+        device: 1,
+        noticeId: noticeId,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getNoticeById'),
+        params: params
+      });
+    },
+
+    //获取新闻
+    getNewsList: function (page, pageSize, time) {
+      var params = {
+        device: 1,
+        page: page || 0,
+        pageSize: pageSize || 10,
+        time: time,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getNewsList'),
+        params: params
+      });
+    },
+
+    //改版公告
+    getNotices: function (page, pageSize) {
+      var params = {
+        device: 1,
+        page: page || 1,
+        pageSize: pageSize || 10,
+        agentCode: agentCode,
+        source: agentCode
       };
       return axios({
         method: 'GET',
         url: getURL('getNotices'),
         params: params
-      })
-    },
-    getExtensionInfo:function (page, pageSize) {
-      let params = {
+      });
+    }
+  },
+
+  //交易服务
+  TradeService:{
+    //外盘-点卖
+    getSaleFutures: function (type) {
+      var data = {
         device: 1,
-        agentCode: agentCode
+        type: type || 2,
+        agentCode: agentCode,
+        source: agentCode
       };
       return axios({
         method: 'POST',
-        url: getURL('getExtensionInfo'),
-        params: params
-      })
+        url: getURL('getSaleFutures'),
+        data: data
+      });
     },
+
+    //外盘-结算
+    getTradeResult: function (page, pageSize, type) {
+      var data = {
+        device: 1,
+        type: type || 2,
+        page: page || 1,
+        pageSize: pageSize,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getSettleStrategy'),
+        data: data
+      });
+    },
+
+    //平仓-发起
+    getCloseFutures: function (ids, type) {
+      if (X.isArray(ids)) {
+        ids = ids.join(',');
+      }
+      var data = {
+        device: 1,
+        ids: ids,
+        type: type || 2,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('closeFutures'),
+        data: data
+      });
+    },
+
+    //外盘-设置止盈止损线
+    setQuitGainLoss: function (id, type, quitLoss, quitGain) {
+      var data = {
+        device: 1,
+        id: id,
+        type: type || 2,
+        quitLoss: quitLoss,
+        quitGain: quitGain,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('setQuitGainLoss'),
+        data: data
+      });
+    },
+
+    //风控参数
+    getRisk: function (commodityNo) {
+      var params = {
+        device: 1,
+        commodityNo: commodityNo,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getRisk'),
+        params: params
+      });
+    },
+
+    //创建期货策略
+    createFuturesStrategy: function (data) {
+      data.device = 1; data.agentCode = agentCode;
+      data.source = agentCode;
+
+      return axios({
+        method: 'POST',
+        url: getURL('createFuturesStrategy'),
+        data: data
+      });
+    },
+
+    //获取单条期货策略信息
+    getStrategyInfo: function (id) {
+      var data = {
+        device: 1,
+        type: 2,
+        id: id,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getStrategyInfo'),
+        data: data
+      });
+    }
   },
+
+  //股票信息服务
   StockService:{
+    //获取期货股票的信息
     getFuturesQuote: function (commodityNo) {
       var params = {
         type: 'real',
         commodityNo: commodityNo,
-        agentCode: agentCode
+        agentCode: agentCode,
+        source: agentCode
       };
       return axios({
         url: getURL('futuresServer'),
@@ -159,12 +962,15 @@ export default{
         params: params
       });
     },
+
+    //获取期货K线数据
     getFuturesKline: function (commodityNo, klineType) {
       var params = {
         type: 'kline',
         klineType: klineType,
         commodityNo: commodityNo,
-        agentCode: agentCode
+        agentCode: agentCode,
+        source: agentCode
       };
       return axios({
         url: getURL('futuresServer'),
@@ -172,25 +978,29 @@ export default{
         params: params
       });
     },
-    //获取分时图数据
+
+    //获取期货分时图数据
     getFuturesSline: function (commodityNo) {
       var params = {
         type: 'minute',
         commodityNo: commodityNo,
-        agentCode: agentCode
+        agentCode: agentCode,
+        source: agentCode
       };
-      return axios({
-        url: getURL('futuresServer'),
+      return $http({
+        url: URLService.getURL('futuresServer'),
         method: 'GET',
         params: params
       });
     },
+
     //持仓数据获取
     getFuturesSimpleQuote: function (commodityNo) {
       var params = {
         type: 'simpleReal',
         commodityNo: commodityNo,
-        agentCode: agentCode
+        agentCode: agentCode,
+        source: agentCode
       };
       return axios({
         url: getURL('futuresServer'),
@@ -199,6 +1009,8 @@ export default{
       });
     }
   },
+
+  //系统服务
   SystemService: function(){
 
     //节假日 CNY中国假日，USD美国假日
@@ -552,19 +1364,237 @@ export default{
       }
     };
   },
-  ADBannerService: function () {
-    return{
-      getADBannerData: function(){
-        var params = {
-          device: 1,
-          agentCode: agentCode
-        };
-        return axios({
-          method: 'GET',
-          url: getURL('getADBanner'),
-          params: params
-        });
+
+  //认证服务
+  AuthService:function () {
+    var sessionStorage = window.sessionStorage;
+    return {
+      auth: function () {
+        var session = sessionStorage.getItem('sessionID'), now = Date.now(), timeOut = 2 * 60 * 60 * 1000;
+        //没有找到用户信息为未登录
+        if (!session) {
+          return false;
+        }
+        var sessionArr = session.split('#'), lastLoginTime = sessionArr[1];
+        //session超时
+        if (now - lastLoginTime > timeOut) {
+          sessionStorage.removeItem('sessionID');
+          return false;
+        }
+        sessionArr[1] = now;
+        sessionStorage.setItem('sessionID', sessionArr.join('#'));
+        return true;
+      },
+      signIn: function (userID) {
+        var authStr = [userID, Date.now()].join('#');
+        sessionStorage.setItem('sessionID', authStr);
+      },
+      signOut: function () {
+        sessionStorage.removeItem('sessionID');
       }
+    };
+  },
+
+  //拦截器
+  myInterceptor:function(){
+    var interceptor = {
+      'request': function (config) {
+        return config;
+      },
+      'response': function (response) {
+        if (X.isObject(response.data)) {
+          if (response.data.code == 100) {
+            AuthService.auth();
+          } else if (response.data.code == 405) {
+            AuthService.signOut();
+            $location.path('/login').replace();
+          }
+        }
+        return response;
+      },
+      'requestError': function (rejection) {
+        return rejection;
+      },
+      'responseError': function (rejection) {
+        return rejection;
+      }
+    };
+    return interceptor;
+  },
+
+  //股票和弹窗服务
+  ADBannerService: {
+    //获取弹窗和滑动banner的数据
+    getADBannerData: function () {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getADBanner'),
+        params: params
+      });
+    }
+  },
+
+  //红包服务
+  PacketService:{
+    //获取红包具体shuju
+    getPacketInfoData: function () {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getPacketInfo'),
+        params: params
+      });
+    },
+
+    //收取红包数据
+    receivePacketData: function (title, money) {
+      var params = {
+        device: 1,
+        title: title,
+        money: money,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('receivePacket'),
+        params: params
+      });
+    },
+
+    //获取红包资金数据
+    getPacketFundInfoData: function () {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getPacketFundInfo'),
+        params: params
+      });
+    },
+
+    //获取红包记录列表数据
+    getPacketRecordListData: function () {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getPacketRecordList'),
+        params: params
+      });
+    },
+
+    //获取活动列表
+    getActivityInfo: function () {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getActivityInfo'),
+        params: params
+      })
+    },
+
+    //子活动列表
+    getActAwardSetInfo: function (activityId) {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        activityId: activityId,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getActAwardSetInfo'),
+        params: params
+      })
+    },
+
+    //红包领取
+    receiveTipByActivity: function (title, awardLogId, money) {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        title: title,
+        awardLogId: awardLogId,
+        money: money,
+        source: agentCode
+      };
+      return $http({
+        method: 'POST',
+        url: URLService.getURL('receiveTipByActivity'),
+        params: params
+      })
+    }
+  },
+
+  //推广赚钱服务
+  ExtensionService:{
+    //获取推广信息
+    getExtensionInfoData: function () {
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getExtensionInfo'),
+        params: params
+      });
+    },
+
+    //获取推广用户列表
+    getExtensionUserListData: function (page, pageSize) {
+      var params = {
+        device: 1,
+        page: page,
+        pageSize: pageSize,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('getExtensionUserList'),
+        params: params
+      });
+    }
+  },
+
+  //排行服务
+  RankService:{
+    //获取排行数据
+    getRank: function (type) {
+      var url = type == 'day' ? URLService.getURL('getUserRank') : URLService.getURL('getUnionRank');
+      var params = {
+        device: 1,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'GET',
+        url: url,
+        params: params
+      })
+
     }
   }
 }

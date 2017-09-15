@@ -14,10 +14,15 @@
         isLoadFuturesQuote: true,
         AD: {},
         showADDialog: false,
+        future: {},
+        stock: {},
       }
     },
     mounted(){
-
+      this.getFeature();
+      this.getADBanner();
+      this.X.engine.addTask(this.getFuturesQuote, 1000);
+      this.X.engine.start();
     },
     methods: {
       getFuturesQuote(){
@@ -115,17 +120,7 @@
           };
         }
       },
-      a: "hello"
+
     }
   }
 </script>
-<style>
-  .article-list {
-    margin: auto;
-  }
-
-  time {
-    display: inline-block;
-    width: 150px;
-  }
-</style>
