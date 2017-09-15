@@ -1,0 +1,8 @@
+.page-user .page-info .mod-info .pic {
+    padding-left: 0.8rem;
+    line-height: 1rem;
+    background: url("../../../images/icon-head.png") 0.15rem center no-repeat #FFFFFF;
+    background-size: 0.5rem;
+    font-size: 0.16rem;
+    border-bottom: 0.01rem solid #ECECEC;
+}

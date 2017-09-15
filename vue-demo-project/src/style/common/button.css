@@ -1,0 +1,35 @@
+/*
+按钮样式
+*/
+
+.btn {
+    display: block;
+    width: 100%;
+    border: none;
+    line-height: 0.44rem;
+    text-align: center;
+    border-radius: 0.05rem;
+    font-size: 0.16rem;
+}
+
+.btn-red {
+    color: #FFFFFF;
+    background: #E34C4D;
+}
+
+.btn-green {
+    color: #FFFFFF;
+    background: #01B28E;
+}
+
+.btn-blue {
+    color: #FFFFFF;
+    /*!*background: #5B78C0;*! 方便换肤，直接将用到这个样式的按钮的blue样式的颜色换成FA4041*/
+    background: #E34C4D;
+}
+
+.btn-disabled {
+    color: #FFFFFF;
+    background: #CCCCCC;
+}
+

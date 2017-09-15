@@ -1,0 +1,31 @@
+.page-pay .page-pay-type .mod-choose-type .title{
+	line-height: 0.4rem;
+	padding: 0 0.15rem;
+}
+
+.page-pay .page-pay-type .mod-choose-type a{
+	display: block;
+	position: relative;
+	padding: 0.15rem 0 0.15rem 1rem;
+	border-top: 0.01rem solid #ECECEC;
+	border-bottom: 0.01rem solid #ECECEC;
+}
+
+.page-pay .page-pay-type .mod-choose-type a span{
+	font-size: 0.12rem;
+	color: #CCCCCC;
+}
+
+.page-pay .page-pay-type .mod-choose-type a .icon-recommend{
+	vertical-align: -0.02rem;
+}
+
+.page-pay .page-pay-type .mod-choose-type .express{
+	background: url("../../../images/express.png") 0.2rem center no-repeat #FFFFFF;
+	background-size: 0.66rem 0.16rem;
+}
+
+.page-pay .page-pay-type .mod-choose-type .alipay{
+	background: url("../../../images/alipay.png") 0.2rem center no-repeat #FFFFFF;
+	background-size: 0.71rem 0.27rem;
+}

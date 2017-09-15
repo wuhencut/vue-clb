@@ -1,0 +1,84 @@
+.mod-futures-buy .wrap {
+    padding: 0 0.15rem;
+    background-color: #FFFFFF;
+}
+
+.mod-futures-buy .wrap > li {
+    color: #666666;
+    padding: .15rem 0;
+    border-bottom: .01rem solid #ECECEC;
+}
+
+.mod-futures-buy .wrap > li:last-child {
+    border-bottom: 0;
+}
+
+.mod-futures-buy .wrap li .fr{
+    font-size: 0;
+}
+
+.mod-futures-buy .wrap li .fr > span{
+    font-size: .12rem;
+}
+
+.mod-futures-buy .wrap .choose > span {
+    font-size: .12rem;
+    display: inline-block;
+    border: .01rem solid #E34C4D;
+    padding: 0.01rem .04rem 0;
+    line-height: 0.22rem;
+    margin-left: 0.04rem;
+    color: #E34C4D;
+    vertical-align: middle;
+}
+
+.mod-futures-buy .wrap .choose .current {
+    background: #E34C4D;
+    color: #fff;
+}
+
+.mod-futures-buy .desc {
+    font-size: 0.12rem;
+    padding: 0.15rem;
+    color: #999999;
+}
+
+/*ֹ弹出框*/
+
+.menu-pop {
+    display: block;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-posit {
+    position: fixed;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.menu-pop .main {
+    width: 75%;
+    max-height: 75%;
+    flex: 0 0 auto;
+    background: #FFFFFF;
+    border-radius: .05rem;
+    overflow-y: auto;
+}
+
+.menu-pop .main li {
+    padding: .1rem 0;
+    border-top: .01rem solid #ECECEC;
+    vertical-align: middle;
+}
+
+.menu-pop .main li:first-child {
+    border-top: 0;
+}

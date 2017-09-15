@@ -1,0 +1,141 @@
+.page-trade .trade-menu {
+    border-bottom: .01rem solid #ECECEC;
+    background-color: #ffffff;
+}
+
+.page-trade .trade-menu ul {
+    display: table;
+    width: 100%;
+}
+
+.page-trade .trade-menu li {
+    display: table-cell;
+    padding: 0 .15rem;
+}
+
+.page-trade .trade-menu a {
+    display: block;
+    text-align: center;
+    line-height: 0.36rem;
+    padding: .03rem 0;
+    font-size: .16rem;
+    color: #666666;
+}
+
+/*.page-trade .page-trade-buy .trade-menu .m-buy a,*/
+.page-trade .page-trade-stock .trade-menu .m-buy a,
+.page-trade .page-trade-sell .trade-menu .m-sell a,
+    /*.page-trade .page-trade-result .trade-menu .m-result a,*/
+.page-trade .page-trade-clearing .trade-menu .m-result a {
+    padding: .03rem 0 0;
+    /*border-bottom: 0.03rem solid #5B78C0;*/
+    border-bottom: 0.03rem solid #E34C4D;
+}
+
+.page-trade .page-trade-sell .mod-clearing,
+.page-trade .page-trade-clearing .mod-clearing {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-bottom: 1.1rem;
+}
+
+.mod-clearing .wrap {
+    font-size: 0.12rem;
+    color: #666666;
+    padding: 0 .15rem;
+    margin-top: 0.15rem;
+    background: #FFFFFF;
+    border-top: .01rem solid #ECECEC;
+    border-bottom: .01rem solid #ECECEC;
+}
+
+.mod-clearing .wrap .row-1 {
+    display: table;
+    width: 100%;
+}
+
+.mod-clearing .wrap .row-1 .commoID {
+    margin-left: 0.1rem;
+}
+
+.mod-clearing .wrap .row-1 > li {
+    display: table-cell;
+    line-height: 0.44rem;
+}
+
+.mod-clearing .wrap .row-2 {
+    border-top: .01rem solid #ECECEC;
+    padding: 0.1rem 0;
+}
+
+.mod-clearing .wrap .row-2 ul > li:first-child {
+    width: 1rem;
+}
+
+.mod-clearing .wrap .row-2 ul > li .title {
+    font-size: 0.16rem;
+    line-height: 0.32rem;
+}
+
+.mod-clearing .wrap .row-2 .state {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0.1rem 0.1rem 0;
+    background: #CCCCCC;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 0.05rem;
+    line-height: 1.2;
+}
+
+.mod-clearing .wrap .row-2 .state-red,
+.mod-clearing .wrap .row-2 .state-blue {
+    width: 0.5rem;
+    height: 0.5rem;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 0.05rem;
+    line-height: 0.5rem;
+    font-size: 0.16rem;
+}
+
+.mod-clearing .wrap .row-2 .state-red {
+    background: #E34C4D;
+}
+
+.mod-clearing .wrap .row-2 .state-blue {
+    background: #E34C4D;
+}
+
+.mod-clearing .wrap .row-3 > ul {
+    padding: 0.1rem 0;
+    border-top: .01rem solid #ECECEC;
+}
+
+.mod-clearing .wrap .row-3 > ul > li {
+    line-height: 1.8;
+}
+
+.mod-clearing .wrap .row-3 .desc {
+    color: #E34C4D;
+    text-align: center;
+    line-height: 0.44rem;
+    border-top: .01rem solid #ECECEC;
+}
+
+.page-trade .page-trade-buy .wrap-btn,
+.page-trade .page-trade-agree .wrap-btn {
+    height: 0.75rem;
+}
+
+.page-trade .page-trade-buy .wrap-btn .wrap,
+.page-trade .page-trade-agree .wrap-btn .wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 0.01rem solid #ECECEC;
+    background: #FFFFFF;
+    padding: 0.15rem;
+}

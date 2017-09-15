@@ -1,0 +1,56 @@
+.page-guide .page-rule .mod-trade-rule,
+.page-guide .page-safe .mod-about,
+.page-guide .page-about .mod-about,
+.page-guide .page-introduce .mod-intro {
+    padding: 0 .15rem;
+    background: #FFFFFF;
+}
+
+.page-guide .page-rule .mod-trade-rule td {
+    padding: .05rem;
+    border: 1px solid #DBDBDB;
+    color: #666666;
+    text-align: center;
+}
+
+.page-guide .page-rule .mod-trade-rule .wrap,
+.page-guide .page-safe .mod-about .wrap,
+.page-guide .page-about .mod-about .wrap,
+.page-guide .page-introduce .mod-intro .wrap {
+    padding: 0 0 0.15rem;
+}
+
+.page-guide .page-rule .mod-trade-rule .wrap > h3,
+.page-guide .page-safe .mod-about .wrap > h3,
+.page-guide .page-about .mod-about .wrap > h3,
+.page-guide .page-introduce .mod-intro .wrap > h3 {
+    line-height: 0.3rem;
+    border-left: 0.04rem solid #E34C4D;
+    padding-left: 0.1rem;
+    background: #EDF0F5;
+    font-size: 0.14rem;
+    margin-bottom: 0.05rem;
+}
+
+.page-guide .page-rule .mod-trade-rule .wrap > p,
+.page-guide .page-safe .mod-about .wrap > p,
+.page-guide .page-about .mod-about .wrap > p,
+.page-guide .page-introduce .mod-intro .wrap > p {
+    color: #666666;
+    padding-top: 0.05rem;
+}
+
+.page-guide .page-rule .mod-trade-rule .wrap > p:before,
+.page-guide .page-safe .mod-about .wrap > p:before,
+.page-guide .page-about .mod-about .wrap > p:before,
+.page-guide .page-introduce .mod-intro .wrap > p:before {
+    content: '　　';
+}
+
+.page-guide .page-rule .mod-trade-rule .wrap > p.noc:before,
+.page-guide .page-safe .mod-about .wrap > p.noc:before,
+.page-guide .page-about .mod-about .wrap > p.noc:before,
+.page-guide .page-introduce .mod-intro .wrap > p.noc:before {
+    content: '';
+}
+

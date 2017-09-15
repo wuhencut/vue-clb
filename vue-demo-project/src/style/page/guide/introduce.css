@@ -1,0 +1,126 @@
+/*
+.mod-intro-banner{
+    height: 2rem;
+    background: url("../../../images/intro-banner.jpg") center no-repeat;
+    background-size: cover;
+}
+
+.mod-intro-img{
+    padding: 0 .15rem 0.3rem;
+    background: #fdfbf0;
+}
+
+.mod-intro-img .title-red{
+    margin-top: 0.2rem;
+    border-bottom: 0.01rem solid #0099e7;
+}
+
+.mod-intro-img .title-blue{
+    margin-top: 0.2rem;
+    padding-top: 0.03rem;
+    height: 0.4rem;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 0.16rem;
+    background: url("../../../images/intro-title-blue-bg.png") center no-repeat;
+    background-size: 100%;
+}
+
+.mod-intro-img .title-red > span{
+    display: inline-block;
+    line-height: 0.26rem;
+    padding: 0 0.2rem 0 0.15rem;
+    color: #FFFFFF;
+    font-size: 0.16rem;
+    background: #0099e7;
+    border-top-right-radius: 0.13rem;
+}
+
+.mod-intro-img .con img{
+    display: block;
+    width: 100%;
+}
+
+.mod-intro-img .con .text{
+    padding: 0.1rem;
+    color: #4a3921;
+    border:0.02rem dashed #a4947b;
+    background: #fbf1d4;
+}
+
+.mod-intro-img .con .wrap{
+    display: table;
+    width: 100%;
+    margin-top: 0.3rem;
+}
+
+.mod-intro-img .con .wrap > div{
+    display: table-cell;
+}
+
+.mod-intro-img .con .wrap > div:first-child{
+    width: 1.23rem;
+    height: 1.23rem;
+    background: url("../../../images/intro-img-7.jpg") center no-repeat;
+    background-size: 100%;
+}
+
+.mod-intro-img .con .wrap .time{
+    padding: 0.3rem 0 0 0.1rem;
+    font-size: 0.12rem;
+}
+
+.mod-intro-img .con .wrap .time .types{
+    font-size: 0;
+}
+
+.mod-intro-img .con .wrap .time .types > span{
+    font-size: 0.12rem;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 0.45rem;
+    line-height: 0.2rem;
+    background: #db4c4b;
+    text-align: center;
+    margin-right: 0.07rem;
+    border-radius: 0.1rem;
+}
+
+.page-guide .page-introduce .mod-intro{
+    padding: 0.3rem 0.15rem 0;
+}*/
+
+.page-guide .page-introduce .mod-intro-img img {
+    display: block;
+    width: 100%;
+}
+
+.page-guide .page-introduce .mod-intro-button {
+    height: 1.5rem;
+    width:100%;
+    background-color: #E34C4D;
+    text-align: center;
+}
+
+
+.page-guide .page-introduce .mod-intro-button a{
+    display: inline-block;
+    margin-top: 0.45rem;
+    height: 0.58rem;
+    width: 2.55rem;
+    background: url("../../../images/introduce-button.png") center no-repeat;
+    background-size: 2.55rem;
+    font-size: 0.2rem;
+    color: #E34C4D;
+    line-height: 0.54rem;
+}
+
+.page-guide .page-introduce .mod-intro-button i {
+    display: inline-block;
+    width:0.2rem;
+    height: 0.2rem;
+    background: url("../../../images/introduce-arrow.png") center no-repeat;
+    background-size: 0.2rem;
+    margin: 0 0 0 0.1rem;
+    vertical-align: -0.03rem;
+}

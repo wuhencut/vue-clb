@@ -1,0 +1,217 @@
+.page-trade-stock .money {
+    line-height: 0.42rem;
+    background: #FFFFFF;
+    text-align: center;
+    border-bottom: 0.01rem solid #ECECEC;
+}
+
+.mod-futures {
+    padding: 0 .15rem;
+    background: #FFFFFF;
+}
+
+.futures-txt {
+    position: relative;
+    top: -0.02rem;
+}
+
+/*.mod-futures .wrap {*/
+/*border-bottom: .01rem solid #ECECEC;*/
+/*}*/
+
+.mod-lines {
+    margin-bottom: 1.03rem;
+}
+
+.mod-lines .tab-title {
+    padding: .15rem;
+}
+
+.mod-lines .tab-title .tab-title-wrap {
+    display: table;
+    width: 99%;
+    border: .01rem solid #E34C4D;
+    border-radius: .03rem;
+}
+
+.mod-lines .tab-title .tab-title-wrap > li {
+    display: table-cell;
+    width: 33%;
+    line-height: .22rem;
+    color: #E34C4D;
+    text-align: center;
+    font-size: 0.12rem;
+    border-right: .01rem solid #E34C4D;
+}
+
+.mod-lines .tab-title .tab-title-wrap > li:last-child {
+    border-right: 0;
+    position: relative;
+}
+
+.mod-lines .tab-title .tab-title-wrap > li.kline .wrap {
+    position: absolute;
+    width: 100%;
+    top: 0.26rem;
+    background: #E34C4D;
+    border-radius: 0.02rem;
+    color: #fff;
+    padding: 0 0.02rem;
+}
+
+.mod-lines .tab-title .tab-title-wrap > li.kline .wrap span {
+    display: block;
+    width: 100%;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    color: #fff;
+    text-align: center;
+    border-top: 0.01rem solid #E3ECFF;
+}
+
+.mod-lines .tab-title .tab-title-wrap > li.kline .wrap span:first-child {
+    border-top: none;
+}
+
+.mod-lines .line-content {
+    width: 100%;
+    overflow: hidden;
+    background-color: #FFFFFF;
+}
+
+.mod-lines .line-content .quote-wrap {
+    width: 300%;
+}
+
+.mod-lines .line-content .quote-wrap > ul {
+    width: 100%;
+}
+
+.mod-lines .line-content .quote-wrap > ul > li {
+    width: 33.333333333333%;
+    float: left;
+    height: 2.5rem;
+}
+
+.mod-lines.act-sline .tab-title .sline,
+.mod-lines.act-tline .tab-title .tline,
+.mod-lines.act-kline .tab-title .kline {
+    background-color: #E34C4D;
+    color: #FFFFFF;
+}
+
+.mod-lines.act-sline .line-content > .quote-wrap {
+    margin-left: 0;
+}
+
+.mod-lines.act-tline .line-content > .quote-wrap {
+    margin-left: -100%;
+}
+
+.mod-lines.act-kline .line-content > .quote-wrap {
+    margin-left: -200%;
+}
+
+.mod-future-footer {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FFF;
+    border-top: 0.01rem solid #ECECEC;
+}
+
+.mod-future-footer .btn-wrap > div {
+    width: 50%;
+}
+
+.mod-future-footer .btn-wrap .fl {
+    padding: 0 .1rem 0 .15rem;
+}
+
+.mod-future-footer .btn-wrap .fr {
+    padding: 0 .15rem 0 .1rem;
+}
+
+.mod-future-footer .btn-wrap .btn {
+    line-height: 0.36rem;
+}
+
+.mod-future-footer .trade-time-tip {
+    height: 0.34rem;
+    line-height: 0.34rem;
+    font-size: 0.12rem;
+    text-align: center;
+}
+
+.mod-future-footer .balance-wrap {
+    height: 0.2rem;
+    padding: 0 0.1rem;
+}
+
+.mod-future-footer .balance-wrap .balance-recharge {
+    border: 0.01rem solid #E34C4D;
+    color: #E34C4D;
+}
+
+.mod-future-footer .rate-wrap {
+    text-align: center;
+    padding: 0.05rem 0;
+}
+
+.mod-future-footer .rate-wrap > span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.12rem;
+}
+
+.mod-future-footer .rate-wrap > span:first-child,
+.mod-future-footer .rate-wrap > span:last-child {
+    width: 1.2rem;
+}
+
+.mod-future-footer .rate-wrap > span:first-child {
+    text-align: right;
+    color: #E34C4D;
+}
+
+.mod-future-footer .rate-wrap > span:last-child {
+    text-align: left;
+    color: #01B28E;
+}
+
+.mod-future-footer .rate-wrap .rate {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.8rem;
+}
+
+.mod-future-footer .rate-wrap .rate > i {
+    display: inline-block;
+    vertical-align: 0.04rem;
+    height: 0.04rem;
+    line-height: 0.04rem;
+}
+
+.mod-future-footer .rate-wrap > span:first-child .rate > i {
+    background: #E34C4D;
+}
+
+.mod-future-footer .rate-wrap > span:last-child .rate > i {
+    background: #01B28E;
+}
+
+/*页面类型切换的弹窗*/
+.mod-commodity-list .wrap {
+    padding-top: 0.5rem;
+    background: #FFFFFF;
+}
+
+.mod-commodity-list .wrap a {
+    display: block;
+    line-height: 0.5rem;
+    border-bottom: 0.01rem solid #ECECEC;
+    text-align: center;
+    font-size: 0.16rem;
+}

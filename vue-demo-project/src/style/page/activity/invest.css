@@ -1,0 +1,156 @@
+.page-invest .page-knowledge .mod-nav{
+    padding: 0.1rem 0;
+    background-color:#FFFFFF;
+}
+
+.page-invest .page-knowledge .mod-nav a{
+    display: inline-block;
+    width:49%;
+    text-align: center;
+}
+
+.page-invest .page-knowledge .mod-nav .base-knowledge{
+    border-right:0.01rem solid #ECECEC;
+    padding-top: 0.4rem;
+    background:url("/app/images/invest/invest10.png") top 0.03rem center no-repeat;
+    background-size: 0.36rem;
+}
+
+.page-invest .page-knowledge .mod-nav .safe-knowledge{
+    padding-top: 0.4rem;
+    background:url("/app/images/invest/invest9.png") top 0.03rem center no-repeat;
+    background-size: 0.36rem;
+}
+
+.page-invest .page-knowledge .trade-knowledge{
+    border-bottom:0.01rem solid #ECECEC;
+    padding: 0.1rem 0 0.1rem 0.2rem;
+    font-size: 0.14rem;
+    margin-top:0.3rem;
+}
+
+.page-invest .page-knowledge .trade-knowledge i{
+    border-left:0.03rem solid #E34C4D;
+    padding-left: 0.05rem;
+}
+
+.more-knowledge{
+    background-color:#FFFFFF;
+}
+
+.container{
+    padding-left:0.2rem;
+}
+
+.container a{
+    border-bottom:0.01rem solid #ECECEC;
+    display: block;
+    padding-right: 0.1rem;
+    padding-top:0.05rem;
+    height:0.8rem;
+    color: #666666;
+    font-size: 0.16rem;
+}
+
+
+a.invest8, a.invest7,a.invest6,a.invest5, a.invest4, a.invest3, a.invest2,a.invest1{
+    padding-left:1.15rem;
+}
+
+a.invest8{
+    background: url("/app/images/invest/invest8.jpg") left center no-repeat;
+    background-size: 1rem 0.65rem;
+}
+
+a.invest7{
+    background: url("/app/images/invest/invest7.jpg") left center no-repeat;
+    background-size: 1rem 0.65rem;
+}
+
+a.invest6{
+    background: url("/app/images/invest/invest6.jpg") left center no-repeat;
+    background-size: 1rem 0.65rem;
+}
+
+a.invest5{
+    background: url("/app/images/invest/invest5.jpg") left center no-repeat;
+    background-size: 1rem 0.65rem;
+}
+
+a.invest4{
+    background: url("/app/images/invest/invest4.jpg") left center no-repeat;
+    background-size: 1rem 0.65rem;
+}
+
+a.invest3{
+    background: url("/app/images/invest/invest3.jpg") left center no-repeat;
+    background-size: 1rem 0.65rem;
+}
+
+a.invest2{
+    background: url("/app/images/invest/invest2.jpg") left center no-repeat;
+    background-size: 1rem 0.65rem;
+}
+
+a.invest1{
+    background: url("/app/images/invest/invest1.jpg") left center no-repeat;
+    background-size: 1rem 0.65rem;
+}
+
+
+.page-know .page-knowledge{
+    background-color: #FFFFFF;
+}
+
+.page-know .page-knowledge .know-title{
+    border-bottom:0.01rem solid #ECECEC;
+}
+
+.mod-know-detail{
+    padding:0.2rem 0.15rem;
+}
+
+.mod-know-detail p{
+    text-indent: 0.2rem;
+    font-size:0.14rem;
+}
+
+.mod-know-detail p:first-child{
+    text-indent: 0;
+}
+
+.mod-know-detail .content img{
+    width:100%;
+    margin:0.1rem 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

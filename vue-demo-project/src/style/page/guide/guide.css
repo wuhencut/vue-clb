@@ -1,0 +1,17 @@
+/*guide设置的整体页面样式，改为使用公共样式中的mod-menu-wrap和mod-menu*/
+/*.page-guide .page-guide-menu .mod-guide-content {
+    margin-top: 0.2rem;
+    padding-left: 0.15rem;
+    background: #FFFFFF;
+    border-top: .01rem solid #ECECEC;
+    border-bottom: .01rem solid #ECECEC;
+}
+.page-guide .page-guide-menu .mod-guide-content a {
+    display: block;
+    position: relative;
+    line-height: .5rem;
+    border-bottom: 0.01rem solid #ECECEC;
+}
+.page-guide .page-guide-menu .mod-guide-content a:last-child {
+    border-bottom: none;
+}*/

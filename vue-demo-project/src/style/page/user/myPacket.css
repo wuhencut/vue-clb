@@ -1,0 +1,47 @@
+.mod-mypacket-head {
+    display: box;
+    display: -moz-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    width: 100%;
+    padding: 0.25rem 0;
+    overflow: hidden;
+    background: #FFFFFF;
+}
+
+.mod-mypacket-head li {
+    box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    position: relative;
+    width: 100px;
+    height: 58px;
+    padding-left: 0.4rem;
+    font-size: 0.14rem;
+}
+
+.mod-mypacket-head li:first-child:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0.05rem;
+    right: 0;
+    width: 0.01rem;
+    height: 0.44rem;
+    background: #F1F1F1;
+}
+
+.mod-mypacket-head li p {
+    font-size: 0.24rem;
+}
+
+.mod-mypacket-head li p em {
+    font-size: 0.12rem;
+}
+
+.no-package {
+    padding-top: 1.2rem;
+    background: url("/app/images/activity/packet/no-package.png") top 0.2rem center no-repeat;
+    background-size: 0.9rem 0.9rem;
+}

@@ -1,0 +1,118 @@
+.page-article, .page-article-first, .page-article-off-farm {
+    position: relative;
+    padding: 0.2rem 0.15rem 0.8rem 0.15rem;
+    background-color: #ffffff;
+    color: #666666;
+}
+
+.page-article-off-farm {
+    padding: 0 0 0.8rem 0;
+}
+
+.page-article img,
+.page-article-first img,
+.page-article-off-farm img{
+    width: 100%;
+}
+
+.page-article-first h3 {
+    font-size: 0.16rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.page-article-first h4 {
+    font-size: 0.14rem;
+    text-align: center;
+    color: #E34C4D;
+}
+
+.page-article-first p:before,
+.page-article-off-farm .article-off-farm-content p:before {
+    content: '　　 ';
+}
+
+.article-main{
+    text-indent: 0.28rem;
+    letter-spacing: 0.02rem;
+}
+
+.article-footer {
+    background-color: #F4F4F6;
+    padding: 0.1rem 0.15rem;
+    z-index: 90;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.space-blue {
+    height: 0.12rem;
+    width: 0.14rem;
+    border-left: 0.02rem solid #E34C4D;
+    display: inline-block;
+    vertical-align: -1px;
+}
+
+.article-table {
+    border: 0.01rem solid #333333;
+}
+
+.article-table td, .article-table tr, .article-table th {
+    text-align: center;
+    border-right: 0.01rem solid #333333;
+    border-bottom: 0.01rem solid #333333;
+    padding: 0.02rem 0.05rem;
+}
+
+.article-table td:last-child {
+    text-align: left;
+}
+
+.article-table th {
+    background-color: #E34C4D;
+    color: #FFFFFF;
+    padding: 0.05rem 0;
+}
+
+.page-article-off-farm .article-off-farm-content,
+.page-article-off-farm .article-attention-content{
+    margin: 0 0.15rem;
+    padding: 0.15rem 0;
+    background-color: #EDF0F5;
+    border-radius: 0.15rem;
+}
+
+.page-article-off-farm .line {
+    margin-top: -0.26rem;
+    margin-bottom: 0.2rem;
+}
+
+.page-article-off-farm .line span{
+    display: inline-block;
+    width: 0.35rem;
+    border-bottom: 0.01rem solid #999999;
+}
+
+.page-article-off-farm .line .line-first {
+    margin-right: 1.9rem;
+}
+
+.page-article-off-farm .line .line-pre {
+    margin-right: 1.4rem;
+}
+
+.page-article-off-farm .article-off-farm-content p {
+    line-height: 0.22rem;
+    padding: 0.02rem 0.15rem;
+}
+
+.page-article-off-farm .article-attention-content p {
+    line-height: 0.22rem;
+    padding: 0.02rem 0.15rem 0.02rem 0.45rem;
+}
+
+.page-article-off-farm .article-attention-content span {
+    line-height: 0.26rem;
+    padding-left: 0.07rem;
+}

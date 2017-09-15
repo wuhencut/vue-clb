@@ -1,0 +1,231 @@
+/*推广赚钱*/
+.page-extension .extension-menu {
+    background-color: #ffffff;
+}
+
+.page-extension .extension-menu ul {
+    display: table;
+    width: 100%;
+}
+
+.page-extension .extension-menu li {
+    position: relative;
+    display: table-cell;
+    padding: .03rem .15rem;
+    text-align: center;
+    line-height: 0.44rem;
+    font-size: .15rem;
+    color: #666666;
+}
+
+.page-extension .mod-detail .extension-menu li.act-detail:before,
+.page-extension .mod-user .extension-menu li.act-user:before {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: inline-block;
+    content: '';
+    width: 0.6rem;
+    height: 0.03rem;
+    margin-left: -0.3rem;
+    background: #E34C4D;
+}
+
+.page-extension .mod-detail .extension-menu li.act-detail,
+.page-extension .mod-user .extension-menu li.act-user {
+    color: #E34C4D;
+}
+
+.page-extension .wrap {
+    display: none;
+}
+
+.page-extension .mod-detail .con-detail, .page-extension .mod-user .con-user {
+    display: block;
+}
+
+.page-extension .extension-wrap {
+    background: #FFFFFF;
+}
+
+.mod-extension .extension-detail ul {
+    display: table;
+    width: 100%;
+}
+
+.mod-extension .extension-detail ul li {
+    display: table-cell;
+    text-align: center;
+    line-height: 0.38rem;
+    padding: .02rem 0;
+    font-size: .12rem;
+    color: #666666;
+    border-left: 0.01rem solid #ECECEC;
+}
+
+.mod-extension .extension-detail ul li:first-child {
+    border: none;
+}
+
+.mod-extension .extension-detail ul li .number {
+    font-size: 0.18rem;
+    color: #333333;
+}
+
+.mod-extension .extension-detail ul li .officer {
+    display: inline-block;
+    height: 0.26rem;
+    line-height: 0.26rem;
+    padding: 0 0.05rem 0 0.28rem;
+    color: #FE6900;
+    background: #FFF4C6 url("../../../images/activity/extension/star.png") 0.05rem 0.03rem no-repeat;
+    background-size: 0.2rem 0.2rem;
+    border-radius: 0.05rem;
+}
+
+.mod-extension .extension-detail ul li .icon-rate {
+    display: inline-block;
+    width: 0.11rem;
+    height: 0.11rem;
+    background: url("../../../images/activity/extension/icon-rate.png");
+    background-size: 0.11rem 0.11rem;
+}
+
+.mod-extension .extension-code {
+    padding: 0.18rem 0;
+    text-align: center;
+    font-size: 0.15rem;
+    line-height: 0.4rem;
+}
+
+.mod-extension .extension-code .reproduce {
+    color: #E34C4D;
+    font-size: 0.14rem;
+}
+
+.mod-extension .extension-code .reproduce input {
+    width: 2.1rem;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    color: #E34C4D;
+    background-color: #FFFFFF;
+}
+
+.mod-extension .extension-intro {
+    position: relative;
+    background: #E34C4D;
+    padding: 0.2rem 0.15rem;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.mod-extension .extension-intro:before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -0.11rem;
+    width: 0;
+    height: 0;
+    border-left: 0.06rem solid transparent;
+    border-right: 0.06rem solid transparent;
+    border-bottom: 0.12rem solid #E34C4D;
+    margin-left: -0.06rem;
+}
+
+.mod-extension .extension-intro h3 {
+    font-size: 0.16rem;
+    color: #ffffff;
+}
+
+.mod-extension .extension-code .qrCode {
+    width: 1.4rem;
+    height: 1.4rem;
+    -webkit-touch-callout: default;
+}
+
+.mod-extension .extension-intro .extension-intro-channel {
+    border: 1px solid #FFFFFF;
+    border-radius: 0.72rem;
+    color: #ffffff;
+    text-align: center;
+    line-height: 0.27rem;
+    font-size: 0.12rem;
+}
+
+.mod-extension .extension-level {
+    padding: 0 0.14rem;
+    overflow: hidden;
+}
+
+.mod-extension .extension-level h2 {
+    height: 0.36rem;
+    line-height: 0.36rem;
+    font-size: 0.14rem;
+}
+
+.mod-extension .extension-level table {
+    /*border: 0.01rem solid #1C262F;*/
+    border-collapse: collapse;
+}
+
+.mod-extension .extension-level table th {
+    color: #333333;
+    padding: 0.05rem;
+    border: 0.01rem solid #ECECEC;
+    text-align: center;
+    font-size: 0.12rem;
+}
+
+.mod-extension .extension-level table td {
+    padding: 0.05rem;
+    border: 0.01rem solid #ECECEC;
+    text-align: center;
+    font-size: 0.12rem;
+    color: #666666;
+}
+
+.mod-extension .extension-user {
+    overflow: hidden;
+}
+
+.mod-extension .extension-user ul {
+    width: 100%;
+    font-size: 0.14rem;
+    border-bottom: 0.01rem solid #ECECEC;
+    overflow: hidden;
+    background: #FFFFFF;
+}
+
+.mod-extension .extension-user ul li {
+    width: 25%;
+    float: left;
+    text-align: center;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    color: #666666;
+}
+
+.mod-extension .extension-user ul li:first-child {
+    width: 37%;
+}
+
+.mod-extension .extension-user ul li:last-child {
+    width: 38%;
+}
+
+.mod-extension .extension-userNo {
+    padding-top: 1.15rem;
+    font-size: 0.16rem;
+}
+
+.mod-extension .wechat {
+    width: 1.35rem;
+    height: 1.39rem;
+}
+
+.not-login {
+    padding: 0.15rem;
+    background-color: #FFFFFF;
+}

@@ -1,0 +1,73 @@
+.page-user .page-my .mod-userinfo {
+    background-color: #E34C4D;
+    padding: 0.15rem 0.2rem;
+}
+
+.page-user .page-my .mod-userinfo .balance-wrap {
+    text-align: center;
+    color: #FFFFFF;
+    padding: 0.4rem 0;
+}
+
+.page-user .page-my .mod-userinfo .pay-wrap {
+    display: table;
+    width: 100%;
+}
+
+.page-user .page-my .mod-userinfo .pay-wrap li {
+    display: table-cell;
+    width: 50%;
+}
+
+.page-user .page-my .mod-userinfo .pay-wrap a {
+    display: block;
+    text-align: center;
+    line-height: 0.5rem;
+    border-radius: 0.05rem;
+    background-color: #FFFFFF;
+    color: #E34C4D;
+    font-size: 0.18rem;
+}
+
+.page-user .page-my .mod-menu {
+    margin-top: 0.1rem;
+    border-top: 0.01rem solid #ECECEC;
+    border-bottom: 0.01rem solid #ECECEC;
+    padding-left: 0.2rem;
+    background-color: #FFFFFF;
+}
+
+.page-user .page-my .mod-menu a {
+    display: block;
+    position: relative;
+    line-height: 0.6rem;
+    padding-left: 0.46rem;
+    font-size: 0.16rem;
+    border-bottom: 0.01rem solid #ECECEC;
+}
+
+.page-user .page-my .mod-menu a:last-child {
+    border-bottom: none;
+}
+
+.page-user .page-my .mod-menu .link-trade-list {
+    background: url("../../../images/icon-trade-list.png") left center no-repeat;
+    background-size: 0.32rem;
+}
+
+.page-user .page-my .mod-menu .link-topic {
+    background: url("../../../images/icon-topic.png") left center no-repeat;
+    background-size: 0.32rem;
+}
+.page-user .page-my .mod-menu .link-packet{
+    background: url("../../../images/icon-packet.png") left center no-repeat;
+    background-size: 0.32rem;
+}
+.page-user .page-my .mod-menu .link-extension{
+    background: url("../../../images/icon-extension.png") left center no-repeat;
+    background-size: 0.32rem;
+}
+.page-user .page-my .mod-menu .link-wechat{
+    background: url("../../../images/icon-wechat.png") left center no-repeat;
+    background-size: 0.32rem;
+}

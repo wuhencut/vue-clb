@@ -1,0 +1,57 @@
+/*
+尾部导航样式
+*/
+.page-footer {
+    height: 0.5rem;
+}
+
+.page-footer .footer-wrap {
+    position: fixed;
+    width: 100%;
+    height: 0.5rem;
+    bottom: 0;
+    left: 0;
+    background-color: #F4F4F6;
+    border-top: 0.01rem solid #ECECEC;
+    z-index: 100;
+}
+
+.page-footer .footer-wrap > ul {
+    display: table;
+    width: 100%;
+}
+
+.page-footer .footer-wrap > ul > li {
+    display: table-cell;
+    width: 20%;
+}
+
+.page-footer .footer-wrap > ul > li > a {
+    display: block;
+    height: 0.5rem;
+    text-align: center;
+    color: #999999;
+    font-size: 0.12rem;
+    padding-top: 0.04rem;
+    line-height: 1;
+}
+.page-footer .footer-wrap > ul > li > a > i{
+    font-size: 0.26rem;
+}
+
+.page-footer .footer-wrap > ul > li > a.nav-news > i > em{
+    position: absolute;
+    width: .04rem;
+    height: .04rem;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #E34C4D;
+    margin: 0 0 0 0.03rem;
+}
+
+.page-home .page-footer .nav-home,
+.page-user .page-footer .nav-user,
+.page-discover .page-footer .nav-discover,
+.page-news .page-footer .nav-news{
+    color: #E34C4D;
+}

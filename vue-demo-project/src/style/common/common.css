@@ -1,0 +1,203 @@
+/*
+常用颜色：
+红：#E34C4D
+橙：#FF7100
+绿：#01B28E
+蓝：#5B78C0
+灰：#999999,666666
+黑：#333333
+禁用：#CCCCCC
+边框：#ECECEC
+公共模块样式
+定义为mod的模块样式，如果某个页面的模块要在其他页面复用，则将该模块抽取为公共内容
+
+z-index:
+页面标注<10
+页面层级<100
+头尾层级=100
+弹窗层级=10000
+加载层级=100000
+*/
+
+/*公用的列表右侧箭头，用于a标签跳转指引*/
+.mod-arrow-r {
+    position: absolute;
+    width: 0.2rem;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: url("../../images/icon-arrow-r.png") left center no-repeat;
+    background-size: 0.12rem;
+}
+
+.mod-ok-r {
+    position: absolute;
+    width: 0.2rem;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: url("../../images/icon-ok-s.png") left center no-repeat;
+    background-size: 0.12rem;
+}
+
+/*公用表单布局，适用于左右结构*/
+.mod-form {
+    position: relative;
+    padding: 0.05rem 0 0.05rem .15rem;
+    line-height: 0.32rem;
+    background: #FFFFFF;
+    border-top: .01rem solid #EDEDED;
+    border-bottom: .01rem solid #EDEDED;
+}
+
+.mod-form label {
+    display: inline-block;
+    color: #666666;
+    font-size: 0.16rem;
+}
+
+/*公用表单布局，右侧操作区，eg:获取验证码*/
+.mod-form .tip-r {
+    position: absolute;
+    top: 0.05rem;
+    bottom: 0.05rem;
+    right: 0;
+    line-height: 0.32rem;
+    padding: 0 0.15rem;
+    color: #E34C4D;
+    border-left: 0.01rem solid #ECECEC;
+}
+
+/*公共表单容器，用于多个表单使用*/
+.mod-form-wrap {
+    background: #FFFFFF;
+    padding-left: 0.15rem;
+    border-top: 0.01rem solid #ECECEC;
+    border-bottom: 0.01rem solid #ECECEC;
+}
+
+.mod-form-wrap .mod-form {
+    padding: 0.05rem 0;
+    border-bottom: none;
+}
+
+.mod-form-wrap .mod-form:first-child {
+    border-top: none;
+}
+
+/*公共表单标题，用于多个表单分割，说明表单功能或者辅助功能*/
+.mod-form-title {
+    line-height: 0.44rem;
+    padding: 0 0.15rem;
+    color: #999999;
+}
+
+/*公共列表菜单*/
+.mod-menu-wrap {
+    padding-left: 0.15rem;
+    background: #FFFFFF;
+    border-top: 0.01rem solid #ECECEC;
+    border-bottom: 0.01rem solid #ECECEC;
+}
+
+.mod-menu-wrap .mod-menu {
+    display: block;
+    position: relative;
+    line-height: 0.5rem;
+    color: #666666;
+    border-bottom: 0.01rem solid #ECECEC;
+}
+
+.mod-menu-wrap .mod-menu:last-child {
+    border-bottom: none;
+}
+
+/*更多*/
+.mod-more {
+    display: block;
+    line-height: 0.5rem;
+    background: #FFF;
+    text-align: center;
+}
+
+.mod-no-found {
+    padding-top: 2rem;
+    background: url("../../images/404.png") center 0.6rem no-repeat;
+    background-size: 1.3rem 1rem;
+    font-size: 0.16rem;
+    text-align: center;
+    color: #666666;
+}
+
+.mod-no-data {
+    padding-top: 2rem;
+    background: url("../../images/txt.png") center 0.6rem no-repeat;
+    background-size: 0.8rem 0.9rem;
+    font-size: 0.16rem;
+    text-align: center;
+    color: #666666;
+}
+
+/*支付宝充值页面提示*/
+.mod-prompt {
+    font-size: .12rem;
+    color: #999999;
+    width: 1.68rem;
+    margin:0 auto;
+}
+
+/*验证码布局*/
+.mod-img-code-wrap {
+    position: fixed;
+    top: 20%;
+    left: 0.3rem;
+    right: 0.3rem;
+    background: #FFF;
+    border-radius: 0.05rem;
+}
+
+.mod-img-code-wrap > footer > ul {
+    display: table;
+    width: 100%;
+    border-top: 0.01rem solid #DBDBDB;
+}
+
+.mod-img-code-wrap > footer > ul > li {
+    display: table-cell;
+    width: 50%;
+    line-height: 0.4rem;
+    font-size: 0.16rem;
+    text-align: center;
+    color: #E34C4D;
+    border-left: 0.01rem solid #DBDBDB;
+}
+
+.mod-img-code-wrap > footer > ul > li:first-child {
+    border-left: none;
+}
+
+.mod-img-code-wrap > header {
+    text-align: center;
+    color: #666;
+    font-size: 0.16rem;
+    padding: 0.15rem 0 0;
+}
+
+.mod-img-code-wrap .content {
+    text-align: center;
+    padding:0.2rem 0;
+}
+
+.mod-img-code-wrap .img-code {
+    width: 0.8rem;
+    height: 0.3rem;
+    vertical-align: middle;
+}
+
+.mod-img-code-wrap .inp-code {
+    width: 0.8rem;
+    height: 0.3rem;
+    padding: 0 0.15rem;
+    vertical-align: middle;
+    border: 0.01rem solid #DBDBDB;
+}
