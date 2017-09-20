@@ -1,6 +1,9 @@
 /**
  * Created by js on 2017/9/12.
  */
+/*import {Y} from '/src/utils/yztz'
+var X = Y;*/
+// import router from './router'
 var axios = require('axios');
 var storage = window.localStorage, agentCode = storage.getItem('agentCode') || 'YZTZ', source = agentCode || '';
 var baseHost = '';
@@ -987,8 +990,8 @@ export default{
         agentCode: agentCode,
         source: agentCode
       };
-      return $http({
-        url: URLService.getURL('futuresServer'),
+      return axios({
+        url: getURL('futuresServer'),
         method: 'GET',
         params: params
       });
@@ -1404,10 +1407,10 @@ export default{
       'response': function (response) {
         if (X.isObject(response.data)) {
           if (response.data.code == 100) {
-            AuthService.auth();
+            this.AuthService.auth();
           } else if (response.data.code == 405) {
-            AuthService.signOut();
-            $location.path('/login').replace();
+            this.AuthService.signOut();
+            // router.push('/login').replace();
           }
         }
         return response;

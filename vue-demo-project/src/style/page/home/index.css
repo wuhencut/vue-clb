@@ -90,20 +90,20 @@
 }
 
 .nav-oneYuan {
-    background: url('/app/images/icon-oneYuan.png') top 0.15rem center no-repeat;
+    background: url('../../../static/images/icon-oneYuan.png') top 0.15rem center no-repeat;
     background-size: 30px;
 }
 
 .nav-simulate {
-    background: url('/app/images/icon-simulate.png') top 0.15rem center no-repeat;
+    background: url('../../../images/icon-simulate.png') top 0.15rem center no-repeat;
 }
 
 .nav-package {
-    background: url('/app/images/icon-package.png') top 0.15rem center no-repeat;
+    background: url('../../../images/icon-package.png') top 0.15rem center no-repeat;
 }
 
 .nav-invest {
-    background: url('/app/images/invest-icon.png') top 0.15rem center no-repeat;
+    background: url('../../../images/invest-icon.png') top 0.15rem center no-repeat;
 }
 
 .nav-oneYuan, .nav-simulate, .nav-package , .nav-invest {

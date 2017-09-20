@@ -574,9 +574,9 @@ X.code = {
   X.browser = browser;
 }());
 
-(function () {
+/*(function () {
   var slide = {
-    init: function (el, arr, $swipe) {
+    init: function (el, arr) {
       var $el = $("#" + el);
       this.el = $el;
       this.wrap = $el.find("ul.slide-wrap");
@@ -594,8 +594,7 @@ X.code = {
       this.timer = setTimeout(function () {
         t.swipe('L');
       }, 3000);
-
-      var startX, l = Date.now();
+      /!*var startX, l = Date.now();
       $swipe.bind($el, {
         'start': function (coords, event) {
           startX = coords.x;
@@ -612,7 +611,7 @@ X.code = {
             }
           }
         }
-      });
+      });*!/
     },
     initHtml: function () {
       var t = this, arr = t.arr, $el = t.el, wrap = t.wrap;
@@ -671,6 +670,6 @@ X.code = {
     }
   };
   X.slide = slide;
-}());
+}());*/
 
 export const Y = X

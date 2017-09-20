@@ -6,11 +6,11 @@
 <script>
 
   import Banner from './banner.vue'
-  import a from '../../static/image/banner1.jpg'
-  import b from '../../static/image/banner2.jpg'
-  import c from '../../static/image/banner3.jpg'
-  import d from '../../static/image/banner4.jpg'
-  import e from '../../static/image/banner5.jpg'
+  import a from '../images/banner/banner1.jpg'
+  import b from '../images/banner/banner2.jpg'
+  import c from '../images/banner/banner3.jpg'
+  import d from '../images/banner/banner4.jpg'
+  import e from '../images/banner/banner5.jpg'
   export default {
     name: 'Home',
     data() {

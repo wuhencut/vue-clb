@@ -10,6 +10,14 @@ export default new Router({
     {
       path: '/',
       component: Index
+    },
+    {
+      path: '/index',
+      component: Index
+    },
+    {
+      path: '/content',
+      component: Content
     }
   ]
 })

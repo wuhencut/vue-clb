@@ -5,7 +5,8 @@ import utils from './utils/index'
 import {Y} from './utils/yztz'
 import server from './api/server'
 import $ from 'jquery'
-var axios = require('axios')
+var axios = require('axios');
+var VueTouch = require('vue-touch')
 
 // 引用API文件
 import api from './api/index.js'
