@@ -15,13 +15,13 @@
       return {
       }
     },
-    directives: {
+    /*directives: {
       run(el, binding){
         if (typeof binding.value == 'function') {
           binding.value(el)
         }
       }
-    },
+    },*///绑定指令来实现取到dom元素
     mounted() {
       this.getADBanner();
       this.bindingFunc();
