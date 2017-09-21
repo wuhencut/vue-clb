@@ -316,54 +316,6 @@
           });
         }
       },
-      /*getADBanner() {
-        var t = this;
-        this.X.loading.show();
-        this.server.ADBannerService.getADBannerData().then(function (res) {
-          var data = res.data;
-          if (data.code == 100) {
-            t.initADBannerData(data.data);
-            t.showAD(t.AD.id);
-          } else {
-            t.X.tip(data['resultMsg']);
-          }
-          t.X.loading.hide();
-        }).catch(function () {
-          t.X.tip('服务器请求异常');
-        });
-      },*/
-      //初始化弹窗广告的数据
-      /*initADBannerData(data) {
-        var arr = [], banners = [];
-        for (var i in data) {
-          data[i] = arr[i] = {
-            id: data[i][0],
-            title: data[i][1],
-            type: data[i][2],
-            imgURL: '../static/' + data[i][3].split('/').splice(2).join('/'),
-            link: data[i][5] || '',
-            btnName: data[i][6] || '',
-            btnLink: data[i][8] || ''
-          };
-          if (data[i].type == 0) {
-            this.AD = data[i];
-          } else {
-            banners.push(data[i]);
-          }
-        }
-        this.X.slide.init('mod-slide', banners);
-      },*/
-      /*//展示弹窗广告
-      showAD(id) {
-        let t = this;
-        if (this.AD.imgURL && this.AD.id) {
-          var storage = window.localStorage, ADID = 'ADID', ADIDStr = storage.getItem(ADID) || '';
-          if (ADIDStr == '' || ADIDStr != id) {
-            storage.setItem(ADID, id);
-            t.showADDialog = true;
-          }
-        }
-      },*/
       //url跳转
       urlJump(obj) {
         if (!obj.link)return;

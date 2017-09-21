@@ -1,6 +1,7 @@
 <template>
   <section class="page-home">
     <div class="page-index">
+      <!--<div v-run="register('test1')" id="mod-slide" class="mod-slide">-->
       <div id="mod-slide" class="mod-slide">
         <ul class="slide-wrap"></ul>
       </div>
@@ -11,15 +12,34 @@
 <script>
   export default {
     data(){
-      return{
-
+      return {
+      }
+    },
+    directives: {
+      run(el, binding){
+        if (typeof binding.value == 'function') {
+          binding.value(el)
+        }
       }
     },
     mounted() {
       this.getADBanner();
-      this.initADBannerData();
+      this.bindingFunc();
     },
-    methods:{
+
+    methods: {
+      /*register(flag){
+        var t = this;
+        return (function (el) {
+          t.elements[flag] = el;
+        })
+      },*/
+      bindingFunc(){
+        let el = document.getElementById('mod-slide')
+        el.addEventListener('touchstart', this.touchStart);
+        el.addEventListener('touchmove', this.touchMove);
+        el.addEventListener('touchend', this.touchEnd);
+      },
       getADBanner() {
         var t = this;
         this.X.loading.show();
@@ -33,9 +53,9 @@
           }
           t.X.loading.hide();
         }).catch(function (error) {
-          if(error){
+          if (error) {
             console.log(error);
-          }else{
+          } else {
             t.X.tip('服务器请求异常');
           }
         });
@@ -68,9 +88,12 @@
         this.arr = arr;
         this.len = arr.length;
         this.index = 0;
+        this.startX = 0;
+        this.moveX = 0;
+        this.moveDir = 'L'
 
         this.initHtml();
-        if(this.len<2){
+        if (this.len < 2) {
           return;
         }
         this.createMenu();
@@ -98,6 +121,20 @@
          }
          });*/
       },
+      touchStart: function (event) {
+//        event.preventDefault();
+        var touch = event.touches[0];//获取触摸对象
+        this.startX = touch.pageX;//获取触摸坐标
+      },
+      touchMove: function (event) {
+//        event.preventDefault();
+        var touch = event.changedTouches[0];
+        this.moveX = touch.pageX - this.startX;//手指水平移动的距离
+      },
+      touchEnd: function () {
+       this.moveDir = this.moveX > 0 ? 'R' : 'L';
+       this.swipe(this.moveDir);
+       },
       initHtml: function () {
         var t = this, arr = t.arr, $el = t.el, wrap = t.wrap;
         var inner = '';
