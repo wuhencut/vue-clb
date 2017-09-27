@@ -254,9 +254,9 @@
               </a>
             </li>
             <li>
-              <a href="#/myHome" class="nav-user">
+              <router-link to="/myHome" class="nav-user">
                 <i class="iconfont">&#xe613;</i><br>我的
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -265,12 +265,12 @@
   </section>
 </template>
 <script>
-  import Banner from './banner.vue'
+  import Banner from './../components/banner.vue'
   export default{
     components: {'app-banner': Banner},
     data(){
       return {
-        agent_code: this.$route.query.agent_code || '',
+        agentCode: '',
         commodityNo: ['CL', 'GC', 'HSI', 'SI', 'DAX', 'CN', 'MHI'],
         isFirstFuturesQuote: true,
         isLoadFuturesQuote: true,
@@ -282,22 +282,32 @@
         },
       }
     },
-    created(){
-      this.getFuturesQuote();
+    mounted(){
+//      this.initAgentCode();
 //      this.getADBanner();
+      this.initAgentCode();
+      this.getFuturesQuote();
       this.X.engine.addTask(this.getFuturesQuote, 1000);
       this.X.engine.start();
 
     },
     methods: {
-      t: this,
+      initAgentCode(){
+        this.agentCode = this.$route.params.agentCode ? this.$route.params.agentCode : 'YZTZ';
+        var storage = window.localStorage,  agentStr = storage.getItem('agentCode') ? storage.getItem('agentCode') : 'YZTZ';
+        if(this.agentCode == ''){storage.removeItem('agentCode')}
+        if(agentStr == '' || agentStr != this.agentCode){
+          storage.setItem('agentCode', this.agentCode);
+        }
+        this.getFuturesQuote();
+      },
       getFuturesQuote(){
         let t = this;
         //判断是否在行情时段
         if (this.isFirstFuturesQuote || (true && this.isLoadFuturesQuote)) {
           this.isFirstFuturesQuote = false;
           this.isLoadFuturesQuote = false;
-          this.server.StockService.getFuturesSimpleQuote(this.commodityNo.join(',')).then(function (res) {
+          this.server.StockService.getFuturesSimpleQuote(this.commodityNo.join(','),this.agentCode).then(function (res) {
             t.isLoadFuturesQuote = true;
             var data = res.data;
             if (data.code == 100) {
@@ -309,7 +319,7 @@
             t.X.loading.hide();
           }).catch(function (error) {
             if(error){
-              console.log(error);
+              console.error(error);
             }else{
               t.X.tip('服务器请求异常');
             }

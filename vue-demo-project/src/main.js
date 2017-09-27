@@ -1,28 +1,52 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import utils from './utils/index'
 import {Y} from './utils/yztz'
-import server from './api/server'
 import $ from 'jquery'
 var axios = require('axios');
-var VueTouch = require('vue-touch')
+import server from './api/server'
 
 // 引用API文件
 import api from './api/index.js'
 // 将API方法绑定到全局
+Vue.use(Vuex);
 Vue.prototype.$api = api;
 Vue.prototype.$utils = utils;
 Vue.prototype.X = Y;
-Vue.prototype.server = server;
 Vue.prototype.axios = axios
+Vue.prototype.server = server;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+router.beforeEach(function (to, from, next) {
+  var backURL = from.path, key;
+  if(from.path && to.meta.requireAuth){
+    for(key in to.params){
+      backURL = backURL.replace(":" + key, to.params[key]);
+    }
+    Y.log('-----路由拦截 URL:' + to.path + '-----');
+    if(!server.AuthService.auth()){
+      Y.log('-----用户未登录，跳转到登录-----');
+      router.push({path: '/login'})
+    }else{
+      Y.log('-----用户已登录，放行-----');
+      next()
+    }
+  }else{
+    Y.log('-----路由放行 URL:' + to.path + '-----')
+    next();
+  }
+
+});
+
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: {App}
 })

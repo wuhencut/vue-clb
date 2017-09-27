@@ -5,7 +5,7 @@
 </template>
 <script>
 
-  import Banner from './banner.vue'
+  import Banner from './../components/banner.vue'
   import a from '../images/banner/banner1.jpg'
   import b from '../images/banner/banner2.jpg'
   import c from '../images/banner/banner3.jpg'

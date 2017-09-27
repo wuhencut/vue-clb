@@ -16,12 +16,12 @@
       }
     },
     /*directives: {
-      run(el, binding){
-        if (typeof binding.value == 'function') {
-          binding.value(el)
-        }
-      }
-    },*///绑定指令来实现取到dom元素
+     run(el, binding){
+     if (typeof binding.value == 'function') {
+     binding.value(el)
+     }
+     }
+     },*///绑定指令来实现取到dom元素
     mounted() {
       this.getADBanner();
       this.bindingFunc();
@@ -29,11 +29,11 @@
 
     methods: {
       /*register(flag){
-        var t = this;
-        return (function (el) {
-          t.elements[flag] = el;
-        })
-      },*/
+       var t = this;
+       return (function (el) {
+       t.elements[flag] = el;
+       })
+       },*/
       bindingFunc(){
         let el = document.getElementById('mod-slide')
         el.addEventListener('touchstart', this.touchStart);
@@ -127,14 +127,14 @@
         this.startX = touch.pageX;//获取触摸坐标
       },
       touchMove: function (event) {
-//        event.preventDefault();
+        event.preventDefault();
         var touch = event.changedTouches[0];
         this.moveX = touch.pageX - this.startX;//手指水平移动的距离
       },
       touchEnd: function () {
-       this.moveDir = this.moveX > 0 ? 'R' : 'L';
-       this.swipe(this.moveDir);
-       },
+        this.moveDir = this.moveX > 0 ? 'R' : 'L';
+        this.swipe(this.moveDir);
+      },
       initHtml: function () {
         var t = this, arr = t.arr, $el = t.el, wrap = t.wrap;
         var inner = '';
@@ -193,3 +193,5 @@
     }
   }
 </script>
+
+

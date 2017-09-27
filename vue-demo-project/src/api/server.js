@@ -4,8 +4,25 @@
 /*import {Y} from '/src/utils/yztz'
 var X = Y;*/
 // import router from './router'
-var axios = require('axios');
-var storage = window.localStorage, agentCode = storage.getItem('agentCode') || 'YZTZ', source = agentCode || '';
+// var axios = require('axios');
+import axios from 'axios'
+import {stringify} from 'qs'
+/*//默认发送为JSON，此处设置为表单数据发送
+axios.default.headers.post['Content-Type'] = 'application/x-www.form-urlencoded';
+//请求拦截器
+axios.interceptors.request.use(function (config) {
+  //处理POST请求参数序列化
+  if(config.method === 'POST'){
+    if(!config.data){
+      config.data={};
+    }
+    config.data = stringify(config.data)
+  }
+  return config;
+},function (error) {
+  return Promise.reject(error)
+});*/
+var storage = window.localStorage, agentCode = storage.getItem('agentCode') ? storage.getItem('agentCode').toUpperCase() : 'YZTZ', source = agentCode || 'YZTZ';
 var baseHost = '';
 var urls = {
   login: '/sso/yztz_user_login_check.json',
@@ -139,7 +156,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('login'),
-        data: data
+        data: stringify(data)
       });
     },
     logout:function () {
@@ -151,7 +168,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('logout'),
-        data: data
+        data: stringify(data)
       });
     }
   },
@@ -169,7 +186,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('regNextStep'),
-        data: data
+        data: stringify(data)
       });
     },
     doRegister: function (mobile, username, password) {
@@ -184,7 +201,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('doRegister'),
-        data: data
+        data: stringify(data)
       });
     },
     //获取验证码
@@ -199,7 +216,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getRegisterCode'),
-        data: data
+        data: stringify(data)
       });
     }
   },
@@ -218,7 +235,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('resetForgetPassword'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -235,7 +252,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('sendForgetCode'),
-        data: data
+        data: stringify(data)
       });
     },
     //修改登录密码
@@ -250,7 +267,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('loginPwdModify'),
-        data: data
+        data: stringify(data)
       })
     },
     //提现密码服务
@@ -264,7 +281,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('withdrawPwdSet'),
-        data: data
+        data: stringify(data)
       })
     },
     //提现密码修改
@@ -279,7 +296,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('withdrawPwdModify'),
-        data: data
+        data: stringify(data)
       })
     },
     //重置提现密码服务
@@ -294,7 +311,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('resetWithdrawPwd'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -309,7 +326,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('forgetWithdrawPasswordCode'),
-        data: data
+        data: stringify(data)
       });
     }
   },
@@ -325,7 +342,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getUserInfo'),
-        data: data
+        data: stringify(data)
       });
     },
     //获取用户余额
@@ -338,7 +355,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getBalance'),
-        data: data
+        data: stringify(data)
       });
     },
     //获取用户模拟币余额
@@ -351,7 +368,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getSimBalance'),
-        data: data
+        data: stringify(data)
       });
     },
     //获取银行信息
@@ -377,7 +394,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getBankCardInfo'),
-        data:data
+        data:stringify(data)
       });
     },
     //获取银行卡信息
@@ -390,7 +407,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getBankCards'),
-        data: data
+        data: stringify(data)
       });
     },
     //支付宝账户认证
@@ -406,7 +423,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('bindingAlipayAccount'),
-        data: data
+        data: stringify(data)
       });
     },
     //根据用户ID获取银行卡信息
@@ -420,7 +437,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getBankCardById'),
-        data: data
+        data: stringify(data)
       });
     },
     //绑定银行卡
@@ -438,7 +455,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('bindBankCard'),
-        data: data
+        data: stringify(data)
       });
     },
     //更新银行卡setDefaultBankCard
@@ -456,7 +473,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('updateCardInfo'),
-        data: data
+        data: stringify(data)
       });
     },
     //设置默认银行卡
@@ -470,7 +487,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('setDefaultBankCard'),
-        data: data
+        data: stringify(data)
       });
     },
     //删除银行卡
@@ -484,7 +501,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('delBankCard'),
-        data: data
+        data: stringify(data)
       });
     },
     //获取分支行
@@ -500,7 +517,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getSubBank'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -516,7 +533,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('updateRealname'),
-        data: data
+        data: stringify(data)
       });
     },
     //获取留言
@@ -531,7 +548,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getMsgPage'),
-        data: data
+        data: stringify(data)
       });
     },
     //提交留言
@@ -547,7 +564,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('postMsg'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -562,7 +579,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('outerSignAgreement'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -577,7 +594,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('mobileUnbindCode'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -592,7 +609,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('unbindMobile'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -608,7 +625,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('mobileBindCode'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -624,7 +641,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('bindMobile'),
-        data: data
+        data: stringify(data)
       });
     }
   },
@@ -646,7 +663,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getFundDetail'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -664,7 +681,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getFundAll'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -682,7 +699,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('h5FirstPayUrl'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -699,7 +716,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('h5PayUrl'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -713,7 +730,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('payGateway'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -730,7 +747,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('alipay'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -747,7 +764,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('doWithdraw'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -762,7 +779,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('cancelWithdraw'),
-        data: data
+        data: stringify(data)
       });
     }
   },
@@ -847,7 +864,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getSaleFutures'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -864,7 +881,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getSettleStrategy'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -883,7 +900,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('closeFutures'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -901,7 +918,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('setQuitGainLoss'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -928,7 +945,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('createFuturesStrategy'),
-        data: data
+        data: stringify(data)
       });
     },
 
@@ -944,7 +961,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getStrategyInfo'),
-        data: data
+        data: stringify(data)
       });
     }
   },
@@ -998,12 +1015,12 @@ export default{
     },
 
     //持仓数据获取
-    getFuturesSimpleQuote: function (commodityNo) {
+    getFuturesSimpleQuote: function (commodityNo,agent_code) {
       var params = {
         type: 'simpleReal',
         commodityNo: commodityNo,
-        agentCode: agentCode,
-        source: agentCode
+        agentCode: agent_code,
+        source: agent_code
       };
       return axios({
         url: getURL('futuresServer'),
@@ -1369,9 +1386,8 @@ export default{
   },
 
   //认证服务
-  AuthService:function () {
-    var sessionStorage = window.sessionStorage;
-    return {
+  AuthService: {
+    // var sessionStorage = window.sessionStorage;
       auth: function () {
         var session = sessionStorage.getItem('sessionID'), now = Date.now(), timeOut = 2 * 60 * 60 * 1000;
         //没有找到用户信息为未登录
@@ -1395,34 +1411,6 @@ export default{
       signOut: function () {
         sessionStorage.removeItem('sessionID');
       }
-    };
-  },
-
-  //拦截器
-  myInterceptor:function(){
-    var interceptor = {
-      'request': function (config) {
-        return config;
-      },
-      'response': function (response) {
-        if (X.isObject(response.data)) {
-          if (response.data.code == 100) {
-            this.AuthService.auth();
-          } else if (response.data.code == 405) {
-            this.AuthService.signOut();
-            // router.push('/login').replace();
-          }
-        }
-        return response;
-      },
-      'requestError': function (rejection) {
-        return rejection;
-      },
-      'responseError': function (rejection) {
-        return rejection;
-      }
-    };
-    return interceptor;
   },
 
   //股票和弹窗服务
@@ -1470,7 +1458,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('receivePacket'),
-        params: params
+        params: qs.stringify(params)
       });
     },
 
@@ -1533,7 +1521,7 @@ export default{
 
     //红包领取
     receiveTipByActivity: function (title, awardLogId, money) {
-      var params = {
+      var data = {
         device: 1,
         agentCode: agentCode,
         title: title,
@@ -1541,10 +1529,10 @@ export default{
         money: money,
         source: agentCode
       };
-      return $http({
+      return axios({
         method: 'POST',
-        url: URLService.getURL('receiveTipByActivity'),
-        params: params
+        url: getURL('receiveTipByActivity'),
+        data: stringify(data)
       })
     }
   },
@@ -1553,7 +1541,7 @@ export default{
   ExtensionService:{
     //获取推广信息
     getExtensionInfoData: function () {
-      var params = {
+      var data = {
         device: 1,
         agentCode: agentCode,
         source: agentCode
@@ -1561,13 +1549,13 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getExtensionInfo'),
-        params: params
+        data: stringify(data)
       });
     },
 
     //获取推广用户列表
     getExtensionUserListData: function (page, pageSize) {
-      var params = {
+      var data = {
         device: 1,
         page: page,
         pageSize: pageSize,
@@ -1577,7 +1565,7 @@ export default{
       return axios({
         method: 'POST',
         url: getURL('getExtensionUserList'),
-        params: params
+        data: stringify(data)
       });
     }
   },
