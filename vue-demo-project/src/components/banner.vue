@@ -1,18 +1,35 @@
 <template>
-  <section class="page-home">
-    <div class="page-index">
-      <!--<div v-run="register('test1')" id="mod-slide" class="mod-slide">-->
-      <div id="mod-slide" class="mod-slide">
-        <ul class="slide-wrap"></ul>
-      </div>
-    </div>
-  </section>
+  <swipe class="my-swipe">
+    <swipe-item v-for="item in banners"><a :href="item.link"><img :src="item.imgURL" alt=""></a></swipe-item>
+  </swipe>
+
 </template>
 
+<style>
+  .my-swipe {
+    height: 110px;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .my-swipe img{
+    width:100%;
+  }
+
+</style>
+
 <script>
+  import { Swipe, SwipeItem } from 'vue-swipe';
+  require('vue-swipe/dist/vue-swipe.css');
   export default {
+    components:{
+      'swipe':Swipe,
+      'swipe-item': SwipeItem
+    },
     data(){
       return {
+        banners: [],
       }
     },
     /*directives: {
@@ -24,22 +41,9 @@
      },*///绑定指令来实现取到dom元素
     mounted() {
       this.getADBanner();
-      this.bindingFunc();
     },
 
     methods: {
-      /*register(flag){
-       var t = this;
-       return (function (el) {
-       t.elements[flag] = el;
-       })
-       },*/
-      bindingFunc(){
-        let el = document.getElementById('mod-slide')
-        el.addEventListener('touchstart', this.touchStart);
-        el.addEventListener('touchmove', this.touchMove);
-        el.addEventListener('touchend', this.touchEnd);
-      },
       getADBanner() {
         var t = this;
         this.X.loading.show();
@@ -60,6 +64,7 @@
           }
         });
       },
+
       //初始化弹窗广告的数据
       initADBannerData(data) {
         var arr = [], banners = [];
@@ -79,119 +84,11 @@
             banners.push(data[i]);
           }
         }
-        this.init('mod-slide', banners);
+        this.banners = banners;
       },
-      init: function (el, arr) {
-        var $el = $("#" + el);
-        this.el = $el;
-        this.wrap = $el.find("ul.slide-wrap");
-        this.arr = arr;
-        this.len = arr.length;
-        this.index = 0;
-        this.startX = 0;
-        this.moveX = 0;
-        this.moveDir = 'L'
-
-        this.initHtml();
-        if (this.len < 2) {
-          return;
-        }
-        this.createMenu();
-
-        var t = this;
-        this.timer = setTimeout(function () {
-          t.swipe('L');
-        }, 3000);
-        /*var startX, l = Date.now();
-         $swipe.bind($el, {
-         'start': function (coords, event) {
-         startX = coords.x;
-         },
-         'end': function (coords, event) {
-         var ll = Date.now();
-         if (ll - l > 500) {
-         l = ll;
-         var diff = coords.x - startX;
-         if (diff > 10) {
-         t.swipe('R');
-         } else if (diff < -10) {
-         t.swipe('L');
-         }
-         }
-         }
-         });*/
-      },
-      touchStart: function (event) {
-//        event.preventDefault();
-        var touch = event.touches[0];//获取触摸对象
-        this.startX = touch.pageX;//获取触摸坐标
-      },
-      touchMove: function (event) {
-        event.preventDefault();
-        var touch = event.changedTouches[0];
-        this.moveX = touch.pageX - this.startX;//手指水平移动的距离
-      },
-      touchEnd: function () {
-        this.moveDir = this.moveX > 0 ? 'R' : 'L';
-        this.swipe(this.moveDir);
-      },
-      initHtml: function () {
-        var t = this, arr = t.arr, $el = t.el, wrap = t.wrap;
-        var inner = '';
-        for (var i in arr) {
-          var item = arr[i];
-          if (item.link) {
-            // item.link += '?backURL=/index';
-            if (item.btnName && item.btnLink) {
-              var btnName = encodeURIComponent(item.btnName), btnLink = encodeURIComponent(item.btnLink);
-              item.link = item.link + '&btnName=' + btnName + '&btnLink=' + btnLink;
-            }
-            inner += '<li><a href="' + item.link + '"><img src="' + item.imgURL + '"/></a></li>'
-          } else {
-            inner += '<li><img src="' + item.imgURL + '"/></li>'
-          }
-        }
-        wrap.append(inner);
-        var li = $('ul.slide-wrap > li');
-        li.css('left', '100%');
-        li.eq(0).css('left', 0);
-        this.li = li;
-      },
-      createMenu: function () {
-        var t = this, len = t.len, $el = t.el;
-        var menu = '<ul class="slide-menu">';
-        for (var i = 0; i < len; i++) {
-          menu += '<li></li>';
-        }
-        menu += '</ul>';
-        $el.append(menu);
-        var $menu = $('.slide-menu > li');
-        $menu.eq(0).addClass('curr');
-        this.menu = $menu;
-      },
-      swipe: function (dir) {
-        var t = this, index = t.index, len = t.len, li = t.li, menu = t.menu;
-        t.clearTimer();
-        var next = dir == 'L' ? index + 1 : index - 1;
-        next = next < 0 ? len - 1 : next > len - 1 ? 0 : next;
-        li.eq(index).animate({'left': dir == 'L' ? '-100%' : '100%'});
-        menu.removeClass('curr');
-        menu.eq(next).addClass('curr');
-        li.eq(next).css({'left': dir == 'L' ? '100%' : '-100%'}).animate({'left': '0'}, function () {
-          t.index = next;
-        });
-        t.timer = setTimeout(function () {
-          t.swipe('L');
-        }, 3000);
-      },
-      clearTimer: function () {
-        var t = this, timer = t.timer;
-        if (timer) {
-          clearTimeout(timer);
-        }
-      }
     }
   }
 </script>
+
 
 
