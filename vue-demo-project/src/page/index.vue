@@ -230,6 +230,8 @@
           </div>
         </a>
       </div>
+      <loading v-if="showLoading"></loading>
+      <tip v-if="showTip"  :tip="tipMsg" ></tip>
       <footer class="page-footer">
         <div class="footer-wrap">
           <ul>
@@ -267,7 +269,9 @@
 <script>
   import Banner from './../components/banner.vue'
   export default{
-    components: {'app-banner': Banner},
+    components: {
+      'app-banner': Banner,
+    },
     data(){
       return {
         agentCode: '',
@@ -280,6 +284,9 @@
         future: {
           CL:{}, GC:{}, HSI:{}, SI:{}, DAX:{}, CN:{}, MHI:{}
         },
+        tipMsg: '',
+        showTip: false,
+        showLoading: false,
       }
     },
     mounted(){
@@ -303,6 +310,7 @@
       },
       getFuturesQuote(){
         let t = this;
+//        this.showLoading = true;
         //判断是否在行情时段
         if (this.isFirstFuturesQuote || (true && this.isLoadFuturesQuote)) {
           this.isFirstFuturesQuote = false;
@@ -311,17 +319,20 @@
             t.isLoadFuturesQuote = true;
             var data = res.data;
             if (data.code == 100) {
+              console.error(data)
               t.processFuturesQuote(data.data);
             } else {
-              //X.tip(data['resultMsg']);
-              t.X.tip(data['resultMsg']);
+              t.showTip = true;
+              t.tipMsg = data['resultMsg'];
             }
-            t.X.loading.hide();
           }).catch(function (error) {
             if(error){
-              console.error(error);
+              t.showTip = true;
+              t.tipMsg = error;
+              Promise.reject(error)
             }else{
-              t.X.tip('服务器请求异常');
+              t.showTip = true;
+              t.tipMsg = '服务器请求异常';
             }
           });
         }

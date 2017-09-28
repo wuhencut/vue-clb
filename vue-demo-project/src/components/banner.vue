@@ -1,6 +1,6 @@
 <template>
   <swipe class="my-swipe">
-    <swipe-item v-for="item in banners"><a :href="item.link"><img :src="item.imgURL" alt=""></a></swipe-item>
+    <swipe-item :key="item.id" v-for="item in banners"><a :href="item.link"><img :src="item.imgURL" alt=""></a></swipe-item>
   </swipe>
 
 </template>

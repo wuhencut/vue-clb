@@ -2,23 +2,25 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App'
 import router from './router'
-import utils from './utils/index'
 import {Y} from './utils/yztz'
 import $ from 'jquery'
 var axios = require('axios');
 import server from './api/server'
+import tip from './components/tip.vue'
+import loading from './components/loading.vue'
 
 // 引用API文件
 import api from './api/index.js'
 // 将API方法绑定到全局
 Vue.use(Vuex);
 Vue.prototype.$api = api;
-Vue.prototype.$utils = utils;
 Vue.prototype.X = Y;
 Vue.prototype.axios = axios
 Vue.prototype.server = server;
 
 Vue.config.productionTip = false;
+Vue.component('tip', tip)
+Vue.component('loading', loading)
 
 router.beforeEach(function (to, from, next) {
   var backURL = from.path, key;
