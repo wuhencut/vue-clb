@@ -4,7 +4,7 @@
       <header class="page-header">
         <div class="header-wrap">
           <h3>登录</h3>
-          <router-link to="#/register1" class="nav-right">注册</router-link>
+          <router-link to="/register1" class="nav-right">注册</router-link>
         </div>
       </header>
       <div class="mod-form-wrap mt20">

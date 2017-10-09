@@ -9,9 +9,8 @@
   export default{
     name: 'tip',
     props: ['tip'],
-    dada(){
+    data(){
       return {
-        showTip: true,
       }
     },
     mounted(){
@@ -19,9 +18,9 @@
     },
     methods: {
       startTimer(){
+        let t = this;
         setTimeout(function () {
-//          console.log(document.getElementsByClassName('db-tip-wrap')[0].style);
-          document.getElementsByClassName('db-tip-wrap')[0].style.display = 'none'
+          t.$emit('hide')
         }, 2000);
       }
     }

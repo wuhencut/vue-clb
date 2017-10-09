@@ -1,7 +1,11 @@
 <template>
-  <swipe class="my-swipe">
-    <swipe-item :key="item.id" v-for="item in banners"><a :href="item.link"><img :src="item.imgURL" alt=""></a></swipe-item>
-  </swipe>
+  <div>
+    <swipe class="my-swipe">
+      <swipe-item :key="item.id" v-for="item in banners"><a :href="item.link"><img :src="item.imgURL" alt=""></a></swipe-item>
+    </swipe>
+    <tip v-if="showTip" :tip="tipMsg"></tip>
+    <loading v-if="showLoading"></loading>
+  </div>
 
 </template>
 
@@ -30,6 +34,10 @@
     data(){
       return {
         banners: [],
+        tipMsg: '',
+        showLoading:false,
+        showTip: false,
+
       }
     },
     /*directives: {
@@ -46,21 +54,23 @@
     methods: {
       getADBanner() {
         var t = this;
-        this.X.loading.show();
+        this.showLoading = true;
         this.server.ADBannerService.getADBannerData().then(function (res) {
           var data = res.data;
           if (data.code == 100) {
             t.initADBannerData(data.data);
 //            t.showAD(t.AD.id);
           } else {
-            t.X.tip(data['resultMsg']);
+            t.showTip = true;
+            t.tipMsg = data['resultMsg'];
           }
-          t.X.loading.hide();
+          t.showLoading = false;
         }).catch(function (error) {
           if (error) {
-            console.log(error);
+            Promise.reject(error);
           } else {
-            t.X.tip('服务器请求异常');
+            t.showTip = true;
+            t.tipMsg = '服务器请求异常'
           }
         });
       },

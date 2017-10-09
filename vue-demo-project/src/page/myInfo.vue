@@ -7,6 +7,9 @@
           <a href="#/myHome" class="nav-left"><i class="icon-back"></i></a>
         </div>
       </header>
+        <confirm v-if="showConfirm" :confirmMsg="confirmMsg" @sure="sureFunc" @cancel="showConfirm = false" :sureTxt="sureTxt"></confirm>
+        <loading v-if="showLoading"></loading>
+        <tip v-if="showTip" :tip="tipMsg" @hide="showTip = false"></tip>
       <div class="mod-info">
         <div class="pic">
           {{user.username}}
@@ -30,7 +33,7 @@
             手机绑定
             <i class="mod-arrow-r"></i>
           </a>
-          <a @click="goCheckAli()" v-if="!user.bindingAlipayAccount" class="mod-menu">
+          <a @click="showConfirm = true;sureTxt = '去充值';operaType = 'goAli';confirmMsg = '使用支付宝进行首次入金操作后，即可自动<br/>绑定支付宝账号'" v-if="!user.bindingAlipayAccount" class="mod-menu">
             <span class="fr mr30 txt-grey">未认证</span>
             支付宝账户认证
             <i class="mod-arrow-r"></i>
@@ -74,7 +77,7 @@
         </div>
       </div>
       <div class="pt30 pl15 pr15 pb30">
-        <button class="btn btn-blue" @click="logout()">退出登录</button>
+        <button class="btn btn-blue" @click="logOut">退出登录</button>
       </div>
     </div>
   </section>
@@ -93,7 +96,14 @@
           bindingAlipayAccount: null,
           cellPhone: '',
         },
-        bankCards: []
+        bankCards: [],
+        showConfirm: false,
+        confirmMsg: '',
+        showLoading: false,
+        showTip : false,
+        tipMsg: '',
+        sureTxt: '确定',
+        operaType : '',//弹窗操作的种类
       }
     },
     mounted(){
@@ -102,7 +112,7 @@
     methods: {
       getData(){
         let t = this;
-        this.X.loading.show();
+        this.showLoading = true;
         this.axios.all([
           this.server.UserService.getUserInfo(),
           this.server.UserService.getBankCards()
@@ -113,17 +123,20 @@
             t.bankCards = bankCardsData.data;
           } else {
             if (userInfoData.code != 100) {
-              t.X.tip(userInfoData['resultMsg']);
+              t.showTip = true;
+              t.tipMsg = userInfoData['resultMsg']
             } else if (bankCardsData.code != 100) {
-              t.X.tip(bankCardsData['resultMsg']);
+              t.showTip = true;
+              t.tipMsg = bankCardsData['resultMsg']
             }
           }
-          t.X.loading.hide();
+          t.showLoading = false;
         })).catch(function (error) {
           if (error) {
-            console.error(error)
+            Promise.reject(error)
           } else {
-            t.X.tip('服务器请求异常');
+            t.showTip = true;
+            t.tipMsg = '服务器请求异常';
           }
         });
       },
@@ -133,28 +146,22 @@
         this.X.dialog.alert('如需要更换或解绑支付宝账号，请 <br>联系客服电话 <a class="txt-blue" href=' + this.cellPhone.cellPhoneATag + '>' + this.cellPhone.cellPhone + '</a>');
       },
 
-      //支付宝认证操作
-      goCheckAli(){
-        // X.dialog.alert('使用支付宝进行首次入金操作后，即可自动 <br>绑定支付宝账号。<a class="txt-red" href="">' + '去充值' + '</a>')
-        this.X.dialog.confirm('使用支付宝进行首次入金操作后，即可自动<br>绑定支付宝账号。', {
-          sureBtn: '去充值', notify: function (nt) {
-            if (nt == 1) {
-              this.$router.push({path: '/alipay?backURL=/myInfo'});
-            }
-          }
-        });
-      },
+      //支付宝认证弹窗
 
-      //退出登录
-      logout() {
-        let t = this;
-        this.X.dialog.confirm('确定要退出当前账号吗？', {
-          notify: function (nt) {
-            if (nt == 1) {
-              t.signOut();
-            }
-          }
-        });
+
+      //点击退出登录
+      logOut(){
+        this.showConfirm = true;
+        this.confirmMsg = '确定要退出当前账号吗？'
+        this.operaType = 'logOut'
+      },
+      //弹窗操作中执行操作的那个按钮几成写成一个
+      sureFunc(){
+        if(this.operaType == 'goAli'){
+          this.$router.push({path: '/alipay?backURL=/myInfo'});
+        }else if(this.operaType == 'logOut'){
+          this.signOut()
+        }
       },
 
       //退出登录
@@ -173,7 +180,7 @@
           t.X.loading.hide();
         }).catch(function (error) {
           if(error){
-            console.error(error)
+            Promise.reject(error)
           }else{
             t.X.tip('服务器请求异常');
           }

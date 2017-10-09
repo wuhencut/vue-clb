@@ -42,6 +42,8 @@
           </a>
 
       </div>-->
+      <tip :tip="tipMsg" v-if="showTip" @hide="showTip = false"></tip>
+      <loading v-if="showLoading"></loading>
       <footer class="page-footer">
         <div class="footer-wrap">
           <ul>
@@ -85,7 +87,10 @@
           balance: 0
         },
         bankCards: [],
-        indexUrl: ''
+        indexUrl: '',
+        tipMsg : '',
+        showTip: false,
+        showLoading: false,
       }
     },
     mounted(){
@@ -94,7 +99,7 @@
     methods: {
       //进页面先获取全部用户数据
       getData(){
-        this.X.loading.show();
+        this.showLoading = true;
         let t = this;
         this.axios.all([
           this.server.UserService.getUserInfo(),//获取用户基本信息
@@ -110,19 +115,24 @@
             t.$router.push({path: '/login'});
           } else {
             if (userInfoData.code != 100) {
+              t.showTip = true;
+              t.tipMsg = userInfoData['resultMsg']
               t.X.tip(userInfoData['resultMsg']);
             } else if (balanceData.code != 100) {
-              t.X.tip(balanceData['resultMsg']);
+              t.showTip = true;
+              t.tipMsg = balanceData['resultMsg'];
             } else if (bankCardsData.code != 100) {
-              t.X.tip(bankCardsData['resultMsg']);
+              t.showTip = true;
+              t.tipMsg = bankCardsData['resultMsg'];
             }
           }
-          t.X.loading.hide();
+          t.showLoading = false;
         })).catch(function (error) {
           if (error) {
-            console.error(error)
+            Promise.reject(error);
           } else {
-            t.X.tip('服务器请求异常')
+            t.showTip = true;
+            t.tipMsg = '服务器请求异常';
           }
         })
       },

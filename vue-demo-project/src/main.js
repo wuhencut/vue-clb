@@ -8,7 +8,8 @@ var axios = require('axios');
 import server from './api/server'
 import tip from './components/tip.vue'
 import loading from './components/loading.vue'
-
+import confirm from './components/confirm.vue'
+import glb from './global/global.js'
 // 引用API文件
 import api from './api/index.js'
 // 将API方法绑定到全局
@@ -17,10 +18,12 @@ Vue.prototype.$api = api;
 Vue.prototype.X = Y;
 Vue.prototype.axios = axios
 Vue.prototype.server = server;
+Vue.prototype.global = glb;
 
 Vue.config.productionTip = false;
-Vue.component('tip', tip)
-Vue.component('loading', loading)
+Vue.component('tip', tip);
+Vue.component('loading', loading);
+Vue.component('confirm',confirm);
 
 router.beforeEach(function (to, from, next) {
   var backURL = from.path, key;

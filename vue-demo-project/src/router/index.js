@@ -4,7 +4,8 @@ import Index from '@/page/index'
 import Content from '@/page/content'
 import MyHome from '@/page/myHome'
 import Login from '@/page/login'
-import Reginster1 from '@/page/register1'
+import Register1 from '@/page/register1'
+import Register2 from '@/page/register2'
 import MyInfo from '@/page/myInfo'
 
 Vue.use(Router);
@@ -49,7 +50,7 @@ export default new Router({
       }
     }, {
       path: '/register1',
-      component: Reginster1,
+      component: Register1,
       meta: {
         requireAuth: false
       }
@@ -58,6 +59,12 @@ export default new Router({
       component: MyInfo,
       meta: {
         requireAuth: true
+      }
+    },{
+      path: '/register2/:mobile',
+      component: Register2,
+      meta: {
+        requireAuth: false
       }
     },
   ]

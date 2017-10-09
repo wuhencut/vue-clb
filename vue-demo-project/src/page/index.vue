@@ -231,7 +231,7 @@
         </a>
       </div>
       <loading v-if="showLoading"></loading>
-      <tip v-if="showTip"  :tip="tipMsg" ></tip>
+      <tip v-if="showTip" :tip="tipMsg" @hide="showTip = false"></tip>
       <footer class="page-footer">
         <div class="footer-wrap">
           <ul>
@@ -282,7 +282,7 @@
         showADDialog: false,
         showFutureList: false,
         future: {
-          CL:{}, GC:{}, HSI:{}, SI:{}, DAX:{}, CN:{}, MHI:{}
+          CL: {}, GC: {}, HSI: {}, SI: {}, DAX: {}, CN: {}, MHI: {}
         },
         tipMsg: '',
         showTip: false,
@@ -293,7 +293,9 @@
 //      this.initAgentCode();
 //      this.getADBanner();
       this.initAgentCode();
+      this.showLoading = true;
       this.getFuturesQuote();
+      this.showLoading = false;
       this.X.engine.addTask(this.getFuturesQuote, 1000);
       this.X.engine.start();
 
@@ -301,9 +303,11 @@
     methods: {
       initAgentCode(){
         this.agentCode = this.$route.params.agentCode ? this.$route.params.agentCode : 'YZTZ';
-        var storage = window.localStorage,  agentStr = storage.getItem('agentCode') ? storage.getItem('agentCode') : 'YZTZ';
-        if(this.agentCode == ''){storage.removeItem('agentCode')}
-        if(agentStr == '' || agentStr != this.agentCode){
+        var storage = window.localStorage, agentStr = storage.getItem('agentCode') ? storage.getItem('agentCode') : 'YZTZ';
+        if (this.agentCode == '') {
+          storage.removeItem('agentCode')
+        }
+        if (agentStr == '' || agentStr != this.agentCode) {
           storage.setItem('agentCode', this.agentCode);
         }
         this.getFuturesQuote();
@@ -315,22 +319,21 @@
         if (this.isFirstFuturesQuote || (true && this.isLoadFuturesQuote)) {
           this.isFirstFuturesQuote = false;
           this.isLoadFuturesQuote = false;
-          this.server.StockService.getFuturesSimpleQuote(this.commodityNo.join(','),this.agentCode).then(function (res) {
+          this.server.StockService.getFuturesSimpleQuote(this.commodityNo.join(','), this.agentCode).then(function (res) {
             t.isLoadFuturesQuote = true;
             var data = res.data;
             if (data.code == 100) {
-              console.error(data)
               t.processFuturesQuote(data.data);
             } else {
               t.showTip = true;
               t.tipMsg = data['resultMsg'];
             }
           }).catch(function (error) {
-            if(error){
+            if (error) {
               t.showTip = true;
               t.tipMsg = error;
               Promise.reject(error)
-            }else{
+            } else {
               t.showTip = true;
               t.tipMsg = '服务器请求异常';
             }
@@ -368,9 +371,7 @@
 
     },
 
-    computed:{
-
-    },
+    computed: {},
     destroyed(){
       this.X.engine.destroy();
     }
