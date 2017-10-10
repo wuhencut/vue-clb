@@ -5,7 +5,7 @@
         <div class="header-wrap">
           <h3>王者期货</h3>
           <a href="#/help" class="nav-left"><i class="icon-msg"></i></a>
-          <a href="#/guide" class="nav-right"></a>
+          <router-link to="/guide" class="nav-right">新手指引</router-link>
         </div>
       </header>
       <app-banner></app-banner>

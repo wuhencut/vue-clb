@@ -1,9 +1,12 @@
 <template>
   <section class="page-user">
+    <tip :tip="global.tipMsg" v-if="global.showTip" @hide="global.showTip = false"></tip>
+    <loading v-if="global.showLoading"></loading>
     <div class="page-login">
       <header class="page-header">
         <div class="header-wrap">
           <h3>登录</h3>
+          <backMenu></backMenu>
           <router-link to="/register1" class="nav-right">注册</router-link>
         </div>
       </header>
@@ -23,12 +26,15 @@
   </section>
 </template>
 <script>
+  import backMenu from '../components/backMenu.vue'
   export default{
+    components:{backMenu},
     data(){
       return {
         form: {
           username: 'stone001',
-          password: 'a123456'
+          password: 'a123456',
+          global: this.global,
         },
       }
     },
@@ -43,17 +49,20 @@
         }
       },*/
       login(){
+        var goURL = this.$route.query.goURL || '/myHome';
+        let t = this;
         if (this.form.username == '') {
-          this.X.tip('请输入您的账号');
+          t.global.showTip = true;
+          t.global.tipMsg = '请输入您的账号';
           return false;
         }
         if (this.form.password == '') {
-          this.X.tip('请输入登录密码');
+          t.global.showTip = true;
+          t.global.tipMsg = '请输入登录密码';
           return false;
         }
 
-        this.X.loading.show();
-        let t = this;
+        this.global.showLoading = true;
         this.server.LoginService.login(this.form.username, this.form.password).then(function (res) {
           var data = res.data;
           if (data['authenticated']) {
@@ -62,18 +71,20 @@
               t.backURL = '/myHome';
             }
             t.server.AuthService.signIn(data['userId']);
-            t.$router.push({path:'/myHome'});
+            t.$router.push({path: goURL});
             //埋点：个人信息
 //            zhuge.identify(data['userId']);
           } else {
-            t.X.tip(data['resultMsg']);
+            t.global.showTip = true;
+            t.global.tipMsg = data['resultMsg'];
           }
-          t.X.loading.hide();
+          t.global.showLoading = false;
         }).catch(function (error) {
           if(error){
             console.error(error)
           }else {
-            t.X.tip('服务器请求异常');
+            t.global.showTip = true;
+            t.global.tipMsg = '服务器请求异常';
           }
         });
       }
