@@ -14,31 +14,31 @@
           一分钟介绍
           <i class="mod-arrow-r"></i>
         </router-link>
-        <router-link :to="{path: '/tradeRuleHSI', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
+        <router-link :to="{path: '/tradeRule/HSI', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
           恒指交易规则
           <i class="mod-arrow-r"></i>
         </router-link>
-        <router-link :to="{path: '/tradeRuleGC', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
+        <router-link :to="{path: '/tradeRule/GC', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
           美黄金交易规则
           <i class="mod-arrow-r"></i>
         </router-link>
-        <router-link :to="{path: '/tradeRuleSI', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
+        <router-link :to="{path: '/tradeRule/SI', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
           美白银交易规则
           <i class="mod-arrow-r"></i>
         </router-link>
-        <router-link :to="{path: '/tradeRuleCL', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
+        <router-link :to="{path: '/tradeRule/CL', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
           美原油交易规则
           <i class="mod-arrow-r"></i>
         </router-link>
-        <router-link :to="{path: '/tradeRuleCN', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
+        <router-link :to="{path: '/tradeRule/CN', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
           富时A50交易规则
           <i class="mod-arrow-r"></i>
         </router-link>
-        <router-link :to="{path: '/tradeRuleDAX', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
+        <router-link :to="{path: '/tradeRule/DAX', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
           德指交易规则
           <i class="mod-arrow-r"></i>
         </router-link>
-        <router-link :to="{path: '/tradeRuleMHI', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
+        <router-link :to="{path: '/tradeRule/MHI', query: {source : showHeader ? '' : 'IOSAPP'}}" class="mod-menu txt-black">
           小恒指交易规则
           <i class="mod-arrow-r"></i>
         </router-link>

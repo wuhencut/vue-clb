@@ -12,7 +12,11 @@ import HelpCenter from '@/page/helpCenter.vue'
 import HelpAsk from '@/page/helpAsk.vue'
 import Guide from '@/page/guide.vue'
 import Introduce from '@/page/introduce.vue'
-import OuterAgreement from '@/page/tradeRuleHSI.vue'
+import TradeRule from '@/page/tradeRule.vue'
+import Safe from '@/page/safe.vue'
+import AboutUs from '@/page/aboutUs.vue'
+import PayType from '@/page/payType.vue'
+import Withdraw from '@/page/withdraw.vue'
 
 Vue.use(Router);
 
@@ -109,46 +113,34 @@ export default new Router({
         requireAuth: false
       }
     },{
-      path: '/tradeRuleHSI',
-      component: OuterAgreement,
+      path: '/tradeRule/:type',
+      component: TradeRule,
       meta: {
         requireAuth: false
       }
     },{
-      path: '/tradeRuleGC',
-      component: OuterAgreement,
+      path: '/safe',
+      component: Safe,
       meta: {
         requireAuth: false
       }
     },{
-      path: '/tradeRuleCN',
-      component: OuterAgreement,
+      path: '/aboutUs',
+      component: AboutUs,
       meta: {
         requireAuth: false
       }
     },{
-      path: '/tradeRuleCL',
-      component: OuterAgreement,
+      path: '/payType',
+      component: PayType,
       meta: {
-        requireAuth: false
+        requireAuth: true
       }
     },{
-      path: '/tradeRuleCN',
-      component: OuterAgreement,
+      path: '/withdraw',
+      component: Withdraw,
       meta: {
-        requireAuth: false
-      }
-    },{
-      path: '/tradeRuleDAX',
-      component: OuterAgreement,
-      meta: {
-        requireAuth: false
-      }
-    },{
-      path: '/tradeRuleMHI',
-      component: OuterAgreement,
-      meta: {
-        requireAuth: false
+        requireAuth: true
       }
     },
   ]

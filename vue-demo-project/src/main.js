@@ -11,6 +11,7 @@ import loading from './components/loading.vue'
 import confirm from './components/confirm.vue'
 import glb from './global/global.js'
 import backMenu from './components/backMenu.vue'
+import alert from './components/alert.vue'
 // 引用API文件
 import api from './api/index.js'
 // 将API方法绑定到全局
@@ -26,10 +27,10 @@ Vue.component('tip', tip);
 Vue.component('loading', loading);
 Vue.component('confirm', confirm);
 Vue.component('backMenu', backMenu);
+Vue.component('alert', alert);
 
 router.beforeEach(function (to, from, next) {
   var backURL = from.path, key;
-  console.log(from.path);
   if (from.path && to.meta.requireAuth) {
     for (key in to.params) {
       backURL = backURL.replace(":" + key, to.params[key]);
@@ -84,7 +85,7 @@ Vue.filter('formatTime', function (value, type) {
   }else if(type == 'yyyy-mm-dd'){
     dataTime = year + '-' + month + '-' + day
   }
-  
+
   return dataTime
 });
 

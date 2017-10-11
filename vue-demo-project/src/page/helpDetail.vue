@@ -4,7 +4,7 @@
       <header v-if="showHeader" class="page-header">
         <div class="header-wrap">
           <h3>问题详情</h3>
-          <a href="#/help" class="nav-left"><i class="icon-back"></i></a>
+          <router-link to="/help" class="nav-left"><i class="icon-back"></i></router-link>
           <a href="tel:4008888566" class="nav-right"><i class="icon-tel"></i></a>
         </div>
       </header>

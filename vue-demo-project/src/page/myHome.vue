@@ -4,7 +4,7 @@
       <header class="page-header">
         <div class="header-wrap">
           <h3>{{user.username}}</h3>
-          <router-link to="/help?backURL=/myHome&indexUrl=/index" class="nav-left"><i class="icon-msg"></i>
+          <router-link :to="{path: 'help', query: {backURL: '/myHome', indexUrl: '/index'}}" class="nav-left"><i class="icon-msg"></i>
           </router-link>
           <router-link to="/myInfo" class="nav-right"><i class="icon-setting"></i></router-link>
         </div>
@@ -16,7 +16,7 @@
         </div>
         <ul class="pay-wrap">
           <li class="pr15">
-            <a href="#/payType?backURL=/myHome">充值</a>
+            <router-link :to="{path: '/payType', query:{backURL: '/myHome'}}">充值</router-link>
           </li>
           <li class="pl15">
             <a @click="doWithdraw()">提现</a>
@@ -42,8 +42,9 @@
           </a>
 
       </div>-->
-      <tip :tip="tipMsg" v-if="showTip" @hide="showTip = false"></tip>
-      <loading v-if="showLoading"></loading>
+      <tip :tip="glb.tipMsg" v-if="glb.showTip" @hide="glb.showTip = false"></tip>
+      <loading v-if="glb.showLoading"></loading>
+      <confirm :confirmMsg="glb.confirmMsg" @sure="confirmFunc" :sureTxt="sureTxt" @cancel="glb.showConfirm = false" v-if="glb.showConfirm"></confirm>
       <footer class="page-footer">
         <div class="footer-wrap">
           <ul>
@@ -53,24 +54,24 @@
               </router-link>
             </li>
             <li>
-              <a href="#/outerTrade/HSI/2?backURL=/index" class="nav-trade">
+              <router-link :to="{path: '/outerTrade/HSI/2',query: {backURL: '/index'}}" class="nav-trade">
                 <i class="iconfont">&#xe612;</i><br>交易
-              </a>
+              </router-link>
             </li>
             <li>
-              <a href="#/news" class="nav-news">
+              <router-link to="/news" class="nav-news">
                 <i class="iconfont">&#xe61b;<em></em></i><br>资讯
-              </a>
+              </router-link>
             </li>
             <li>
-              <a href="#/discover" class="nav-discover">
+              <router-link to="/discover" class="nav-discover">
                 <i class="iconfont">&#xe61a;</i><br>发现
-              </a>
+              </router-link>
             </li>
             <li>
-              <a href="#/myHome" class="nav-user">
+              <router-link to="/myHome" class="nav-user">
                 <i class="iconfont">&#xe613;</i><br>我的
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -91,6 +92,13 @@
         tipMsg : '',
         showTip: false,
         showLoading: false,
+        glb: this.global,
+        urlParams: {
+          url:'',
+          queryName: '',
+          queryCont: ''
+        },
+        sureTxt: '确定'
       }
     },
     mounted(){
@@ -117,7 +125,6 @@
             if (userInfoData.code != 100) {
               t.showTip = true;
               t.tipMsg = userInfoData['resultMsg']
-              t.X.tip(userInfoData['resultMsg']);
             } else if (balanceData.code != 100) {
               t.showTip = true;
               t.tipMsg = balanceData['resultMsg'];
@@ -137,43 +144,37 @@
         })
       },
 
+      confirmFunc(){
+        this.$router.push({path: this.urlParams.url, query: {backURL: '/myHome' }});
+        this.glb.showConfirm = false;
+      },
+
       //去提现
       doWithdraw () {
         if (!this.user.named) {
-          X.dialog.confirm('您还未实名认证，请先实名认证', {
-            notify: function (nt) {
-              if (nt == 1) {
-                this.$router.push({path: '/identification?backURL=/myHome'});
-              }
-            }
-          });
+          this.glb.showConfirm = true;
+          this.glb.confirmMsg = '您还未实名认证，请先实名认证';
+          this.urlParams = '/identification';
           return;
         }
         if (this.user.balance == 0) {
-          X.tip('您的账户没有可提金额');
+          this.glb.showTip = true;
+          this.glb.tipMsg = '您的账户没有可提金额';
           return;
         }
         //没有银行卡提示添加银行卡
         if (!this.bankCards.length) {
-          X.dialog.confirm('提款前请先添加提款银行卡', {
-            sureBtn: '添加银行卡', notify: function (nt) {
-              if (nt == 1) {
-                //跳转到添加银行卡页面
-                this.$router.push('/addBankCard?backURL=/myHome');
-              }
-            }
-          });
+          this.glb.showConfirm = true;
+          this.glb.confirmMsg = '提款前请先添加提款银行卡';
+          this.sureTxt = '添加银行卡';
+          this.urlParams.url = '/addBankCard';
           return;
         }
         //没有设置提现密码的提示去设置提现密码
         if (!this.user.withdrawPw) {
-          X.dialog.confirm('您还未设置提现密码', {
-            sureBtn: '马上设置', notify: function (nt) {
-              if (nt == 1) {
-                this.$router.push('/tradePassSet?backURL=/withdraw');
-              }
-            }
-          });
+          this.glb.showConfirm = true;
+          this.glb.confirmMsg = '您还未设置提现密码';
+          this.urlParams = '/tradePassSet';
           return;
         }
         //银行卡列表可能有多张银行卡，没法校验用户到底选择哪一张卡，该判断放到用户发起提现时候后端校验

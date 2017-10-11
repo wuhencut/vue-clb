@@ -6,7 +6,7 @@
       <header class="page-header">
         <div class="header-wrap">
           <h3>提问</h3>
-          <a href="#/helpCenter" class="nav-left"><i class="icon-back"></i></a>
+          <router-link to="/helpCenter" class="nav-left"><i class="icon-back"></i></router-link>
           <a href="" class="nav-right"><i class="icon-tel"></i></a>
         </div>
       </header>
