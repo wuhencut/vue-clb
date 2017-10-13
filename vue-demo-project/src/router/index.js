@@ -19,6 +19,12 @@ import PayType from '@/page/payType.vue'
 import Withdraw from '@/page/withdraw.vue'
 import Identification from '@/page/identification.vue'
 import AddBankCard from '@/page/addBankCard.vue'
+import TradePassSet from '@/page/tradePassSet.vue'
+import UserPassModify from '@/page/userPassModify.vue'
+import TradePassModify from '@/page/tradePassModify.vue'
+import BankCardList from '@/page/bankCardList.vue'
+import PhoneBind1 from '@/page/phoneBind1.vue'
+import PhoneBind2 from '@/page/phoneBind2.vue'
 
 Vue.use(Router);
 
@@ -153,6 +159,42 @@ export default new Router({
     },{
       path: '/addBankCard',
       component: AddBankCard,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/tradePassSet',
+      component: TradePassSet,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/userPassModify',
+      component: UserPassModify,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/tradePassModify',
+      component: TradePassModify,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/bankCardList',
+      component: BankCardList,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/phoneBind1',
+      component: PhoneBind1,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/phoneBind2',
+      component: PhoneBind2,
       meta: {
         requireAuth: true
       }

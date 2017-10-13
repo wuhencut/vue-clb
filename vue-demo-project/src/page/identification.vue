@@ -31,7 +31,7 @@
   export default{
     data(){
       return {
-        backURl: this.$route.query.backURL || 'myInfo',
+        backURL: this.$route.query.backURL || 'myInfo',
         name: '',
         IDNum: '',
         glb: this.global,
@@ -45,7 +45,7 @@
         let t = this;
         if (this.name == '') {
           t.glb.showTip = true;
-          t.glb.tiMsg = '请输入您的姓名';
+          t.glb.tipMsg = '请输入您的姓名';
           return false;
         }
 
@@ -57,13 +57,13 @@
 
         if (this.IDNum == '') {
           t.glb.showTip = true;
-          t.glb.tiMsg = '请输入身份证号码';
+          t.glb.tipMsg = '请输入身份证号码';
           return false;
         }
 
         if (!this.X.isIdentityNumber(this.IDNum)) {
           t.glb.showTip = true;
-          t.glb.tiMsg = '身份证号码错误';
+          t.glb.tipMsg = '身份证号码错误';
           return false;
         }
 
@@ -72,11 +72,11 @@
           var data = res.data;
           if (data.code == 100) {
             t.glb.showTip = true;
-            t.glb.tiMsg = '实名认证成功';
+            t.glb.tipMsg = '实名认证成功';
             t.$router.push({path: t.backURL});
           } else {
             t.glb.showTip = true;
-            t.glb.tiMsg = data['resultMsg'];
+            t.glb.tipMsg = data['resultMsg'];
           }
           t.glb.showLoading = false;
         }).catch(function (err) {
@@ -84,7 +84,7 @@
             Promise.reject(err)
           } else {
             t.glb.showTip = true;
-            t.glb.tiMsg = '服务器请求异常';
+            t.glb.tipMsg = '服务器请求异常';
           }
         });
       },

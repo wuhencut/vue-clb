@@ -7,9 +7,9 @@
           <a href="#/myHome" class="nav-left"><i class="icon-back"></i></a>
         </div>
       </header>
-        <confirm v-if="showConfirm" :confirmMsg="confirmMsg" @sure="sureFunc" @cancel="showConfirm = false" :sureTxt="sureTxt"></confirm>
-        <loading v-if="showLoading"></loading>
-        <tip v-if="showTip" :tip="tipMsg" @hide="showTip = false"></tip>
+        <confirm v-if="glb.showConfirm" :confirmMsg="glb.confirmMsg" @sure="sureFunc" @cancel="glb.showConfirm = false" :sureTxt="glb.sureTxt"></confirm>
+        <loading v-if="glb.showLoading"></loading>
+        <tip v-if="glb.showTip" :tip="glb.tipMsg" @hide="glb.showTip = false"></tip>
       <div class="mod-info">
         <div class="pic">
           {{user.username}}
@@ -33,7 +33,7 @@
             手机绑定
             <i class="mod-arrow-r"></i>
           </a>
-          <a @click="showConfirm = true;sureTxt = '去充值';operaType = 'goAli';confirmMsg = '使用支付宝进行首次入金操作后，即可自动<br/>绑定支付宝账号'" v-if="!user.bindingAlipayAccount" class="mod-menu">
+          <a @click="glb.showConfirm = true;glb.sureTxt = '去充值';operaType = 'goAli';glb.confirmMsg = '使用支付宝进行首次入金操作后，即可自动<br/>绑定支付宝账号'" v-if="!user.bindingAlipayAccount" class="mod-menu">
             <span class="fr mr30 txt-grey">未认证</span>
             支付宝账户认证
             <i class="mod-arrow-r"></i>
@@ -45,35 +45,35 @@
           </a>
         </div>
         <div class="mod-menu-wrap mt10">
-          <a class="mod-menu" href="#/userPassModify">
+          <router-link class="mod-menu" to="/userPassModify">
             <span class="fr mr30 txt-grey">修改</span>
             登录密码
             <i class="mod-arrow-r"></i>
-          </a>
-          <a v-if="!user.withdrawPw" class="mod-menu" href="#/tradePassSet">
+          </router-link>
+          <router-link v-if="!user.withdrawPw" class="mod-menu" to="/tradePassSet">
             <span class="fr mr30 txt-grey">未设置</span>
             提现密码
             <i class="mod-arrow-r"></i>
-          </a>
-          <a v-if="user.withdrawPw" class="mod-menu" href="#/tradePassModify">
+          </router-link>
+          <router-link v-if="user.withdrawPw" class="mod-menu" to="/tradePassModify">
             <span class="fr mr30 txt-grey">修改</span>
             提现密码
             <i class="mod-arrow-r"></i>
-          </a>
+          </router-link>
         </div>
         <div v-if="!bankCards.length" class="mod-menu-wrap mt10">
-          <a class="mod-menu" href="#/bankCardList">
+          <router-link class="mod-menu" to="/bankCardList">
             <span class="fr mr30 txt-grey">未绑定</span>
             我的银行卡
             <i class="mod-arrow-r"></i>
-          </a>
+          </router-link>
         </div>
         <div v-if="bankCards.length" class="mod-menu-wrap mt10">
-          <a class="mod-menu" href="#/bankCardList">
+          <router-link class="mod-menu" to="/bankCardList">
             <span class="fr mr30 txt-grey">{{bankCards.length}}张</span>
             我的银行卡
             <i class="mod-arrow-r"></i>
-          </a>
+          </router-link>
         </div>
       </div>
       <div class="pt30 pl15 pr15 pb30">
@@ -87,6 +87,7 @@
     components: {},
     data(){
       return {
+        glb: this.global,
         user: {
           username: '',
           named: null,
@@ -97,12 +98,6 @@
           cellPhone: '',
         },
         bankCards: [],
-        showConfirm: false,
-        confirmMsg: '',
-        showLoading: false,
-        showTip : false,
-        tipMsg: '',
-        sureTxt: '确定',
         operaType : '',//弹窗操作的种类
       }
     },
@@ -123,11 +118,11 @@
             t.bankCards = bankCardsData.data;
           } else {
             if (userInfoData.code != 100) {
-              t.showTip = true;
-              t.tipMsg = userInfoData['resultMsg']
+              t.glb.showTip = true;
+              t.glb.tipMsg = userInfoData['resultMsg']
             } else if (bankCardsData.code != 100) {
-              t.showTip = true;
-              t.tipMsg = bankCardsData['resultMsg']
+              t.glb.showTip = true;
+              t.glb.tipMsg = bankCardsData['resultMsg']
             }
           }
           t.showLoading = false;
@@ -135,14 +130,14 @@
           if (error) {
             Promise.reject(error)
           } else {
-            t.showTip = true;
-            t.tipMsg = '服务器请求异常';
+            t.glb.showTip = true;
+            t.glb.tipMsg = '服务器请求异常';
           }
         });
       },
       //拨打电话或者跳转支付宝认证
       telTip() {
-        this.cellPhone = this.server.SystemService.cellPhoneNumber();
+        this.cellPhone = this.server.SystemService().cellPhoneNumber();
         this.X.dialog.alert('如需要更换或解绑支付宝账号，请 <br>联系客服电话 <a class="txt-blue" href=' + this.cellPhone.cellPhoneATag + '>' + this.cellPhone.cellPhone + '</a>');
       },
 
@@ -151,14 +146,16 @@
 
       //点击退出登录
       logOut(){
-        this.showConfirm = true;
-        this.confirmMsg = '确定要退出当前账号吗？'
-        this.operaType = 'logOut'
+        this.glb.sureTxt = '确定';
+        this.glb.showConfirm = true;
+        this.glb.confirmMsg = '确定要退出当前账号吗？';
+        this.operaType = 'logOut';
       },
       //弹窗操作中执行操作的那个按钮几成写成一个
       sureFunc(){
         if(this.operaType == 'goAli'){
           this.$router.push({path: '/alipay?backURL=/myInfo'});
+          this.glb.showConfirm = false;
         }else if(this.operaType == 'logOut'){
           this.signOut()
         }
@@ -168,21 +165,23 @@
       signOut() {
         let indexUrl = this.server.SystemService().agentIndex();
         let t = this;
-        this.X.loading.show();
+        this.glb.showLoading = true;
         this.server.LoginService.logout().then(function (res) {
           var data = res.data;
           if (data.code == 100) {
             t.server.AuthService.signOut();
             t.$router.push({path: '/index'});
           } else {
-            t.X.tip(data['resultMsg']);
+            t.glb.showTip = true;
+            t.glb.tipMsg = data['resultMsg'];
           }
-          t.X.loading.hide();
+          t.glb.showLoading  = false;
         }).catch(function (error) {
           if(error){
             Promise.reject(error)
           }else{
-            t.X.tip('服务器请求异常');
+            t.glb.showTip = true;
+            t.glb.tipMsg = '服务器请求异常';
           }
         });
       }

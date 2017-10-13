@@ -84,15 +84,12 @@
     components: {},
     data(){
       return {
+        glb: this.global,
         user: {
           balance: 0
         },
         bankCards: [],
         indexUrl: '',
-        tipMsg : '',
-        showTip: false,
-        showLoading: false,
-        glb: this.global,
         urlParams: {
           url:'',
           queryName: '',
@@ -123,14 +120,14 @@
             t.$router.push({path: '/login'});
           } else {
             if (userInfoData.code != 100) {
-              t.showTip = true;
-              t.tipMsg = userInfoData['resultMsg']
+              t.glb.showTip = true;
+              t.glb.tipMsg = userInfoData['resultMsg']
             } else if (balanceData.code != 100) {
-              t.showTip = true;
-              t.tipMsg = balanceData['resultMsg'];
+              t.glb.showTip = true;
+              t.glb.tipMsg = balanceData['resultMsg'];
             } else if (bankCardsData.code != 100) {
-              t.showTip = true;
-              t.tipMsg = bankCardsData['resultMsg'];
+              t.glb.showTip = true;
+              t.glb.tipMsg = bankCardsData['resultMsg'];
             }
           }
           t.showLoading = false;
@@ -138,8 +135,8 @@
           if (error) {
             Promise.reject(error);
           } else {
-            t.showTip = true;
-            t.tipMsg = '服务器请求异常';
+            t.glb.showTip = true;
+            t.glb.tipMsg = '服务器请求异常';
           }
         })
       },
