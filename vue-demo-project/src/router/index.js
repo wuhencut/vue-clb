@@ -17,6 +17,8 @@ import Safe from '@/page/safe.vue'
 import AboutUs from '@/page/aboutUs.vue'
 import PayType from '@/page/payType.vue'
 import Withdraw from '@/page/withdraw.vue'
+import Identification from '@/page/identification.vue'
+import AddBankCard from '@/page/addBankCard.vue'
 
 Vue.use(Router);
 
@@ -139,6 +141,18 @@ export default new Router({
     },{
       path: '/withdraw',
       component: Withdraw,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/identification',
+      component: Identification,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/addBankCard',
+      component: AddBankCard,
       meta: {
         requireAuth: true
       }

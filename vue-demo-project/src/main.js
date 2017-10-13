@@ -38,7 +38,7 @@ router.beforeEach(function (to, from, next) {
     console.log('-----路由拦截 URL:' + to.path + '-----');
     if (!server.AuthService.auth()) {
       console.log('-----用户未登录，跳转到登录-----');
-      router.push({path: '/login', query: {goURL: from.path}})
+      router.push({path: '/login', query: {goURL: to.path}})
     } else {
       console.log('-----用户已登录，放行-----');
       next()

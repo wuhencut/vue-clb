@@ -154,7 +154,7 @@
         if (!this.user.named) {
           this.glb.showConfirm = true;
           this.glb.confirmMsg = '您还未实名认证，请先实名认证';
-          this.urlParams = '/identification';
+          this.urlParams.url = '/identification';
           return;
         }
         if (this.user.balance == 0) {
@@ -174,7 +174,7 @@
         if (!this.user.withdrawPw) {
           this.glb.showConfirm = true;
           this.glb.confirmMsg = '您还未设置提现密码';
-          this.urlParams = '/tradePassSet';
+          this.urlParams.url = '/tradePassSet';
           return;
         }
         //银行卡列表可能有多张银行卡，没法校验用户到底选择哪一张卡，该判断放到用户发起提现时候后端校验

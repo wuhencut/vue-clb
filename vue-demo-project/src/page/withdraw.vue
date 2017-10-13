@@ -25,7 +25,7 @@
             提现银行卡
           </div>
           <div v-if="selectBankCard!=null" class="bank-card mb10" @click="showDialog=true;">
-            <i class="bank-icon mr10"></i>
+            <i class="bank-icon mr10" :class="bankCardClassName"></i>
             {{selectBankCard.bank}} 尾号{{selectBankCard.cardNumber.substr(-4)}}
             <i class="mod-arrow-r"></i>
           </div>
@@ -53,9 +53,9 @@
         <div class="mod-choose-bank-card">
           <div class="title">选择我的银行卡</div>
           <ul class="bank-card-list">
-            <li v-for="bankCard in bankCardList" class="clearfix" @click="sureChoose($index)">
+            <li v-for="(bankCard, index) in bankCardList" class="clearfix" @click="sureChoose(index)">
                     <span class="fl">
-                        <i class=""></i>
+                        <i :class="bankCard.bankClassName"></i>
                     </span>
                     <span class="fl">
                         <p v-if="bankCardList" class="pt10">{{bankCard.bank}}</p>
@@ -92,6 +92,7 @@
           queryName: '',
           queryCont: ''
         },
+        bankCardClassName: '',
       }
     },
     mounted(){
@@ -142,6 +143,7 @@
       ////确认选择银行卡
       sureChoose(index) {
         this.selectBankCard = this.bankCardList[index];
+        this.bankCardClassName = 'icon-bank-' + this.selectBankCard.bankCode;
         this.showDialog = false;
       },
 
@@ -153,12 +155,14 @@
           return;
         }
         this.selectBankCard = this.bankCardList[0];
+        this.bankCardClassName = 'icon-bank-' + this.selectBankCard.bankCode;
         var i, bank;
         for (i = 0; i < t.bankCardList.length; i++) {
+          t.bankCardList[i]['bankClassName'] = 'icon-bank-' + t.bankCardList[i]['bankCode'];
           bank = t.bankCardList[i];
           if (bank['defaultCard'] == 0) {
             t.selectBankCard = bank;
-            break;
+//            break;  不明白为什么这里要break，对我vue重构不友好，先注释
           }
         }
       },

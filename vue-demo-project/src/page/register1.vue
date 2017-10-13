@@ -6,6 +6,7 @@
       <header class="page-header">
         <div class="header-wrap">
           <h3>注册</h3>
+          <backMenu></backMenu>
         </div>
       </header>
       <div class="mod-form-wrap mt20">
