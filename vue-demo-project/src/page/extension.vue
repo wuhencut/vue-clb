@@ -1,5 +1,5 @@
 <template>
-  <section class="page-guide">
+  <section id="" class="page-guide">
     <div class="page-extension">
       <header class="page-header">
         <div class="header-wrap">
@@ -7,19 +7,22 @@
           <backMenu></backMenu>
         </div>
       </header>
-      <div class="mod-extension" :class="className">
+      <div class="mod-extension" :class="exClass">
         <div class="extension-menu">
           <ul>
-            <li class="act-detail" @click="type='detail'">推广详情</li>
+            <li class="act-detail" @click="exClass='mod-detail'">推广详情</li>
             <li class="act-user" @click="getUsers(pageIndex)">我的用户</li>
           </ul>
         </div>
-        <div class="wrap con-detail">
+        <div class="wrap  con-detail">
           <div class="extension-wrap extension-detail mt15">
             <ul>
               <li>
                 <p>已赚佣金</p>
-                <p><em v-if="extensionInfo.commission" class="number">{{extensionInfo.commission.toFixed(2)}}</em></p>
+                <p>
+                  <em v-if="extensionInfo.commission > 0" class="number">{{extensionInfo.commission.toFixed(2)}}</em>
+                  <em v-if="extensionInfo.commission == 0" class="number">0.00</em>
+                </p>
                 <p></p>
               </li>
               <li>
@@ -100,10 +103,10 @@
               <li>注册时间</li>
             </ul>
             <div class="extension-wrap list" v-if="items.length > 0">
-              <ul :key="item.id" v-for="item in items">
+              <ul v-for="item in items">
                 <li>{{item.username}}</li>
                 <li>{{item.amount}}</li>
-                <li>{{item.registerTime | date:'yy-MM-dd HH:mm:ss'}}</li>
+                <li>{{item.registerTime | formatTime('yy-MM-dd HH:mm:ss')}}</li>
               </ul>
 
               <div v-if="totalPage!=0">
@@ -124,6 +127,8 @@
         </div>
       </div>
     </div>
+    <loading v-if="glb.showLoading"></loading>
+    <tip v-if="glb.showTip" :tip="glb.tipMsg" @hide="glb.showTip = false"></tip>
   </section>
 </template>
 <script>
@@ -133,36 +138,34 @@
         glb: this.global,
         pageSize: 10,
         pageIndex: 1,
-        type: 'detail',
         extensionInfo: {},
         totalUserCount: '',
         tradeCount: '',
         showGenerateLink: false,
         ratio: 0,
-        className: '',
-        items: [],
-        totalPage: 0,
+        exClass: 'mod-detail',
         wechatCode: '',
+        items: [],
+        totalPage: 1,
       }
     },
     mounted(){
-        this.getData();
+      this.getData();
     },
     methods: {
       getData(){
-        this.className = 'mode-' + this.type;
         let t = this;
         this.server.ExtensionService.getExtensionInfoData().then(function (res) {
           var extensionInfo = res.data;
           if (extensionInfo.code == 100) {
             t.extensionInfo = extensionInfo.data;
             t.ratio = t.extensionInfo['ratio'];
-//            t.X.clipboard.init();
+            t.X.clipboard.init();
             t.wechatCode = '/home/generalize/getQRcode.json?device=1';
           } else {
-            if (t.extensionInfo.code != 100) {
+            if (extensionInfo.code != 100) {
               t.glb.showTip = true;
-              t.glb.tipMsg = t.extensionInfo['resultMsg'];
+              t.glb.tipMsg = extensionInfo['resultMsg'];
             }
           }
         }).catch(function (error) {
@@ -175,14 +178,16 @@
         });
       },
 
+      //获取 我的用户 数据
       getUsers(page) {
+        var pageSize = 10;
         let t = this;
-        t.type = 'user';
+        t.exClass = 'mod-user';
         if (t.ratio == 0) {
           t.$router.push({path: '/login', query: {goURL: '/extension'}});
           return;
         }
-        this.server.ExtensionService.getExtensionUserListData(t.page, t.pageSize).then(function (res) {
+        t.server.ExtensionService.getExtensionUserListData(page, pageSize).then(function (res) {
           var users = res.data;
           if (users.code == 100) {
             var usersData = users.data;
@@ -225,7 +230,9 @@
         this.getUsers(page);
       },
     },
-    computed: {},
+    computed: {
+
+    },
     destroyed(){
 
     }

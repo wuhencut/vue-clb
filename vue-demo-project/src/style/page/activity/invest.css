@@ -12,13 +12,13 @@
 .page-invest .page-knowledge .mod-nav .base-knowledge{
     border-right:0.01rem solid #ECECEC;
     padding-top: 0.4rem;
-    background:url("/app/images/invest/invest10.png") top 0.03rem center no-repeat;
+    background:url("/static/images/invest/invest10.png") top 0.03rem center no-repeat;
     background-size: 0.36rem;
 }
 
 .page-invest .page-knowledge .mod-nav .safe-knowledge{
     padding-top: 0.4rem;
-    background:url("/app/images/invest/invest9.png") top 0.03rem center no-repeat;
+    background:url("/static/images/invest/invest9.png") top 0.03rem center no-repeat;
     background-size: 0.36rem;
 }
 
@@ -58,42 +58,42 @@ a.invest8, a.invest7,a.invest6,a.invest5, a.invest4, a.invest3, a.invest2,a.inve
 }
 
 a.invest8{
-    background: url("/app/images/invest/invest8.jpg") left center no-repeat;
+    background: url("/static/images/invest/invest8.jpg") left center no-repeat;
     background-size: 1rem 0.65rem;
 }
 
 a.invest7{
-    background: url("/app/images/invest/invest7.jpg") left center no-repeat;
+    background: url("/static/images/invest/invest7.jpg") left center no-repeat;
     background-size: 1rem 0.65rem;
 }
 
 a.invest6{
-    background: url("/app/images/invest/invest6.jpg") left center no-repeat;
+    background: url("/static/images/invest/invest6.jpg") left center no-repeat;
     background-size: 1rem 0.65rem;
 }
 
 a.invest5{
-    background: url("/app/images/invest/invest5.jpg") left center no-repeat;
+    background: url("/static/images/invest/invest5.jpg") left center no-repeat;
     background-size: 1rem 0.65rem;
 }
 
 a.invest4{
-    background: url("/app/images/invest/invest4.jpg") left center no-repeat;
+    background: url("/static/images/invest/invest4.jpg") left center no-repeat;
     background-size: 1rem 0.65rem;
 }
 
 a.invest3{
-    background: url("/app/images/invest/invest3.jpg") left center no-repeat;
+    background: url("/static/images/invest/invest3.jpg") left center no-repeat;
     background-size: 1rem 0.65rem;
 }
 
 a.invest2{
-    background: url("/app/images/invest/invest2.jpg") left center no-repeat;
+    background: url("/static/images/invest/invest2.jpg") left center no-repeat;
     background-size: 1rem 0.65rem;
 }
 
 a.invest1{
-    background: url("/app/images/invest/invest1.jpg") left center no-repeat;
+    background: url("/static/images/invest/invest1.jpg") left center no-repeat;
     background-size: 1rem 0.65rem;
 }
 

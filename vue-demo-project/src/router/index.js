@@ -38,6 +38,10 @@ import ActivityCenter from '@/page/activityCenter.vue'
 import ActPacket from '@/page/actPacket.vue'
 import DayGainList from '@/page/dayGainList.vue'
 import Extension from '@/page/extension.vue'
+import DangerTip from '@/page/dangerTip.vue'
+import InvestLesson from '@/page/investLesson.vue'
+import KnowledgeDetail from '@/page/knowledgeDetail.vue'
+import News from '@/page/news.vue'
 
 Vue.use(Router);
 
@@ -289,6 +293,56 @@ export default new Router({
       meta: {
         requireAuth: false
       }
+    },{
+      path: '/extension',
+      component: Extension,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/dangerTip',
+      component: DangerTip,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/investLesson',
+      component: InvestLesson,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/knowledgeDetail/:knowledgeId',
+      component: KnowledgeDetail,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/news',
+      component: News,
+      meta: {
+        requireAuth: false
+      }
     },
   ]
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

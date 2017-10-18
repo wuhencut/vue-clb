@@ -104,7 +104,6 @@
       var storage = window.localStorage || '';
       var agentCode = storage.getItem('agentCode') || '';
       this.agentCode = agentCode;
-      console.log(agentCode);
       agentCode == '' || !agentCode ? this.showSpread = true : this.showSpread = false;
       if (agentCode != '') {
         document.getElementsByClassName('activity-nav')[0].getElementsByTagName('a')[0].style.width = '50%';

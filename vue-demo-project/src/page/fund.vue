@@ -103,8 +103,7 @@
         </li>
       </ul>
     </div>
-    <confirm v-if="glb.showConfirm" :confirmMsg="glb.confirmMsg" @sure="confirmFunc(1)" @cancel="confirmFunc(0)"
-             :sureTxt="glb.sureTxt"></confirm>
+    <confirm v-if="glb.showConfirm" :confirmMsg="glb.confirmMsg" @sure="confirmFunc(1)" @cancel="confirmFunc(0)" :sureTxt="glb.sureTxt"></confirm>
     <loading v-if="glb.showLoading"></loading>
     <tip v-if="glb.showTip" :tip="glb.tipMsg" @hide="glb.showTip = false"></tip>
   </section>

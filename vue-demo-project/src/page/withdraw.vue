@@ -3,8 +3,7 @@
     <section class="page-pay">
       <tip :tip="glb.tipMsg" @hide="glb.showTip = false" v-if="glb.showTip"></tip>
       <loading v-if="glb.showLoading"></loading>
-      <confirm :confirmMsg="glb.confirmMsg" @cancer="confirmFunc(0)" @sure="confirmFunc(1)"
-               v-if="glb.showConfirm"></confirm>
+      <confirm :confirmMsg="glb.confirmMsg" @cancer="confirmFunc(0)" @sure="confirmFunc(1)" v-if="glb.showConfirm"></confirm>
       <alert :alertMsg="glb.alertMsg" @suer="" v-if="glb.showAlert"></alert>
       <div class="page-withdraw">
         <header class="page-header">
