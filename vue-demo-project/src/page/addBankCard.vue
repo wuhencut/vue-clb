@@ -123,9 +123,7 @@
       }
     },
     mounted(){
-      console.log(this.provinces,this.cities);
       this.getData();
-      console.log(this.bankList);
     },
     methods: {
       getData(){

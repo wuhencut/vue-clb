@@ -10,12 +10,12 @@
         </div>
       </header>
       <div class="mod-bank-card-list">
-        <router-link :key="item.id" v-for="bankCard in bankCards" class="clearfix" :to="bankCardURL">
-          <span class="icon"><i :class="item.className"></i></span>
+        <router-link :key="bankCard.id" v-for="bankCard in bankCards" class="clearfix" :to="bankCard.bankCardURL">
+          <span class="icon"><i :class="bankCard.className"></i></span>
           <p class="title">{{bankCard.bank}} <span v-if="bankCard.defaultCard==0">(默认卡)</span></p>
           <p class="number">**** **** **** {{bankCard.cardNumber.substr(-4)}}</p>
         </router-link>
-        <router-link ng-if="bankCards && bankCards.length < 3" class="add" to="/addBankCard">
+        <router-link v-if="bankCards.length < 3" class="add" to="/addBankCard">
           <p><span class="add-icon"></span>添加银行卡</p>
         </router-link>
       </div>
@@ -34,7 +34,7 @@
             }
         },
         mounted(){
-
+        this.getData();
         },
         methods: {
           getData(){
@@ -48,11 +48,11 @@
               var userData = userInfo.data;
               if (bankCardData.code == 100 && userData.code == 100) {
                 t.user = userData.data;
+                t.bankCards = bankCardData.data;
                 t.bankCards.forEach(function (item) {
                   item.className = 'icon-bank-' + item.bankCode;
                   item.bankCardURL = '/modifyBankCard/' + item.id;
                 });
-                t.bankCards = bankCardData.data;
                 t.initValidate();
               } else {
                 t.glb.showTip = true;

@@ -146,21 +146,21 @@
 }
 
 .discover-nav .activity-center {
-    background: url("/app/images/discover/activity-center.png") top 0.08rem center no-repeat;
+    background: url("/static/images/discover/activity-center.png") top 0.08rem center no-repeat;
     background-size: 0.3rem 0.3rem;
 }
 
 .discover-nav .extension-nav {
-    background: url("/app/images/discover/extension.png") top 0.08rem center no-repeat;
+    background: url("/static/images/discover/extension.png") top 0.08rem center no-repeat;
     background-size: 0.3rem 0.3rem;
 }
 
 .discover-nav .day-gain {
-    background: url("/app/images/discover/day.png") top 0.08rem center no-repeat;
+    background: url("/static/images/discover/day.png") top 0.08rem center no-repeat;
     background-size: 0.3rem 0.3rem;
 }
 
 .discover-nav .com-gain {
-    background: url("/app/images/discover/com.png") top 0.08rem center no-repeat;
+    background: url("/static/images/discover/com.png") top 0.08rem center no-repeat;
     background-size: 0.3rem 0.3rem;
 }

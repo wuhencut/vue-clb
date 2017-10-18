@@ -218,7 +218,7 @@
       </div>
       <div class="pt15 pb15 txt-center txt-s12 txt-grey">投资有风险 入市需谨慎</div>
       <div class="mod-app-download">
-        <a href="/app/download.html" class="clearfix">
+        <a href="#/download" class="clearfix">
           <div class="fl">
             <img src="../images/logo.png">
           </div>

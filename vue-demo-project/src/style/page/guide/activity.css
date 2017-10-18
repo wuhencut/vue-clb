@@ -104,7 +104,7 @@
 
 .wait-activity {
     line-height: 1.1rem;
-    background: url("/app/images/activity/packet/wait-activity.png") center center no-repeat;
+    background: url("/static/images/activity/packet/wait-activity.png") center center no-repeat;
     background-size: 100% 100%;
 }
 

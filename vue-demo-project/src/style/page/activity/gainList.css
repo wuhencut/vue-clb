@@ -22,16 +22,16 @@
 }
 
 .day-gain-content ul:nth-child(2) .list-NO {
-    background: url('/app/images/activity/rank/NO1.png') center center no-repeat;
+    background: url('/static/images/activity/rank/NO1.png') center center no-repeat;
     background-size: 0.24rem;
 }
 
 .day-gain-content ul:nth-child(3) .list-NO {
-    background: url('/app/images/activity/rank/NO2.png') center center no-repeat;
+    background: url('/static/images/activity/rank/NO2.png') center center no-repeat;
     background-size: 0.24rem;
 }
 
 .day-gain-content ul:nth-child(4) .list-NO {
-    background: url('/app/images/activity/rank/NO3.png') center center no-repeat;
+    background: url('/static/images/activity/rank/NO3.png') center center no-repeat;
     background-size: 0.24rem;
 }

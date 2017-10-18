@@ -84,6 +84,14 @@ Vue.filter('formatTime', function (value, type) {
     dataTime = year + '-' + month + '-' + day + " " + hour + ':' + minute
   }else if(type == 'yyyy-mm-dd'){
     dataTime = year + '-' + month + '-' + day
+  }else if(type == 'yyyy/mm/dd hh:mm:ss'){
+    dataTime = year + '/' + month + '/' + day + " " + hour + ':' + minute + ':' + second;
+  }else if(type == 'yyyy/mm/dd hh:mm'){
+    dataTime = year + '/' + month + '/' + day + " " + hour + ':' + minute
+  }else if(type == 'yyyy/mm/dd'){
+    dataTime = year + '/' + month + '/' + day
+  }else if(type == 'MM-dd HH:mm'){
+    dataTime = month + '-' + day + " " + hour + ':' + minute;
   }
 
   return dataTime

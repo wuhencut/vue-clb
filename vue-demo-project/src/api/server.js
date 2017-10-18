@@ -7,6 +7,8 @@ var X = Y;*/
 // var axios = require('axios');
 import axios from 'axios'
 import {stringify} from 'qs'
+import {Y} from '../utils/yztz'
+var X = Y;
 /*//默认发送为JSON，此处设置为表单数据发送
 axios.default.headers.post['Content-Type'] = 'application/x-www.form-urlencoded';
 //请求拦截器
@@ -66,6 +68,15 @@ var urls = {
   h5FirstPayUrl: '/pay/payGateway/h5FirstPayUrl.json',
   h5PayUrl: '/pay/payGateway/h5PayUrl.json',
   payGateway: '/pay/payGateway/getLLWapPayUrl.json',
+  //支付接口
+  //连连支付
+  getLLWapPayUrl: '/pay/payGateway/getLLWapPayUrl.json',
+  //联动支付
+  liandongH5pay: '/pay/payGateway/liandongH5pay.json',
+  //爱贝支付
+  iappPayH5Pay: '/pay/payGateway/iappPayH5Pay.json',
+  //支付接口列表
+  getPayListStatus: '/index/getPayListStatus.json',
   //期货-点卖
   getSaleFutures: '/futures/strategy/getSaleFuturesStrategy.json',
   getRisk: '/futuresindex/getRiskByCommodityNo.json',
@@ -719,8 +730,8 @@ export default{
         data: stringify(data)
       });
     },
-
-    payGateway: function (money) {
+    //连连支付
+    getLLWapPayUrl: function (money) {
       var data = {
         device: 1,
         money: money,
@@ -732,6 +743,48 @@ export default{
         url: getURL('payGateway'),
         data: stringify(data)
       });
+    },
+
+    //联动支付
+    liandongH5pay: function (money) {
+      var data = {
+        device: 1,
+        money: money,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('liandongH5pay'),
+        data: stringify(data)
+      });
+    },
+
+    //爱贝支付
+    iappPayH5Pay: function (money) {
+      var data = {
+        device: 1,
+        money: money,
+        agentCode: agentCode,
+        source: agentCode
+      };
+      return axios({
+        method: 'POST',
+        url: getURL('iappPayH5Pay'),
+        data: stringify(data)
+      });
+    },
+
+    //支付接口列表
+    getPayListStatus: function () {
+      var params = {
+        device: 1,
+      };
+      return axios({
+        method: 'GET',
+        url: getURL('getPayListStatus'),
+        params: params
+      })
     },
 
     //支付宝

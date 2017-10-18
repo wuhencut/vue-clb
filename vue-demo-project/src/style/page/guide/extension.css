@@ -78,7 +78,7 @@
     line-height: 0.26rem;
     padding: 0 0.05rem 0 0.28rem;
     color: #FE6900;
-    background: #FFF4C6 url("../../../images/activity/extension/star.png") 0.05rem 0.03rem no-repeat;
+    background: #FFF4C6 url("/static/images/activity/extension/star.png") 0.05rem 0.03rem no-repeat;
     background-size: 0.2rem 0.2rem;
     border-radius: 0.05rem;
 }
@@ -87,7 +87,7 @@
     display: inline-block;
     width: 0.11rem;
     height: 0.11rem;
-    background: url("../../../images/activity/extension/icon-rate.png");
+    background: url("/static/images/activity/extension/icon-rate.png");
     background-size: 0.11rem 0.11rem;
 }
 

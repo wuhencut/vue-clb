@@ -1,7 +1,8 @@
 <template>
   <div>
     <swipe class="my-swipe">
-      <swipe-item :key="item.id" v-for="item in banners"><a :href="item.link"><img :src="item.imgURL" alt=""></a></swipe-item>
+      <swipe-item :key="item.id" v-for="item in banners"><a :href="item.link"><img :src="item.imgURL" alt=""></a>
+      </swipe-item>
     </swipe>
     <tip v-if="showTip" :tip="tipMsg"></tip>
     <loading v-if="showLoading"></loading>
@@ -17,25 +18,26 @@
     text-align: center;
   }
 
-  .my-swipe img{
-    width:100%;
+  .my-swipe img {
+    width: 100%;
+    height: 110px;
   }
 
 </style>
 
 <script>
-  import { Swipe, SwipeItem } from 'vue-swipe';
+  import {Swipe, SwipeItem} from 'vue-swipe';
   require('vue-swipe/dist/vue-swipe.css');
   export default {
-    components:{
-      'swipe':Swipe,
+    components: {
+      'swipe': Swipe,
       'swipe-item': SwipeItem
     },
     data(){
       return {
         banners: [],
         tipMsg: '',
-        showLoading:false,
+        showLoading: false,
         showTip: false,
 
       }

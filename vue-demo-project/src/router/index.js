@@ -25,6 +25,19 @@ import TradePassModify from '@/page/tradePassModify.vue'
 import BankCardList from '@/page/bankCardList.vue'
 import PhoneBind1 from '@/page/phoneBind1.vue'
 import PhoneBind2 from '@/page/phoneBind2.vue'
+import ModifyBankCard from '@/page/modifyBankCard.vue'
+import AliPay from '@/page/aliPay.vue'
+import GoAli from '@/page/goAli.vue'
+import Download from '@/page/download.vue'
+import PayBank from '@/page/payBank.vue'
+import Fund from '@/page/fund.vue'
+import ForgetTradePass from '@/page/forgetTradePass.vue'
+import MyPacket from '@/page/myPacket.vue'
+import Discover from '@/page/discover.vue'
+import ActivityCenter from '@/page/activityCenter.vue'
+import ActPacket from '@/page/actPacket.vue'
+import DayGainList from '@/page/dayGainList.vue'
+import Extension from '@/page/extension.vue'
 
 Vue.use(Router);
 
@@ -197,6 +210,84 @@ export default new Router({
       component: PhoneBind2,
       meta: {
         requireAuth: true
+      }
+    },{
+      path: '/modifyBankCard/:bankCardId',
+      component: ModifyBankCard,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/aliPay',
+      component: AliPay,
+      meta: {
+        requireAuth: true
+      }
+    },{
+      path: '/goAli',
+      component: GoAli,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/download',
+      component: Download,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/payBank',
+      component: PayBank,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/fund',
+      component: Fund,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/forgetTradePass',
+      component: ForgetTradePass,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/myPacket',
+      component: MyPacket,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/discover',
+      component: Discover,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/activityCenter',
+      component: ActivityCenter,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/actPacket',
+      component: ActPacket,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/dayGainList',
+      component: DayGainList,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/extension',
+      component: Extension,
+      meta: {
+        requireAuth: false
       }
     },
   ]

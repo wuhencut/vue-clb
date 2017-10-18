@@ -15,7 +15,7 @@
         </div>
         <div class="mod-form">
           <label>验证码</label><input v-model="checkCode" type="text" class="inp" placeholder="请输入验证码"/>
-          <span v-if="time == 0" @click="getPasswordCode();" class="tip-r">获取验证码</span>
+          <span v-if="time == 0" @click="getPasswordCode()" class="tip-r">获取验证码</span>
           <span v-if="time != 0" class="tip-r txt-grey">{{time}}秒后重发</span>
         </div>
       </div>
@@ -129,10 +129,51 @@
           }
         });
       },
+
+      //获取验证码
+      getPasswordCode() {
+        let t = this;
+        //发送验证码请求
+        this.server.PasswordService.sendPasswordCode(t.mobile).then(function (res) {
+          var data = res.data;
+          if (data.code == 100) {
+            t.time = 60;
+            t.glb.showTip = true;
+            t.glb.tipMsg = '验证码已发送至手机，请注意查收';
+            t.timerFn();
+          } else if (data.code == 101) {
+            t.time = data.data.interval;
+            t.timerFn();
+          }
+          else {
+            t.glb.showTip = true;
+            t.glb.tipMsg = data['resultMsg'];
+          }
+        }).catch(function (error) {
+          if (error) {
+            Promise.reject(error);
+          } else {
+            t.glb.showTip = true;
+            t.glb.tipMsg = '服务器请求异常';
+          }
+        });
+      },
+
+      //倒计时
+      timerFn() {
+        let t = this;
+        t.timer = setInterval(function () {
+          if (t.time > 0) {
+            t.time--;
+          } else {
+            t.timer && clearTimeout(t.timer);
+          }
+        }, 1000);
+      }
     },
     computed: {},
     destroyed(){
-
+      this.timer && clearTimeout(this.timer);
     }
   }
 </script>

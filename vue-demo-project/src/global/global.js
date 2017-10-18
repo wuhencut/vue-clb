@@ -5,7 +5,7 @@ export default{
   confirmMsg: '',//弹窗内的文字或者是html标签
   showConfirm: false,//confirm弹框
   showLoading: false,//加载动画
-  sureTxt: '', //confirm的确认弹框执行操作的文字
+  sureTxt: '确定', //confirm的确认弹框执行操作的文字
   showAlert: false,//alert弹框
   alertMsg: '',//alert弹框显示信息
 }
