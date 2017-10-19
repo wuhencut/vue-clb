@@ -21,8 +21,8 @@
                   <div class="txt">
                     <div v-html="news.content"></div>
                     <div v-if="news.showImgIcon" class="text-img">
-                      <router-link :to="imgHref" class="text-img-lnk">
-                        <img class="thumb" :src="newsImgURL"/>
+                      <router-link :to="news.newsImgURL" class="text-img-lnk">
+                        <img class="thumb" :src="news.newsImgURL"/>
                       </router-link>
                     </div>
                   </div>
@@ -31,7 +31,7 @@
                   <div class="txt">
                     <div v-html="news.content"></div>
                     <div class="live-ele" :class="news.important ? 'important' : ''">
-                      <img class="flag" :src="countryImgURL">
+                      <img class="flag" :src="news.countryImgURL">
                       <table class="pindex">
                         <tbody>
                         <tr>
@@ -43,7 +43,7 @@
                         <tr>
                           <td colspan="2">
                             <div class="live-ele-l">
-                              <img :src="starImgURL" width="20" height="34"/>
+                              <img :src="news.starImgURL" width="20" height="34"/>
                             </div>
                           </td>
                           <td>
@@ -110,11 +110,7 @@
     data(){
       return {
         glb: this.global,
-        imgHref: '',
-        countryImgURL: '',
-        newsImgURL: '',
-        realID: 'actual_' + this.actual_id,
-        starImgURL: '',
+        realID: 'actual_',
         showHeader: true,
         indexUrl: this.server.SystemService().agentIndex(),
         newsList: [],
@@ -132,11 +128,28 @@
         this.showHeader = false;
       }
 
-      this.getNewsList(0)
+      this.getNewsList(0);
       this.X.engine.addTask(this.getNew, 10000);
       this.X.engine.start();
+      window.addEventListener('scroll', this.scroll)
     },
     methods: {
+      //监控scroll的方法
+      scroll(){
+        let t = this;
+        var win = window;
+        if(this){
+          var elem = document.getElementsByClassName('mod-news-wrap')[0];
+          var H = win.screen.height;
+          var T = window.scrollY;
+          var eH =  elem.offsetHeight;
+          if ((2 * H + T) > eH) {
+            t.dataLoadFinish = false;
+            t.getNewsList(t.page, t.lastTime);
+          }
+        }
+      },
+
       //获取新闻列表
       getNewsList(page, time) {
         let t = this;
@@ -151,6 +164,10 @@
                 if (/链接>>>|activity\.jin10\.com|live\.jin10\.com|app\.jin10\.com|v\.jin10\.com|news\.jin10\.com/.test(msg.content)) {
                   return;
                 }
+                if(msg.imgUrl)msg.newsImgURL = '/images/jin10/' + msg.imgUrl;
+                if(msg.country)msg.countryImgURL = '/images/jin10/' + msg.country + '.png';
+                if(msg.star)msg.starImgURL = '/images/jin10/' + msg.star + '.png';
+                console.log();
                 t.newsList.push(msg);
               });
               t.firstTime = t.newsList[0].id;
