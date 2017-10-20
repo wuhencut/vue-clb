@@ -1240,6 +1240,7 @@ export default{
        */
       getRealPeriod: function (commNo, time, type) {
         var period = this.getQueryPeriod(commNo, type);
+        console.log(period);
         var i = 0, prevTime, nextTime;
         if (X.isArray(period[0][0])) {
           while (true) {

@@ -10,7 +10,7 @@
     color: #cccccc;
 }
 
-.page-trade .page-trade-sell .mod-all-sell {
+.mod-all-sell {
     width: 100%;
     position: fixed;
     border-radius: 0.05rem;
@@ -19,14 +19,14 @@
     z-index: 10001;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options {
+.mod-all-sell .all-sell-options {
     width: 3rem;
     margin: 0 auto;
     background-color: #FFFFFF;
     border-radius: 0.05rem;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options .all-sell-checked {
+.mod-all-sell .all-sell-options .all-sell-checked {
     height: 0.14rem;
     width: 0.14rem;
     border-radius: 0.07rem;
@@ -36,7 +36,7 @@
 
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options .all-sell-check {
+.mod-all-sell .all-sell-options .all-sell-check {
     height: 0.14rem;
     width: 0.14rem;
     border-radius: 0.07rem;
@@ -45,24 +45,24 @@
     vertical-align: -2px;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options li {
+.mod-all-sell .all-sell-options li {
     line-height: 0.49rem;
     border-bottom: 0.01rem solid #ECECEC;
     background-color: #FFFFFF;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options li:first-child {
+.mod-all-sell .all-sell-options li:first-child {
     border-radius: 0.05rem 0.05rem 0 0;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options .dialog-confirm {
+.mod-all-sell .all-sell-options .dialog-confirm {
     height: 0.5rem;
     width: 3rem;
     background-color: #FFFFFF;
     border-radius: 0 0 0.05rem 0.05rem;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options .dialog-confirm p {
+.mod-all-sell .all-sell-options .dialog-confirm p {
     float: left;
     width: 1.5rem;
     line-height: 0.5rem;
@@ -78,19 +78,19 @@
     border-radius: 0 0 0.05rem 0;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options .sell-directions {
+.mod-all-sell .all-sell-options .sell-directions {
     width: 100%;
     height: 1.5rem;
     padding-top: 0.4rem;
     border-bottom: 0.01rem solid #ECECEC;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options .one-yaun-sell {
+.mod-all-sell .all-sell-options .one-yaun-sell {
     line-height: 0.8rem;
     border-bottom: 0.01rem solid #ECECEC;
 }
 
-.page-trade .page-trade-sell .mod-all-sell .all-sell-options .sell-directions .chosen {
+.mod-all-sell .all-sell-options .sell-directions .chosen {
     background: url('../../../images/chosen-bg.png') right bottom no-repeat;
     border: 0.01rem solid #E34C4D;
 }

@@ -142,7 +142,7 @@
           var elem = document.getElementsByClassName('mod-news-wrap')[0];
           var H = win.screen.height;
           var T = window.scrollY;
-          var eH =  elem.offsetHeight;
+          var eH =  elem.offsetHeight || 0;
           if ((2 * H + T) > eH) {
             t.dataLoadFinish = false;
             t.getNewsList(t.page, t.lastTime);
@@ -359,7 +359,7 @@
       }
     },
     destroyed(){
-
+        window.removeEventListener('scroll',this.scroll)
     }
   }
 </script>

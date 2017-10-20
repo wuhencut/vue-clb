@@ -16,7 +16,7 @@
                 <p class="txt-s12 txt-gray">一元玩恒指</p>
             </div>
         </a>-->
-        <a href="#/outerTrade/CL/1" title="">
+        <a href="#/outerTrade/CL/1/buy" title="">
           <div class="nav-simulate">
             <p class="txt-s14">模拟练习</p>
             <p class="txt-s12 txt-gray">成就高手</p>
@@ -42,7 +42,7 @@
             <a href="#/dangerTip" class="fr"><i class="iconfont danger-tip">&#xe77d;</i> 风险提示</a>
           </div>
           <div v-if="showFutureList" class="mod-menu">
-            <a href="#/outerTrade/CL/2" class="CL clearfix">
+            <a href="#/outerTrade/CL/2/buy" class="CL clearfix">
               <!--<span class="title-icon"><img src="/app/images/icons/icon-CL.png"></span>-->
               <div class="tit">
                 <p class="txt-s14">美原油 <span class="desc">T+0</span></p>
@@ -66,7 +66,7 @@
               </div>
               <!--<i class="mod-arrow-r"></i>-->
             </a>
-            <a href="#/outerTrade/GC/2" class="GC clearfix">
+            <a href="#/outerTrade/GC/2/buy" class="GC clearfix">
               <!--<span class="title-icon"><img src="/app/images/icons/icon-GC.png"></span>-->
               <div class="tit">
                 <p class="txt-s14">美黄金 <span class="desc">T+0</span></p>
@@ -90,7 +90,7 @@
               </div>
               <!--<i class="mod-arrow-r"></i>-->
             </a>
-            <a href="#/outerTrade/SI/2" class="SI clearfix">
+            <a href="#/outerTrade/SI/2/buy" class="SI clearfix">
               <!--<span class="title-icon"><img src="/app/images/icons/icon-SI.png"></span>-->
 
               <div class="tit">
@@ -115,7 +115,7 @@
               </div>
               <!--<i class="mod-arrow-r"></i>-->
             </a>
-            <a href="#/outerTrade/HSI/2" class="HSI clearfix">
+            <a href="#/outerTrade/HSI/2/buy" class="HSI clearfix">
               <!--<span class="title-icon"><img src="/app/images/icons/icon-HSI.png"></span>-->
 
               <div class="tit">
@@ -140,7 +140,7 @@
               </div>
               <!--<i class="mod-arrow-r"></i>-->
             </a>
-            <a href="#/outerTrade/MHI/2" class="MHI clearfix">
+            <a href="#/outerTrade/MHI/2/buy" class="MHI clearfix">
               <!--<span class="title-icon"><img src="/app/images/icons/icon-MHI.png"></span>-->
               <div class="tit">
                 <p class="txt-s14">小恒指 <span class="desc">T+0</span></p>
@@ -163,7 +163,7 @@
               </div>
               <!--<i class="mod-arrow-r"></i>-->
             </a>
-            <a href="#/outerTrade/CN/2" class="CN clearfix">
+            <a href="#/outerTrade/CN/2/buy" class="CN clearfix">
               <!--<span class="title-icon"><img src="/app/images/icons/icon-CN.png"></span>-->
 
               <div class="tit">
@@ -188,7 +188,7 @@
               </div>
               <!--<i class="mod-arrow-r"></i>-->
             </a>
-            <a href="#/outerTrade/DAX/2" class="DAX clearfix">
+            <a href="#/outerTrade/DAX/2/buy" class="DAX clearfix">
               <!--<span class="title-icon"><img src="/app/images/icons/icon-DAX.png"></span>-->
 
               <div class="tit">
@@ -241,7 +241,7 @@
               </a>
             </li>
             <li>
-              <a href="#/outerTrade/CL/2?backURL=/index" class="nav-trade">
+              <a href="#/outerTrade/CL/2/buy?backURL=/index" class="nav-trade">
                 <i class="iconfont">&#xe612;</i><br>交易
               </a>
             </li>
