@@ -16,7 +16,7 @@
                 <p class="txt-s12 txt-gray">一元玩恒指</p>
             </div>
         </a>-->
-        <a href="#/outerTrade/CL/1/buy" title="">
+        <a href="#/echartsTest" title="">
           <div class="nav-simulate">
             <p class="txt-s14">模拟练习</p>
             <p class="txt-s12 txt-gray">成就高手</p>

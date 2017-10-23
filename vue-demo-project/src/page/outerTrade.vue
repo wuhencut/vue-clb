@@ -11,7 +11,8 @@
           <router-link :to="indexUrl" class="nav-left">
             <i class="icon-back"></i>
           </router-link>
-          <router-link :to="{path: '/tradeRule'}" class="nav-right">规则</router-link>
+          <a v-if="marketType == 1" class="nav-right txt-s14" @click="changeMarket()">换成实盘</a>
+          <router-link v-if="marketType == 2" :to="{path: '/tradeRule/' + commonType}" class="nav-right">规则</router-link>
         </div>
       </header>
       <div class="trade-menu">
@@ -24,10 +25,11 @@
     </div>
     <div v-show="showMenu" @click="showMenu=false;" class="mod-commodity-list db-bg" style="z-index: 99;">
       <div class="wrap">
-        <a v-for="(value, key) in commodityTitles" @click="commonType=key;tradeType='buy'" v-if="value != commonTxt">{{value}}</a>
+        <a v-for="(value, key) in commodityTitles" @click="changeFuture(key)" v-if="value != commonTxt">{{value}}</a>
       </div>
     </div>
-    <result :tradeType="tradeType" :commonType="commonType" :marketType="marketType" v-if="tradeType=='result'"></result>
+    <result :tradeType="tradeType" :commonType="commonType" :marketType="marketType"
+            v-if="tradeType=='result'"></result>
     <sell :tradeType="tradeType" :commonType="commonType" :marketType="marketType" v-if="tradeType=='sell'"></sell>
   </section>
 </template>
@@ -35,7 +37,7 @@
   import Result from './../components/tradeResult.vue';
   import TradeSell from './../components/tradeSell.vue'
   export default{
-    components:{
+    components: {
       'result': Result,
       'sell': TradeSell
     },
@@ -54,16 +56,63 @@
           CN: '富时A50',
           DAX: '德指'
         },
-        marketTxt: this.marketType == 1 ? '模拟盘' : '实盘',
+        listenType: '',
+        marketTxt: '',
         showMenu: false,
         commonTxt: '',
+        txtLinkObj: {
+          header:{
+            text: '',
+            link: ''
+          },
+          corner: {
+            // text: '申请模拟币',
+            text: '',
+            link: '',
+            title: ''
+          }
+        },
       }
     },
     mounted(){
-        this.commonTxt = this.commodityTitles[this.commonType]
+      this.marketTxt = this.marketType == 1 ? '模拟盘' : '实盘'
+      this.commonTxt = this.commodityTitles[this.commonType]
+      this.txtLinkObj = this.marketType == 1 ? {
+        header: {
+          text: '换成实盘',
+          link: '/outerTrade/' + this.commonType + '/2' + '/buy'
+        },
+        corner: {
+          // text: '申请模拟币',
+          text: '',
+          link: '/getSimCoin',
+          title: '模拟币'
+        }
+      } : {
+        header: {
+          text: '规则',
+          link: '/tradeRule/' + this.commonType
+        },
+        corner: {
+          text: '立即充值',
+          link: '/payType',
+          title: '账户余额'
+        }
+      };
     },
-    methods: {},
-    computed: {},
+    methods: {
+      changeMarket(){
+        this.$router.push({path: '/outerTrade/' + this.commonType + '/2/' + 'buy'});
+        window.location.reload(); // 由于页面params变化后，页面不刷新，这里做刷新，不是最佳处理方式，之后处理
+      },
+      changeFuture(key){
+        this.commonTxt=this.commodityTitles[key];this.commonType=key;
+        this.$router.push({path: '/outerTrade/' + key + '/' + this.marketType + '/buy'});
+      }
+    },
+    computed: {
+
+    },
     destroyed(){
 
     }

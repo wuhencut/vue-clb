@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import {Y} from './utils/yztz'
+import echarts from 'echarts'
 import $ from 'jquery'
 var axios = require('axios');
 import server from './api/server'
@@ -21,6 +22,7 @@ Vue.prototype.X = Y;
 Vue.prototype.axios = axios
 Vue.prototype.server = server;
 Vue.prototype.global = glb;
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false;
 Vue.component('tip', tip);
@@ -66,6 +68,7 @@ function addZero(val) {
     return val;
   }
 };
+
 
 Vue.filter('formatTime', function (value, type) {
   var dataTime = "";

@@ -43,6 +43,7 @@ import InvestLesson from '@/page/investLesson.vue'
 import KnowledgeDetail from '@/page/knowledgeDetail.vue'
 import News from '@/page/news.vue'
 import OuterTrade from '@/page/outerTrade.vue'
+import EchartsTest from '@/page/echartsTest.vue'
 
 Vue.use(Router);
 
@@ -327,6 +328,12 @@ export default new Router({
     },{
       path: '/outerTrade/:commonType/:marketType/:tradeType',
       component: OuterTrade,
+      meta: {
+        requireAuth: false
+      }
+    },{
+      path: '/echartsTest',
+      component: EchartsTest,
       meta: {
         requireAuth: false
       }

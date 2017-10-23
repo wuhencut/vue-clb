@@ -10,7 +10,6 @@
     </transition>
   </div>
 </template>
-<script></script>
 <script>
 export default {
   name: 'app'

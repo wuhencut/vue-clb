@@ -1,5 +1,5 @@
 <template>
-  <div class="mod-clearing">
+  <div class="mod-clearing" style="padding-bottom: 110px;">
     <div v-for="trade in saleList" class="wrap mt15 txt-gray pb15">
       <ul class="row-1">
         <li class="txt-s16">{{trade.commodityName}}－{{trade.commodityNo}}{{trade.contractNo}} <i
@@ -128,10 +128,10 @@
       <button @click="allSellDialog()" class="btn btn-blue mt10" v-if="allIDsArr.length>=2">全部平仓</button>
     </div>
     <div v-if="currCommoID != 0 || sellOutID != 0 || sellAllID != 0" class="db-bg" style="z-index: 10000"></div>
-    <div v-if="saleList.length && saleList.length == 0" class="mod-no-data">暂无交易</div>
+    <div v-if="!saleList.length || saleList.length == 0" class="mod-no-data">暂无交易</div>
     <tip v-if="glb.showTip" :tip="glb.tipMsg" @hide="glb.showTip = false"></tip>
     <loading v-if="glb.showLoading"></loading>
-    <alert :alertMsg="glb.alertMsg" v-if="glb.showAlert" :sure="alertFunc(type)"></alert>
+    <alert :alertMsg="glb.alertMsg" v-if="glb.showAlert" @sure="alertFunc()"></alert>
   </div>
 </template>
 <script>
@@ -543,7 +543,7 @@
         t.setLossPrincipal = Math.round(t.onePointPrice * quitCloseRatio * 100) / 100 | 0;//当前策略的最低止损线金额
 
         t.getPrice();//获取当前价
-//        t.X.engine.addTask(t.getPrice, 1000);//1秒取一次
+        t.X.engine.addTask(t.getPrice, 1000);//1秒取一次
       },
 
       //取当前策略的当前价
@@ -580,20 +580,24 @@
       //alert弹窗的确定操作
       alertFunc(){
         let t = this;
-        if(this.alertType == 'info'){
+        if(t.alertType == 'info'){
           t.glb.showAlert = false
           return
         }else if(t.alertType == 'aa'){ // 止盈金额大于最大止盈
           t.gainInput = t.setWindowObj['setGainPrincipal'];
+          t.glb.showAlert = false
           return
         }else if(t.alertType == 'bb'){ // 止盈金额小于最小止盈
           t.gainInput = t.onePointPrice;
+          t.glb.showAlert = false
           return
         }else if(t.alertType == 'cc'){ // 止损金额大于最大止损
           t.lossInput = t.setLossPrincipal;
+          t.glb.showAlert = false
           return
         }else if(t.alertType == 'dd'){ // 止损金额小于最小止损
           t.lossInput = t.onePointPrice;
+          t.glb.showAlert = false
           return
         }
       },
@@ -605,25 +609,29 @@
           t.glb.showAlert = true;
           t.glb.alertMsg = '止盈金额不能大于' + t.setWindowObj['setGainPrincipal'];
           t.alertType = 'aa';
+          return
         }
         if (t.gainInput < t.onePointPrice) {
           t.glb.showAlert = true;
           t.glb.alertMsg = '止盈金额不能小于' + t.onePointPrice;
           t.alertType = 'bb';
+          return
         }
         if (t.lossInput > t.setLossPrincipal) {
           t.glb.showAlert = true;
           t.glb.alertMsg = '止损金额不能大于' + t.setLossPrincipal;
           t.alertType = 'cc';
+          return
         }
         if (t.lossInput < t.onePointPrice) {
           t.glb.showAlert = true;
           t.glb.alertMsg = '止损金额不能小于' + t.onePointPrice;
           t.alertType = 'dd';
+          return
         }
 
-        var setLoss = t.lossInput.toFixed(2), setGain = t.gainInput.toFixed(2);
-        t.server.TradeService.setQuitGainLoss(willSaleTradeID, t.marketType, setLoss, setGain).then(function (res) {
+        var setLoss = parseFloat(t.lossInput).toFixed(2), setGain = parseFloat(t.gainInput).toFixed(2);
+        t.server.TradeService.setQuitGainLoss(t.willSaleTradeID, t.marketType, setLoss, setGain).then(function (res) {
           t.currCommoID = 0;
           var setData = res.data;
           if (setData.code == 100) {
@@ -632,8 +640,8 @@
 //            X.dialog.alert('设置成功');
             t.getFuturesSale();
           } else {
-            t.showTip = true;
-            t.tipMsg = setData['resultMsg'];
+            t.glb.showTip = true;
+            t.glb.tipMsg = setData['resultMsg'];
           }
         }).catch(function (error) {
           if (error) {
@@ -656,7 +664,7 @@
             var riskStr = riskData.data['strRisk'];
             var risk = JSON.parse(riskStr);
             var isTrade = risk['isTrade'].value == '1';//判断是否暂停交易
-            t.initRisk(riskData.data, sellCommoNo);//得到节假日，是否暂停交易等信息
+            t.initRisk(riskData.data, t.sellCommoNo);//得到节假日，是否暂停交易等信息
             var isInPeriod = t.SystemService.isInPeriod(commo, 'trade');
             var tradeT = t.SystemService.beyondTradeTimeTips(commo);
             if (isTrade) {
@@ -716,7 +724,6 @@
       chooseBackHand() {//及时平仓，立即反手
         this.choiceStatus = 1;
       },
-
       //平仓
       sellCurrCommodity() {
         let t = this;
@@ -739,7 +746,7 @@
           return;
         }
         t.glb.showLoading = true;
-        t.server.TradeService.getCloseFutures(willSaleTradeID, t.marketType).then(function (res) {
+        t.server.TradeService.getCloseFutures(t.willSaleTradeID, t.marketType).then(function (res) {
           var data = res.data;
           if (data.code == 100) {
             t.getFuturesSale();
@@ -782,7 +789,7 @@
                   t.$router.push({
                     path: '/tradeBuy',
                     params: {commonNo: t.sellCommoNo, marketType: t.marketType, sellBuy: sellBuy},
-                    query: {quitCloseRatio: t.quitCloseRatio, amount: amount}
+                    query: {quitCloseRatio: t.quitCloseRatio, amount: t.amount}
                   });
                 }
               }
