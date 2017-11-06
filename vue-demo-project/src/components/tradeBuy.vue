@@ -207,9 +207,11 @@
           CN: '富时A50',
           DAX: '德指'
         },
+        slineData: [],
       }
     },
     mounted() {
+      this.getFuturesSline()
       this.chartOpts = {
         sline: {
           CL: {
@@ -486,7 +488,10 @@
         this.server.StockService.getFuturesSline(t.commodityNo).then(function (res) {
           var sLineData = res.data;
           if (sLineData.code == 100) {
-            t.rawSline(sLineData.data);
+            t.initSlineData(sLineData.data.split(";"));
+            t.drawLine();
+            console.log(t.slineData);
+//            t.drawSline(sLineData.data);
           } else {
             t.glb.showTip = true;
             t.glb.tipMsg = sLineData['resultMsg'];
@@ -499,6 +504,19 @@
             t.glb.tipMsg = '服务器请求异常';
           }
         });
+      },
+
+      initSlineData(data){
+        console.log(data)
+        let t = this;
+        data.forEach(function (item) {
+          let itemArr = item.split(",")
+          t.slineData.push([
+            new Date(itemArr[0] - 0),
+            (itemArr[1] - 0).toFixed(2),
+            (Math.random() * 100).toFixed(2) - 0
+          ])
+        })
       },
 
       //获取k线图绘图数据
@@ -654,6 +672,76 @@
       //
       isIntl(commNo) {
         return commNo == 'GC' || commNo == 'CL' || commNo == 'SI' || commNo == 'DAX';
+      },
+
+      //测试画图
+      drawLine() {
+        let t = this;
+        let myChart = this.$echarts.init(document.getElementsByClassName("chart")[0]);
+        let option = {
+          tooltip: {
+            trigger: 'item',
+            formatter: function (params) {
+              var date = new Date(params.value[0]);
+              data = date.getFullYear() + '-'
+                + (date.getMonth() + 1) + '-'
+                + date.getDate() + ' '
+                + date.getHours() + ':'
+                + date.getMinutes();
+              return data + '<br/>'
+                + params.value[1] + ', '
+                + params.value[2];
+            }
+          },
+          grid: {
+            x: 30,
+            y: 20,
+            width: "95%",
+            y2: 35,
+          },
+          xAxis: [
+            {
+              type: 'time',
+              splitNumber: 3//中间标值
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              scale: true,
+            }
+          ],
+          series: [
+            {
+              name: 'series1',
+              type: 'line',
+              color: "#ECECEC",
+              /*showAllSymbol: true,
+              symbolSize: function (value) {
+                return Math.round(value[2] / 10) + 2;
+              },*/
+              symbol: 'none',
+              smooth: true,
+              data: (function () {
+                /*var d = [];
+                var len = 0;
+                var now = new Date();
+                var value;
+                while (len++ < 200) {
+                  d.push([
+                    new Date(2014, 9, 1, 0, len * 10000),
+                    (Math.random() * 30).toFixed(2) - 0,
+                    (Math.random() * 100).toFixed(2) - 0
+                  ]);
+                }
+                return d;*/
+                console.log("data: " + t.slineData);
+                return t.slineData;
+              })()
+            }
+          ]
+        };
+        myChart.setOption(option)
       }
     },
     computed: {},
