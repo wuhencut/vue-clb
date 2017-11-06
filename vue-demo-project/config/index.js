@@ -29,11 +29,13 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/**.json': {
-        target: 'http://192.168.14.233:8080',
+        // target: 'http://192.168.14.233:8080',
+        target: 'https://clb.xingu365.com',
         changeOrigin: true
       },
       '/**.htm':{
-        target: 'http://192.168.14.233:8080',
+        target: 'https://clb.xingu365.com',
+        // target: 'http://192.168.14.233:8080',
         changeOrigin: true
       }
     },

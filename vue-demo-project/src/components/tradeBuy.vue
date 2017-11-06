@@ -11,14 +11,20 @@
             <li v-if="futureInfo != {}" style="width:60%;" class="fl txt-right pt5"><span
               v-if="futureInfo.newPrice >= futureInfo.yesterdayPrice"
               class="txt-s20 txt-red">{{futureInfo.newPrice}}</span>
-              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-s20 txt-green">{{futureInfo.newPrice}}</span>
-              <span v-if="futureInfo.newPrice > futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt">+{{futureInfo.changeQuote}}%</span>
-						<span v-if="futureInfo.newPrice == futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt ">
+              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice"
+                    class="txt-s20 txt-green">{{futureInfo.newPrice}}</span>
+              <span v-if="futureInfo.newPrice > futureInfo.yesterdayPrice"
+                    class="txt-red txt-s14 futures-txt">+{{futureInfo.changeQuote}}%</span>
+              <span v-if="futureInfo.newPrice == futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt ">
               {{futureInfo.changeQuote}}%</span>
-              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-green txt-s14 futures-txt">{{futureInfo.changeQuote}}%</span>
-              <span v-if="futureInfo.newPrice > futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt">+{{futureInfo.changeValue}}</span>
-              <span v-if="futureInfo.newPrice == futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt">{{futureInfo.changeValue}}</span>
-              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-green txt-s14 futures-txt">{{futureInfo.changeValue}}</span>
+              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice"
+                    class="txt-green txt-s14 futures-txt">{{futureInfo.changeQuote}}%</span>
+              <span v-if="futureInfo.newPrice > futureInfo.yesterdayPrice"
+                    class="txt-red txt-s14 futures-txt">+{{futureInfo.changeValue}}</span>
+              <span v-if="futureInfo.newPrice == futureInfo.yesterdayPrice"
+                    class="txt-red txt-s14 futures-txt">{{futureInfo.changeValue}}</span>
+              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice"
+                    class="txt-green txt-s14 futures-txt">{{futureInfo.changeValue}}</span>
             </li>
           </ul>
         </div>
@@ -55,9 +61,10 @@
           <ul class="tab-title-wrap">
             <li class="sline" @click="">分时图</li>
             <li class="tline" @click="">闪电图</li>
-            <li class="kline" @click="">{{klineInfo.title}}<i class="iconfont-smill ng-scope ml10">{{showKillwrap?'&#xe609;':'&#xe608;'}}</i>
+            <li class="kline" @click="">{{klineInfo.title}}<i
+              class="iconfont-smill ng-scope ml10">{{showKillwrap ? '&#xe609;' : '&#xe608;'}}</i>
               <div class="wrap" v-show="showKillwrap" @click="showKillwrap=false;">
-                <span v-for="klt in klineTypes" @click="switchKL($index,$event);">{{klt.title}}</span>
+                <span v-for="klt in klineTypes" @click="switchKL($index);">{{klt.title}}</span>
               </div>
             </li>
           </ul>
@@ -65,6 +72,7 @@
         <div class="line-content">
           <div class="quote-wrap">
             <ul class="clearfix">
+              <li class="chart"></li>
               <!--<li id="sline-wrap-{{uuid}}"></li>
               <li id="tline-wrap-{{uuid}}"></li>
               <li id="kline-wrap-{{uuid}}"></li>-->
@@ -85,9 +93,9 @@
                     <span>{{futureInfo.buyNum}}</span>
                 </span>
           <span class="txt-light-orange">买卖量</span>
-				<span>
+          <span>
                     <span>{{futureInfo.sellNum}}</span>
-          <!--<span class="rate"><i style="width:{{futureInfo.sellNumRate}}%;"></i></span>-->
+            <!--<span class="rate"><i style="width:{{futureInfo.sellNumRate}}%;"></i></span>-->
                 </span>
         </div>
         <div class="btn-wrap clearfix">
@@ -115,13 +123,13 @@
   </section>
 </template>
 <script>
-  export default{
+  export default {
     props: [
       'tradeType',//点买，点卖，结算
       'commonType',//期货类型
       'marketType',//实盘，模拟盘
     ],
-    data(){
+    data() {
       return {
         SystemService: this.server.SystemService(),
         glb: this.global,
@@ -201,8 +209,7 @@
         },
       }
     },
-    mounted(){
-      console.log(this.commodityNo);
+    mounted() {
       this.chartOpts = {
         sline: {
           CL: {
@@ -320,7 +327,7 @@
       };
     },
     methods: {
-      getData(){
+      getData() {
         let t = this;
         t.glb.showLoading = true;
         this.axios.all([
@@ -335,7 +342,6 @@
             t.init(riskData.data);
 //            t.switchPanel('sline');
             t.klineInfo = t.klineTypes[t.currKLineIndex];
-            console.log(t.klineInfo);
           } else {
             if (riskData.code != 100) {
               t.glb.showTip = true;
@@ -639,7 +645,6 @@
             sellNumRate: sellNumRate
           };
           t.futureInfo = t.QUOTE_DATA;
-          console.log(t.futureInfo);
 
 //          perDrawTick(QUOTE_DATA);
 //          perDrawSline(QUOTE_DATA);
@@ -652,7 +657,7 @@
       }
     },
     computed: {},
-    destroyed(){
+    destroyed() {
 
     }
   }
