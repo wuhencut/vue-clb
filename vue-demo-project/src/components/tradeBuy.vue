@@ -4,34 +4,21 @@
       <div class="mod-futures mt15">
         <div class="wrap">
           <ul class="clearfix">
-            <li style="width:40%;" class="fl pt5 pb10">
+            <li v-if="futureInfo != {}" style="width:40%;" class="fl pt5 pb10">
               <span class="txt-black txt-s20">{{futureInfo.commodityTitle}}</span>
               <span class="txt-grey">{{futureInfo.contractNo}}</span>
             </li>
-            <li style="width:60%;" class="fl txt-right pt5">
-                        <span v-if="futureInfo.newPrice >= futureInfo.yesterdayPrice" class="txt-s20 txt-red">
-                            {{futureInfo.newPrice}}</span>
-						<span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-s20 txt-green">
-                            {{futureInfo.newPrice}}</span>
-						<span v-if="futureInfo.newPrice > futureInfo.yesterdayPrice"
-                  class="txt-red txt-s14 futures-txt">
-                            +{{futureInfo.changeQuote}}%</span>
-						<span v-if="futureInfo.newPrice == futureInfo.yesterdayPrice"
-                  class="txt-red txt-s14 futures-txt ">
-                            {{futureInfo.changeQuote}}%</span>
-						<span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice"
-                  class="txt-green txt-s14 futures-txt">
-                            {{futureInfo.changeQuote}}%</span>
-						<span v-if="futureInfo.newPrice > futureInfo.yesterdayPrice"
-                  class="txt-red txt-s14 futures-txt">
-                            +{{futureInfo.changeValue}}</span>
-						<span v-if="futureInfo.newPrice == futureInfo.yesterdayPrice"
-                  class="txt-red txt-s14 futures-txt">
-                            {{futureInfo.changeValue}}</span>
-						<span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice"
-                  class="txt-green txt-s14 futures-txt">
-                            {{futureInfo.changeValue}}</span>
-
+            <li v-if="futureInfo != {}" style="width:60%;" class="fl txt-right pt5"><span
+              v-if="futureInfo.newPrice >= futureInfo.yesterdayPrice"
+              class="txt-s20 txt-red">{{futureInfo.newPrice}}</span>
+              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-s20 txt-green">{{futureInfo.newPrice}}</span>
+              <span v-if="futureInfo.newPrice > futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt">+{{futureInfo.changeQuote}}%</span>
+						<span v-if="futureInfo.newPrice == futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt ">
+              {{futureInfo.changeQuote}}%</span>
+              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-green txt-s14 futures-txt">{{futureInfo.changeQuote}}%</span>
+              <span v-if="futureInfo.newPrice > futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt">+{{futureInfo.changeValue}}</span>
+              <span v-if="futureInfo.newPrice == futureInfo.yesterdayPrice" class="txt-red txt-s14 futures-txt">{{futureInfo.changeValue}}</span>
+              <span v-if="futureInfo.newPrice < futureInfo.yesterdayPrice" class="txt-green txt-s14 futures-txt">{{futureInfo.changeValue}}</span>
             </li>
           </ul>
         </div>
@@ -63,13 +50,12 @@
               </div>
               -->
       </div>
-      <div class="mod-lines act-{{currType}}">
+      <div class="mod-lines" :class="currType">
         <div class="tab-title">
           <ul class="tab-title-wrap">
-            <li class="sline" @click="switchPanel('sline');">分时图</li>
-            <li class="tline" @click="switchPanel('tline');">闪电图</li>
-            <li class="kline" @click="switchPanel('kline');">{{klineInfo.title}}<i
-              class="iconfont-smill ng-scope ml10">{{showKillwrap?'&#xe609;':'&#xe608;'}}</i>
+            <li class="sline" @click="">分时图</li>
+            <li class="tline" @click="">闪电图</li>
+            <li class="kline" @click="">{{klineInfo.title}}<i class="iconfont-smill ng-scope ml10">{{showKillwrap?'&#xe609;':'&#xe608;'}}</i>
               <div class="wrap" v-show="showKillwrap" @click="showKillwrap=false;">
                 <span v-for="klt in klineTypes" @click="switchKL($index,$event);">{{klt.title}}</span>
               </div>
@@ -79,38 +65,44 @@
         <div class="line-content">
           <div class="quote-wrap">
             <ul class="clearfix">
-              <li id="sline-wrap-{{uuid}}"></li>
+              <!--<li id="sline-wrap-{{uuid}}"></li>
               <li id="tline-wrap-{{uuid}}"></li>
-              <li id="kline-wrap-{{uuid}}"></li>
+              <li id="kline-wrap-{{uuid}}"></li>-->
             </ul>
           </div>
         </div>
       </div>
       <div class="mod-future-footer">
         <div class="balance-wrap">
-          <span class="balance-count fl txt-grey txt-s12">{{txtLinkObj.corner.title}}: {{balance.toFixed(2)}}</span> <a
-          href={{txtLinkObj.corner.link}} class="balance-recharge fr txt-s12">{{txtLinkObj.corner.text}}</a>
+          <span class="balance-count fl txt-grey txt-s12">{{txtLinkObj.corner.title}}: {{balance.toFixed(2)}}</span>
+          <router-link
+            :to="txtLinkObj.corner.link" class="balance-recharge fr txt-s12">{{txtLinkObj.corner.text}}
+          </router-link>
         </div>
         <div class="rate-wrap">
                 <span>
-                    <span class="rate"><i style="width:{{futureInfo.buyNumRate}}%;"></i></span>
+                    <!--<span class="rate"><i style="width:{{futureInfo.buyNumRate}}%;"></i></span>-->
                     <span>{{futureInfo.buyNum}}</span>
                 </span>
           <span class="txt-light-orange">买卖量</span>
 				<span>
                     <span>{{futureInfo.sellNum}}</span>
-                    <span class="rate"><i style="width:{{futureInfo.sellNumRate}}%;"></i></span>
+          <!--<span class="rate"><i style="width:{{futureInfo.sellNumRate}}%;"></i></span>-->
                 </span>
         </div>
         <div class="btn-wrap clearfix">
           <div class="fl">
-            <a href="#/outerTradeBuy/{{commodityNo}}/{{type}}/buy" class="btn btn-red"><span
+            <router-link :to="{path: '/outerTradeBuy/' + commodityNo + '/' + marketType + '/' + 'buy'}"
+                         class="btn btn-red"><span
               class="iconfont">&#xe619;</span>看涨
-              {{futureInfo.buyPrice}}</a>
+              {{futureInfo.buyPrice}}
+            </router-link>
           </div>
           <div class="fr">
-            <a href="#/outerTradeBuy/{{commodityNo}}/{{type}}/sell" class="btn btn-green"><span
-              class="iconfont">&#xe60e;</span>看跌 {{futureInfo.sellPrice}}</a>
+            <router-link :to="{path: '/outerTradeBuy/' + commodityNo + '/' +  marketType + '/' + 'sell'}"
+                         class="btn btn-green"><span
+              class="iconfont">&#xe60e;</span>看跌 {{futureInfo.sellPrice}}
+            </router-link>
           </div>
         </div>
         <p v-if="isInPeriod" class="trade-time-tip txt-red">{{tips}}</p>
@@ -134,7 +126,7 @@
         SystemService: this.server.SystemService(),
         glb: this.global,
         uuid: this.server.SystemService().uuid(),
-        commodityNo: this.$router.params.commodityNo || 'CL',
+        commodityNo: this.$route.params.commodityNo || 'CL',
 
         chartOpts: {},
         //分时数据上一次查询是否已经完成，是否开启交易
@@ -158,13 +150,13 @@
         balance: 0,
         showMenu: false,
         futureInfo: {},
-        currType: 'sline',
+        currType: 'act-sline',
         tips: '',
         isInPeriod: false,
         //K线相关
         showKillwrap: false,
         currKLineIndex: 4,
-        klineInfo: null,
+        klineInfo: {},
         klineTypes: [{
           title: '1分钟',
           type: 'oneMKline',
@@ -186,9 +178,31 @@
           type: 'dayKline',
           dt: 'YMD'
         }],
+        txtLinkObj: {
+          header: {
+            text: '',
+            link: ''
+          },
+          corner: {
+            // text: '申请模拟币',
+            text: '',
+            link: '',
+            title: ''
+          }
+        },
+        commodityTitles: {
+          CL: '美原油',
+          GC: '美黄金',
+          SI: '美白银',
+          HSI: '恒指',
+          MHI: '小恒指',
+          CN: '富时A50',
+          DAX: '德指'
+        },
       }
     },
     mounted(){
+      console.log(this.commodityNo);
       this.chartOpts = {
         sline: {
           CL: {
@@ -281,6 +295,29 @@
           }
         }
       };
+      this.getData();
+      this.txtLinkObj = this.marketType == 1 ? {
+        header: {
+          text: '换成实盘',
+          link: '/outerTrade/' + this.commonType + '/2' + '/buy'
+        },
+        corner: {
+          // text: '申请模拟币',
+          text: '',
+          link: '/getSimCoin',
+          title: '模拟币'
+        }
+      } : {
+        header: {
+          text: '规则',
+          link: '/tradeRule/' + this.commonType
+        },
+        corner: {
+          text: '立即充值',
+          link: '/payType',
+          title: '账户余额'
+        }
+      };
     },
     methods: {
       getData(){
@@ -296,8 +333,9 @@
           if (riskData.code == 100 && quoteData.code == 100) {
             t.processQuoteData(quoteData.data);
             t.init(riskData.data);
-            t.switchPanel('sline');
+//            t.switchPanel('sline');
             t.klineInfo = t.klineTypes[t.currKLineIndex];
+            console.log(t.klineInfo);
           } else {
             if (riskData.code != 100) {
               t.glb.showTip = true;
@@ -355,17 +393,17 @@
       switchPanel(type) {
         let t = this;
         //双判断是为了实现第一次切换不出现菜单
-        if (t.currType == 'kline' && type == 'kline') {
+        if (t.currType == 'act-kline' && type == 'act-kline') {
           t.showKillwrap = !t.showKillwrap;
         } else {
           t.showKillwrap = false;
         }
         t.currType = type;
-        if (type == 'sline' && !t.sChart) {
+        if (type == 'act-sline' && !t.sChart) {
           t.getFuturesSline();
-        } else if (type == 'tline' && !t.tChart) {
+        } else if (type == 'act-tline' && !t.tChart) {
           t.drawTick();
-        } else if (type == 'kline' && !t.kChart) {
+        } else if (type == 'act-kline' && !t.kChart) {
           t.getFuturesKline();
         }
       },
@@ -416,8 +454,8 @@
         t.SystemService.setQuotePeriod(quoteTime, t.commodityNo);
 
         t.getFuturesQuote(true);
-        X.engine.addTask(t.getFuturesQuote, 500);
-        X.engine.start();
+        t.X.engine.addTask(t.getFuturesQuote, 500);
+        t.X.engine.start();
       },
 
       //重绘
@@ -477,37 +515,141 @@
           }
         });
       },
+      //这应该是闪电图每秒钟的画图 -- 猜想
+      perDrawSline(data) {
+        var t = this;
+        var o = {
+          current: t.X.toFloat(data['newPrice']),
+          volume: 0,
+          time: t.X.formatDate(data.time, 'hm') - 0
+        };
 
-      //绘制分时图
-      drawSline(sLineDataStr) {
-        let t = this;
-        t.resize();
-        if (!t.QUOTE_DATA)return;
-        var slineData = sLineDataStr.split(';');
-        var data = {}, lastTime;
-        slineData.forEach(function (str) {
-          var arr = str.split(',');
-          lastTime = t.X.formatDate(X.toInt(arr[0]), 'hm') - 0;
-          data[lastTime] = {
-            current: t.X.toFloat(arr[1]),
-            volume: 0,
-            time: lastTime
+        t.sChart && t.sChart.perDraw(o, {
+          close: t.X.toFloat(data['yesterdayPrice']),
+          high: t.X.toFloat(data['highPrice']),
+          low: t.X.toFloat(data['lowPrice']),
+          quoteTime: o.time,
+          code: t.commodityNo,
+          period: t.SystemService.getRealPeriod(t.commodityNo, o.time),
+          isIntl: t.isIntl(t.commodityNo)
+        });
+      },
+      /*//更新最新K线信息
+       perDrawKline(data) {
+       // 累加和更新数据//如果股票停牌则不放到K线数据中PS：其实是可以看，接口数据错误所以先不加
+       if (data['newPrice'] == 0 || !CACHE_KLINE || !CACHE_KLINE.length) {
+       return;
+       }
+       var o = {
+       time: X.formatDate(data.time, 'YMD'),
+       open: data['openPrice'],
+       close: data['yesterdayPrice'],
+       high: data['highPrice'],
+       low: data['lowPrice'],
+       price: data['newPrice']// 即时数据，使用当前价格
+       };
+       var last = CACHE_KLINE[CACHE_KLINE.length - 1];
+
+       if (last.time === o.time) {
+       CACHE_KLINE[CACHE_KLINE.length - 1] = o;
+       } else {
+       CACHE_KLINE.push(o);
+       }
+
+       kChart && kChart.draw(CACHE_KLINE);
+       }*/
+
+      //获取期货信息
+      getFuturesQuote(flag) {
+        var t = this;
+        //判断是否是在交易时间段内
+        //PS要把时间段的提示绑定到页面上，因为作用域的$scope问题，当赋值完成以后必须要在执行angular的原生方法激活数据的双向绑定否则新赋值不能双向绑定到页面
+        if (t.isTrade) {
+          t.isInPeriod = t.SystemService.isInPeriod(t.commodityNo, 'trade');
+          if (t.isInPeriod) {
+            t.tips = '本时段' + t.SystemService.getTipsForTradeStopTime(t.commodityNo);
+          } else {
+            t.tips = '已休市，' + t.SystemService.getTipsForNextTime(t.commodityNo);
+          }
+        } else {
+          t.isInPeriod = false;
+          t.tips = '暂停交易';
+        }
+        var isInQuoteTime = t.SystemService.isInPeriod(t.commodityNo, 'quote');
+
+        /*if (!flag && !isInQuoteTime) {
+         $scope.$apply();
+         }*/
+
+        //判断是否是在行情时间段内
+        if (t.isLoadFuturesQuote && isInQuoteTime) {
+          t.isLoadFuturesQuote = false;
+          t.server.StockService.getFuturesQuote(t.commodityNo).then(function (res) {
+            t.isLoadFuturesQuote = true;
+            var data = res.data;
+            if (data.code == 100) {
+              t.processQuoteData(data.data);
+            } else {
+              t.glb.showTip = true;
+              t.glb.tipMsg = data['resultMsg'];
+            }
+            t.glb.showLoading = false;
+          }).catch(function (err) {
+            if (err) {
+              Promise.reject(err)
+            } else {
+              t.glb.showTip = true;
+              t.glb.tipMsg = '服务器请求异常';
+            }
+          });
+        }
+      },
+      //格式化股票数据
+      processQuoteData(data) {
+        var t = this;
+        var futureArr;
+        if (data) {
+          futureArr = data.split(',');
+          //合约编号, 时间,开盘价,昨收,涨跌值,涨跌幅,最高,最低,总手,最新价,对手买价,对手卖价,买量,卖量
+          var baseNum = 50, buyNum = t.X.toInt(futureArr[12]), sellNum = t.X.toInt(futureArr[13]),
+            buyNumRate = buyNum / baseNum * 100, sellNumRate = sellNum / baseNum * 100;
+          if (buyNumRate > 100) {
+            buyNumRate = 100;
+          }
+          if (sellNumRate > 100) {
+            sellNumRate = 100;
+          }
+          t.QUOTE_DATA = {
+            commodityTitle: t.commodityTitles[t.commodityNo],
+            contractNo: futureArr[0],
+            time: futureArr[1] - 0,
+            openPrice: futureArr[2],
+            yesterdayPrice: futureArr[3],
+            changeValue: futureArr[4],
+            changeQuote: futureArr[5],
+            highPrice: futureArr[6],
+            lowPrice: futureArr[7],
+            total: t.X.sketchNumber(futureArr[8], 2),
+            newPrice: futureArr[9],
+            buyPrice: futureArr[10],
+            sellPrice: futureArr[11],
+            buyNum: buyNum,
+            sellNum: sellNum,
+            buyNumRate: buyNumRate,
+            sellNumRate: sellNumRate
           };
-        });
+          t.futureInfo = t.QUOTE_DATA;
+          console.log(t.futureInfo);
 
-        t.sChart = new t.X.Sline(chartOpts['sline'][$scope.commodityNo]);
-        sChart.draw({
-          data: data,
-          close: X.toFloat(QUOTE_DATA['yesterdayPrice']),
-          high: X.toFloat(QUOTE_DATA['highPrice']),
-          low: X.toFloat(QUOTE_DATA['lowPrice']),
-          quoteTime: lastTime,
-          code: $scope.commodityNo,
-          period: SystemService.getRealPeriod($scope.commodityNo, lastTime),
-          isIntl: isIntl($scope.commodityNo)
-        });
+//          perDrawTick(QUOTE_DATA);
+//          perDrawSline(QUOTE_DATA);
+//          perDrawKline(QUOTE_DATA);
+        }
+      },
+      //
+      isIntl(commNo) {
+        return commNo == 'GC' || commNo == 'CL' || commNo == 'SI' || commNo == 'DAX';
       }
-
     },
     computed: {},
     destroyed(){

@@ -12,7 +12,8 @@
             <i class="icon-back"></i>
           </router-link>
           <a v-if="marketType == 1" class="nav-right txt-s14" @click="changeMarket()">换成实盘</a>
-          <router-link v-if="marketType == 2" :to="{path: '/tradeRule/' + commonType}" class="nav-right">规则</router-link>
+          <router-link v-if="marketType == 2" :to="{path: '/tradeRule/' + commonType}" class="nav-right">规则
+          </router-link>
         </div>
       </header>
       <div class="trade-menu">
@@ -31,15 +32,18 @@
     <result :tradeType="tradeType" :commonType="commonType" :marketType="marketType"
             v-if="tradeType=='result'"></result>
     <sell :tradeType="tradeType" :commonType="commonType" :marketType="marketType" v-if="tradeType=='sell'"></sell>
+    <buy :tradeType="tradeType" :commonType="commonType" :marketType="marketType" v-if="tradeType=='buy'"></buy>
   </section>
 </template>
 <script>
   import Result from './../components/tradeResult.vue';
-  import TradeSell from './../components/tradeSell.vue'
+  import TradeSell from './../components/tradeSell.vue';
+  import TradeBuy from './../components/tradeBuy.vue';
   export default{
     components: {
       'result': Result,
-      'sell': TradeSell
+      'sell': TradeSell,
+      'buy': TradeBuy,
     },
     data(){
       return {
@@ -61,7 +65,7 @@
         showMenu: false,
         commonTxt: '',
         txtLinkObj: {
-          header:{
+          header: {
             text: '',
             link: ''
           },
@@ -106,13 +110,13 @@
         window.location.reload(); // 由于页面params变化后，页面不刷新，这里做刷新，不是最佳处理方式，之后处理
       },
       changeFuture(key){
-        this.commonTxt=this.commodityTitles[key];this.commonType=key;
+        this.commonTxt = this.commodityTitles[key];
+        this.commonType = key;
         this.$router.push({path: '/outerTrade/' + key + '/' + this.marketType + '/buy'});
+        window.location.reload();
       }
     },
-    computed: {
-
-    },
+    computed: {},
     destroyed(){
 
     }

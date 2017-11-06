@@ -298,7 +298,6 @@
       this.showLoading = false;
       this.X.engine.addTask(this.getFuturesQuote, 1000);
       this.X.engine.start();
-
     },
     methods: {
       initAgentCode(){
