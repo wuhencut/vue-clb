@@ -208,6 +208,8 @@
           DAX: '德指'
         },
         slineData: [],
+        yMax: 0,
+        yMin: 0,
       }
     },
     mounted() {
@@ -506,15 +508,19 @@
         });
       },
 
-      initSlineData(data){
-        console.log(data)
+      initSlineData(data) {
         let t = this;
         data.forEach(function (item) {
           let itemArr = item.split(",")
+          if (itemArr[1] > t.yMax) {
+            t.yMax = itemArr[1] * 1.1
+          }
+          if (itemArr[1] < t.yMin) {
+            t.yMin = itemArr[1] * 0.9;
+          }
           t.slineData.push([
             new Date(itemArr[0] - 0),
-            (itemArr[1] - 0).toFixed(2),
-            (Math.random() * 100).toFixed(2) - 0
+            (itemArr[1] - 0).toFixed(2)
           ])
         })
       },
@@ -679,43 +685,44 @@
         let t = this;
         let myChart = this.$echarts.init(document.getElementsByClassName("chart")[0]);
         let option = {
-          tooltip: {
-            trigger: 'item',
-            formatter: function (params) {
-              var date = new Date(params.value[0]);
-              data = date.getFullYear() + '-'
-                + (date.getMonth() + 1) + '-'
-                + date.getDate() + ' '
-                + date.getHours() + ':'
-                + date.getMinutes();
-              return data + '<br/>'
-                + params.value[1] + ', '
-                + params.value[2];
-            }
-          },
           grid: {
-            x: 30,
-            y: 20,
-            width: "95%",
-            y2: 35,
+            x: -1,
+            y: 0,
+            x2: 0,
+            y2: 0,
+            borderColor: "#FCFCFC"
           },
           xAxis: [
             {
               type: 'time',
-              splitNumber: 3//中间标值
+              splitNumber: 4,//中间标值
+              axisTick: 'none',
+              axisLabel: {
+                textStyle: {
+                  color: '#FFFFFF'//标记为白色看不见
+                }
+              }
             }
           ],
+          backgroundColor: {color: '#ffffff'},
           yAxis: [
             {
               type: 'value',
               scale: true,
+              axisTick: 'none',
+              axisLabel: {
+                margin: -35
+              },
             }
           ],
           series: [
             {
-              name: 'series1',
+              name: 'sline',
+              itemStyle: {normal: {areaStyle: {type: 'default'},
+              width: 10}},
+              lineStyle:{width: 10},
               type: 'line',
-              color: "#ECECEC",
+              color: ['#61A1D6', 'rgba(145,189,226,0.7)'],
               /*showAllSymbol: true,
               symbolSize: function (value) {
                 return Math.round(value[2] / 10) + 2;

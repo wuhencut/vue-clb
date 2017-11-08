@@ -32,8 +32,8 @@
     data(){
       return {
         form: {
-          username: 'stone001',
-          password: 'a123456',
+          username: 'wuhencut',
+          password: 'woaiNI123',
           global: this.global,
         },
       }
